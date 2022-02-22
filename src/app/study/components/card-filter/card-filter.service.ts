@@ -12,6 +12,10 @@ export class CardFilterService {
 
   constructor(private tagsService: TagsService) { }
 
+  add(n1: number, n2:number) {
+    return n1 + n2;
+  }
+
   generateFilter(formValues: any): CardFilter {
     const cardFilter: CardFilter = { user: this.user };
     cardFilter.type = formValues.type;
@@ -43,5 +47,12 @@ export class CardFilterService {
       cardFilter.difficulty = formValues.difficulty;
     }*/
     return cardFilter;
+  }
+
+  mockFilter() {
+    return {
+      user: '123',
+      tags: ['546']
+    }
   }
 }

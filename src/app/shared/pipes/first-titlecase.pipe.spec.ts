@@ -1,8 +1,13 @@
-import { FirstTitlecasePipe } from './first-titlecase.pipe';
+import { FirstTitlecasePipe } from "./first-titlecase.pipe"
 
-describe('FirstTitlecasePipe', () => {
-  it('create an instance', () => {
+describe('firstTitlecasePipe', () => {
     const pipe = new FirstTitlecasePipe();
-    expect(pipe).toBeTruthy();
-  });
-});
+
+    it('should return string with first letter in titlecase', () => {
+        expect(pipe.transform('una palabra')).toBe('Una palabra')
+    })
+
+    it('should return empty string when null', () => {
+        expect(pipe.transform(null)).toBe('')
+    })
+})
