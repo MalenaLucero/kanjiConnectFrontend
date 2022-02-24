@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Tag } from '../models/tag.model';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
-import { take, takeWhile } from 'rxjs/operators';
+import { filter, map, take, takeWhile } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,13 +27,19 @@ export class TagsService {
     )
   }
 
+  setTags(value: Tag[]) {
+    this.tags.next(value);
+  }
+
   getTagIds(tagNames: string[]) {
     let tagIds: string[] = []
-    this.tags$.pipe(take(1)).subscribe(
-      res => {
-        tagIds = res.filter(tag => tagNames.includes(tag.name)).map(tag => tag._id);
-      }
-    )
+    this.tags$.pipe(
+        take(1),
+        map(tags => {
+          return tags.filter((tag: Tag) => tagNames.includes(tag.name))
+                      .map((tag: Tag) => tag._id)
+        }))
+      .subscribe(res => tagIds = res)
     return tagIds;
   }
 }

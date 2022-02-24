@@ -22,4 +22,11 @@ export const RAW_FORM_EXPRESSION = {
   }
 }
 
-export const TAG_IDS = ['123']
+export const TAG_IDS = ['123'];
+
+export const TAG_NAMES = ['Suga'];
+
+export const TAGS = [
+  {name: 'BTS', _id: '456', user: '', description: ''},
+  {name: 'Suga', _id: '123', user: '', description: ''}
+]
