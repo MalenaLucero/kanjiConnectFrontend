@@ -7,6 +7,7 @@ import { ExpressionsService } from 'src/app/study/services/expressions.service';
 import { ExternalExpression } from 'src/app/study/models/expression.model';
 import { TagsService } from 'src/app/study/services/tags.service';
 import { SpinnerService } from '../../../shared/components/spinner/spinner.service';
+import { ExpressionFormService } from './expression-form.service';
 
 @Component({
   selector: 'app-expression-form',
@@ -25,7 +26,8 @@ export class ExpressionFormComponent implements OnInit {
               private expressionsService: ExpressionsService,
               private tagsService: TagsService,
               private spinner: SpinnerService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private expressionFormService: ExpressionFormService) {
     this.createForm();
   }
 
@@ -100,20 +102,7 @@ export class ExpressionFormComponent implements OnInit {
   }
 
   async sendData() {
-    const tagsObject = this.form.get('tags')?.value;
-    const tagNames = Object.keys(tagsObject).filter(key => tagsObject[key])
-    const tagIds = await this.tagsService.getTagIds(tagNames);
-
-    const formExpression: FormExpressionDto = {
-      ...this.form.value,
-      englishMeaning: this.englishMeaning.getRawValue()
-        .filter(e => e.meaning !== null && e.meaning.length !== 0).map(e => e.meaning),
-      japaneseMeaning: this.japaneseMeaning.getRawValue()
-        .filter(e => e.meaning !== null && e.meaning.length !== 0).map(e => e.meaning),
-      exampleSentences: this.exampleSentences.getRawValue()
-        .filter(e => e.sentence !== null && e.sentence.length !== 0),
-      tags: tagIds
-    }
+    const formExpression = this.expressionFormService.generateFormExpressionObject(this.form.value);
     this.formData.emit(formExpression);
   }
 
@@ -144,13 +133,9 @@ export class ExpressionFormComponent implements OnInit {
     this.createForm();
   }
 
-  getRandomWord() {
-    const words = ['周囲', '理解', 'お屋敷', '地味', '仕事', '整頓', '主人', 'お客様', '好み', '調味料', '食材', '掃除', '気分'];
-    const randomWord = words[Math.floor(Math.random()*words.length)];
-    if (randomWord !== this.form.get('word')?.value) {
-      this.form.get('word')?.setValue(randomWord);
-    } else {
-      this.getRandomWord();
-    }
+  setRandomWord() {
+    const currentExpression = this.form.get('word')?.value;
+    const newRandomExpression = this.expressionFormService.getRandomJapaneseExpression(currentExpression)
+    this.form.get('word')?.setValue(newRandomExpression);
   }
 }
