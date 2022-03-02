@@ -26,39 +26,51 @@ describe('DifficultyButtonsComponent', () => {
     });
 
     it('should return a number between 0 and 10', () => {
-        const happyEasyResult = component.setNewDifficulty('easy', 5);
+        component.difficulty = 5;
+        const happyEasyResult = component.setNewDifficulty('easy');
+        component.difficulty = 1;
+        const negativeEasyResult = component.setNewDifficulty('easy');
+        component.difficulty = 5;
+        const happyOkResult = component.setNewDifficulty('OK');
+        component.difficulty = 0;
+        const negativeOkResult = component.setNewDifficulty('OK');
+        component.difficulty = 5;
+        const happyHardResult = component.setNewDifficulty('hard');
+        component.difficulty = 10;
+        const biggerThanTenHardResult = component.setNewDifficulty('hard');
+
         expect(happyEasyResult).withContext('Error setting easy result in happy path').toBe(3);
-        const negativeEasyResult = component.setNewDifficulty('easy', 1);
         expect(negativeEasyResult).withContext('Error setting easy result in unhappy path').toBe(0);
-
-        const happyOkResult = component.setNewDifficulty('OK', 5);
         expect(happyOkResult).withContext('Error setting OK result in happy path').toBe(4);
-        const negativeOkResult = component.setNewDifficulty('OK', 0);
         expect(negativeOkResult).withContext('Error setting OK result in unhappy path').toBe(0);
-
-        const happyHardResult = component.setNewDifficulty('hard', 5);
         expect(happyHardResult).withContext('Error setting hard result in happy path').toBe(6);
-        const biggerThanTenHardResult = component.setNewDifficulty('hard', 10);
         expect(biggerThanTenHardResult).withContext('Error setting hard result in unhappy path').toBe(10);
     })
 
     it('should show error snack bar with null difficulty', () => {
-        component.updateDifficulty('easy', null);
+        component.updateDifficulty('easy');
         expect(matSnackBarMock.open).toHaveBeenCalledWith('Invalid difficulty', 'Error', { duration: 3000 })
     })
 
     it('should show error snack bar with non-integer difficulty', () => {
-        component.updateDifficulty('easy', 1.5);
+        component.updateDifficulty('easy');
         expect(matSnackBarMock.open).toHaveBeenCalledWith('Invalid difficulty', 'Error', { duration: 3000 })
     })
 
     it('should show error snack bar with negative difficulty', () => {
-        component.updateDifficulty('easy', -1);
+        component.updateDifficulty('easy');
         expect(matSnackBarMock.open).toHaveBeenCalledWith('Invalid difficulty', 'Error', { duration: 3000 })
     })
 
     it('should show error snack bar with difficulty greater than 10', () => {
-        component.updateDifficulty('easy', 11);
+        component.updateDifficulty('easy');
         expect(matSnackBarMock.open).toHaveBeenCalledWith('Invalid difficulty', 'Error', { duration: 3000 })
+    })
+
+    it('should show error snack bar with difficulty greater than 10', () => {
+        const spyUpdate = spyOn(component.updatedDifficultyEmitter, 'emit') //arrange
+        component.difficulty = 5;
+        component.updateDifficulty('OK'); //act
+        expect(spyUpdate).toHaveBeenCalledWith(4) //assert
     })
 })

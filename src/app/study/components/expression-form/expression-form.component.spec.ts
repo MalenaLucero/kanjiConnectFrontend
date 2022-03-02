@@ -35,7 +35,7 @@ xdescribe('ExpressionFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule, MatDialogModule, MatIconModule, MatCardModule],
+        imports: [HttpClientTestingModule, MatDialogModule, MatIconModule, MatCardModule, ReactiveFormsModule],
         declarations: [ ExpressionFormComponent, SourceSelectMockComponent, LessonsSelectMockComponent,
           TagsSelectMockComponent, JlptSelectMockComponent, TransitivitySelectMockComponent ],
         providers: [
