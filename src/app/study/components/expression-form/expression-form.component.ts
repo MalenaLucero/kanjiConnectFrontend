@@ -5,7 +5,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ExternalExpressionInitializer, FormExpressionDto } from '../../models/expression.model';
 import { ExpressionsService } from 'src/app/study/services/expressions.service';
 import { ExternalExpression } from 'src/app/study/models/expression.model';
-import { TagsService } from 'src/app/study/services/tags.service';
 import { SpinnerService } from '../../../shared/components/spinner/spinner.service';
 import { ExpressionFormService } from './expression-form.service';
 
@@ -24,7 +23,6 @@ export class ExpressionFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private expressionsService: ExpressionsService,
-              private tagsService: TagsService,
               private spinner: SpinnerService,
               private snackBar: MatSnackBar,
               private expressionFormService: ExpressionFormService) {

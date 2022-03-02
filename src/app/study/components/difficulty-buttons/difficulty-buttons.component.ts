@@ -16,30 +16,25 @@ export class DifficultyButtonsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  updateDifficulty(cardDifficulty: CardDifficultyLevel) {
-    let newRawDifficulty: number | null = null;
-    if (cardDifficulty === 'easy' && this.difficulty !== null) {
-      newRawDifficulty =  this.difficulty - 2;
-    } else if (cardDifficulty === 'OK' && this.difficulty !== null) {
-      newRawDifficulty = this.difficulty - 1;
-    } else if (cardDifficulty === 'hard' && this.difficulty !== null) {
-      newRawDifficulty = this.difficulty + 1;
-    }
-
-    let newCastDifficulty: Difficulty | null = null;
-    if (newRawDifficulty !== null && newRawDifficulty >= 0 && newRawDifficulty <= 10) {
-      newCastDifficulty = newRawDifficulty as Difficulty;
-    } else if (newRawDifficulty !== null && newRawDifficulty < 0) {
-      newCastDifficulty = 0;
-    } else if (newRawDifficulty !== null && newRawDifficulty > 10) {
-      newCastDifficulty = 10;
-    }
-
-    if (newCastDifficulty !== null) {
-      this.updatedDifficulty.emit(newCastDifficulty);
-    } else {
+  updateDifficulty(cardDifficulty: CardDifficultyLevel, difficulty: number | null) {
+    if (difficulty === null || !Number.isInteger(difficulty) || difficulty < 0 || difficulty > 10) {
       this.snackBar.open('Invalid difficulty', 'Error', { duration: 3000 });
+    } else {
+      const newDifficulty = this.setNewDifficulty(cardDifficulty, difficulty);
+      this.updatedDifficulty.emit(newDifficulty);
     }
   }
 
+  setNewDifficulty(cardDifficulty: CardDifficultyLevel, difficulty: number): Difficulty {
+    if (cardDifficulty === 'easy') {
+      const newDifficulty = difficulty - 2
+      return newDifficulty < 0 ? 0 : newDifficulty as Difficulty;
+    } else if (cardDifficulty === 'OK') {
+      const newDifficulty = difficulty - 1
+      return newDifficulty < 0 ? 0 : newDifficulty as Difficulty;
+    } else {
+      const newDifficulty = difficulty + 1
+      return newDifficulty > 10 ? 10 : newDifficulty as Difficulty;
+    }
+  }
 }
