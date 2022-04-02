@@ -22,13 +22,13 @@ export class UserKanjiService {
     return this.http.post<UserKanji[]>(environment.userKanji + '/filter', filter)
       .subscribe(
         res => {
-          const tableKanji = res.map(userKanji => {
-            console.log(userKanji)
+          const tableKanji = res.map((userKanji, index) => {
             return {
               kanji: userKanji.kanji ? userKanji.kanji.kanji : 'VACIO',
               kun_readings: userKanji.kanji.kun_readings,
               on_readings: userKanji.kanji.on_readings,
-              expressions: userKanji.expressions.map(expression => expression.word)
+              expressions: userKanji.expressions.map(expression => expression.word),
+              number: index + 1
             }
           })
           this.userKanji.next(tableKanji);

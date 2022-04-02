@@ -36,4 +36,16 @@ export const emptyUserKanji: UserKanji = {
 
 export interface TableKanji {
   kanji: string;
+  expressions: string[];
+  on_readings: string[];
+  kun_readings: string[];
+  number: number;
+}
+
+export const emptyTableKanji: TableKanji = {
+  kanji: '',
+  expressions: [],
+  on_readings: [],
+  kun_readings: [],
+  number: 0
 }

@@ -1,0 +1,21 @@
+<mat-card class="container">
+  <div class="kanji-container">
+    <h4 class="kanji">{{cardData.kanji}}</h4>
+  </div>
+  <div class="content">
+    <div class="readings-container">
+      <ul class="readings-list">
+        <li *ngFor="let kun_reading of cardData.kun_readings">{{kun_reading}}</li>
+      </ul>
+      <ul class="readings-list">
+        <li *ngFor="let on_reading of cardData.on_readings">{{on_reading}}</li>
+      </ul>
+    </div>
+    <div class="extra-data-container">
+      <h5 class="subtitle">Expressions with this kanji:</h5>
+      <ul>
+        <li *ngFor="let expression of cardData.expressions">{{expression}}</li>
+      </ul>
+    </div>
+  </div>
+</mat-card>

@@ -9,18 +9,31 @@ import { UserKanjiService } from '../../services/user-kanji.service';
 })
 export class UserKanjiComponent implements OnInit {
   userKanji: TableKanji[] = [];
-  columnTitles = ['kanji', 'expressions', 'kun_readings', 'on_readings']
+  columnTitles = ['number', 'kanji', 'expressions', 'kun_readings', 'on_readings'];
+  areCardsShown: boolean = true;
+  cardData: TableKanji[] = [];
 
   constructor(private userKanjiService: UserKanjiService) { }
 
   ngOnInit(): void {
-    this.userKanjiService.userKanji$.subscribe(res => this.userKanji = res)
+    this.userKanjiService.userKanji$.subscribe(res => {
+      this.userKanji = res;
+      this.cardData = res.slice(0, 12);
+    })
     if(this.userKanji.length === 0) {
       this.userKanjiService.getUserKanjiByUser();
       this.userKanjiService.userKanji$.subscribe(res => {
         this.userKanji = res
+        this.cardData = res.slice(0, 12);
       })
     }
   }
 
+  showCards() {
+    this.areCardsShown = true;
+  }
+
+  showTable() {
+    this.areCardsShown = false;
+  }
 }

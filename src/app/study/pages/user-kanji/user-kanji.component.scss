@@ -1,3 +1,29 @@
 .container{
   padding: 30px;
+  background-color: var(--background-three);
+  margin: 0 15px;
+  nav{
+    margin-bottom: 15px;
+  }
+  a{
+    color: var(--main-color);
+    text-decoration: underline;
+    margin-right: 15px;
+  }
+  .cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 15px;
+    @media(max-width: 700px) {
+      flex-direction: column;
+    }
+    .card{
+      width: 40%;
+      flex-grow: 1;
+      @media(max-width: 700px) {
+        width: 100%;
+      }
+    }
+  }
 }

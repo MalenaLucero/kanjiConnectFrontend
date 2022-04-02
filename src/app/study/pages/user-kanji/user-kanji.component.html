@@ -1,6 +1,15 @@
 <div class="container">
   <h2>Kanji N1</h2>
+  <nav>
+    <a (click)="showCards()">See cards</a>
+    <a (click)="showTable()">See table</a>
+  </nav>
   <div *ngIf="userKanji.length > 0">
-    <app-table [columnTitles]="columnTitles" [dataToDisplay]="userKanji"></app-table>
+    <div *ngIf="areCardsShown" class="cards-container">
+      <app-user-kanji-card *ngFor="let data of cardData" [cardData]="data" class="card"></app-user-kanji-card>
+    </div>
+    <div *ngIf="!areCardsShown">
+      <app-table [columnTitles]="columnTitles" [dataToDisplay]="userKanji"></app-table>
+    </div>
   </div>
 </div>
