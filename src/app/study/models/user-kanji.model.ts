@@ -33,3 +33,7 @@ export const emptyUserKanji: UserKanji = {
   user: emptyUser,
   _id: '',
 }
+
+export interface TableKanji {
+  kanji: string;
+}

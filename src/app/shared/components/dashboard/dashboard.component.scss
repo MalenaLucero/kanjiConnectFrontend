@@ -1,6 +1,7 @@
 .container{
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap-reverse;
 }
 
 .tab-button{
@@ -21,4 +22,8 @@
   .upload-anchor{
     color: black;
   }
+}
+
+.simple{
+  text-decoration: underline;
 }

@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
@@ -29,6 +30,7 @@ import { IconButtonComponent } from './elements/buttons/icon-button/icon-button.
 import { WarnButtonComponent } from './elements/buttons/warn-button/warn-button.component';
 import { AccentButtonComponent } from './elements/buttons/accent-button/accent-button.component';
 import { HomeComponent } from './pages/home/home.component';
+import { TableComponent } from './components/table/table.component';
 
 
 @NgModule({
@@ -52,6 +54,7 @@ import { HomeComponent } from './pages/home/home.component';
     WarnButtonComponent,
     AccentButtonComponent,
     HomeComponent,
+    TableComponent,
   ],
   imports: [
     CommonModule,
@@ -64,6 +67,7 @@ import { HomeComponent } from './pages/home/home.component';
     MatButtonModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatTableModule
   ], exports: [
     DashboardComponent,
     FooterComponent,
@@ -80,6 +84,7 @@ import { HomeComponent } from './pages/home/home.component';
     TransitivitySelectComponent,
     MainButtonComponent,
     FirstTitlecasePipe,
+    TableComponent
   ]
 })
 export class SharedModule { }

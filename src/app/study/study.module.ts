@@ -20,6 +20,8 @@ import { ExpressionCardComponent } from './components/review-card/review-card.co
 import { DifficultyPipe } from './pipes/difficulty.pipe';
 import { ExpressionCastPipe } from './pipes/expression-cast.pipe';
 import { UserKanjiCastPipe } from './pipes/user-kanji-cast.pipe';
+import { ExpressionsComponent } from './pages/expressions/expressions.component';
+import { UserKanjiComponent } from './pages/user-kanji/user-kanji.component';
 
 const routes: Routes = [
   {
@@ -31,6 +33,12 @@ const routes: Routes = [
       }, {
         path: 'upload',
         component: UploadComponent
+      }, {
+        path: 'expressions',
+        component: ExpressionsComponent,
+      }, {
+        path: 'user-kanji',
+        component: UserKanjiComponent
       }
     ]
   }, {
@@ -53,6 +61,8 @@ const routes: Routes = [
     UserKanjiCastPipe,
     ReviewComponent,
     UploadComponent,
+    ExpressionsComponent,
+    UserKanjiComponent,
   ],
   imports: [
     CommonModule,
