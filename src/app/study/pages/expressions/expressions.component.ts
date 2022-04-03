@@ -9,7 +9,7 @@ import { ExpressionsService } from '../../services/expressions.service';
 })
 export class ExpressionsComponent implements OnInit {
   expressions: Expression[] = [];
-  columnTitles = ['word', 'reading', 'englishMeaning']
+  columnTitles = ['word', 'reading']
 
   constructor(private expressionsService: ExpressionsService) {}
 

@@ -23,6 +23,7 @@ import { UserKanjiCastPipe } from './pipes/user-kanji-cast.pipe';
 import { ExpressionsComponent } from './pages/expressions/expressions.component';
 import { UserKanjiComponent } from './pages/user-kanji/user-kanji.component';
 import { UserKanjiCardComponent } from './components/user-kanji-card/user-kanji-card.component';
+import { ExpressionPopupComponent } from './components/expression-popup/expression-popup.component';
 
 const routes: Routes = [
   {
@@ -65,6 +66,7 @@ const routes: Routes = [
     ExpressionsComponent,
     UserKanjiComponent,
     UserKanjiCardComponent,
+    ExpressionPopupComponent,
   ],
   imports: [
     CommonModule,

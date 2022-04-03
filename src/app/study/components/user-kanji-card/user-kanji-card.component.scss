@@ -24,11 +24,14 @@
       margin: 10px 0;
       .subtitle{
         font-size: 14px;
-        color: var(--main-color);
         margin: 0;
       }
       li{
-        font-size: 16px;
+        font-size: 18px;
+        a{
+          color: var(--main-color);
+          text-decoration: underline;
+        }
       }
     }
   }

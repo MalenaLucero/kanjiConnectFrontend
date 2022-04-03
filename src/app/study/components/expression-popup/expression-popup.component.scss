@@ -1,0 +1,20 @@
+h4{
+  text-align: center;
+  margin: 10px;
+  font-size: 22px;
+  font-weight: bold;
+}
+.card-detail{
+  .section-text{
+    color: grey
+  }
+  p{
+    margin: 10px 0 !important;
+  }
+  .card-list{
+    margin: 10px 0;
+  }
+  .bullet{
+    color: var(--main-color);
+  }
+}

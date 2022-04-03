@@ -1,6 +1,11 @@
 import { TableKanji } from './../../models/user-kanji.model';
 import { Component, OnInit } from '@angular/core';
 import { UserKanjiService } from '../../services/user-kanji.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ExpressionPopupComponent } from '../../components/expression-popup/expression-popup.component';
+import { ExpressionsService } from '../../services/expressions.service';
+import { emptyExpression, Expression } from '../../models/expression.model';
+import { pipe, take } from 'rxjs';
 
 @Component({
   selector: 'app-user-kanji',
@@ -13,7 +18,9 @@ export class UserKanjiComponent implements OnInit {
   areCardsShown: boolean = true;
   cardData: TableKanji[] = [];
 
-  constructor(private userKanjiService: UserKanjiService) { }
+  constructor(private userKanjiService: UserKanjiService,
+              private expressionsService: ExpressionsService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.userKanjiService.userKanji$.subscribe(res => {
@@ -27,6 +34,11 @@ export class UserKanjiComponent implements OnInit {
         this.cardData = res.slice(0, 12);
       })
     }
+    this.expressionsService.expressions$.pipe(take(1)).subscribe(res => {
+      if(res.length === 0) {
+        this.expressionsService.getExpressionsByUser();
+      }
+    })
   }
 
   showCards() {
@@ -35,5 +47,16 @@ export class UserKanjiComponent implements OnInit {
 
   showTable() {
     this.areCardsShown = false;
+  }
+
+  showExpression(expression: string) {
+    this.expressionsService.expressions$.pipe(take(1)).subscribe(res => {
+      const expressionData = res.find(e => e.word === expression) as Expression;
+      this.dialog.open(ExpressionPopupComponent, {
+        width: '400px',
+        height: '80vh',
+        data: expressionData
+      });
+    })
   }
 }

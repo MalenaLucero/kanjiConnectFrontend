@@ -1,0 +1,30 @@
+<h4>{{ expression.word }}</h4>
+<div class="card-detail">
+  <p>
+    <span class="section-text">Reading: </span>
+    <span class="reading">{{ expression.reading }}</span>
+  </p>
+  <p *ngIf="expression.transitivity">
+    <span class="section-text">Transitivity: </span>
+      {{ expression.transitivity | firstTitlecase }}
+  </p>
+  <p *ngIf="expression.jlpt">
+    <span class="section-text">Jlpt: </span>
+      {{ expression.jlpt }}
+  </p>
+  <ul class="card-list">
+    <li class="section-text">Example Sentences:</li>
+    <li *ngFor="let sentence of expression.exampleSentences">
+      <span class="bullet">●</span>{{ sentence.sentence }}
+    </li>
+  </ul>
+  <ul class="card-list">
+    <li class="section-text">Meaning:</li>
+    <li *ngFor="let englishMeaning of expression.englishMeaning">
+      <span class="bullet">●</span>{{ englishMeaning | firstTitlecase }}
+    </li>
+    <li *ngFor="let japaneseMeaning of expression.japaneseMeaning">
+      <span class="bullet">●</span>{{ japaneseMeaning}}
+    </li>
+  </ul>
+</div>

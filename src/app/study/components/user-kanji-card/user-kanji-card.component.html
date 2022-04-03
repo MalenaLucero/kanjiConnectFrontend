@@ -14,7 +14,11 @@
     <div class="extra-data-container">
       <h5 class="subtitle">Expressions with this kanji:</h5>
       <ul>
-        <li *ngFor="let expression of cardData.expressions">{{expression}}</li>
+        <li *ngFor="let expression of cardData.expressions">
+          <a (click)="outputExpression(expression)">
+            {{expression}}
+          </a>
+        </li>
       </ul>
     </div>
   </div>
