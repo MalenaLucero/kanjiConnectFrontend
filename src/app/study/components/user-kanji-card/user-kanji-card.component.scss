@@ -1,7 +1,7 @@
 .container{
   display: flex;
   .kanji-container{
-    width: 30%;
+    min-width: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
