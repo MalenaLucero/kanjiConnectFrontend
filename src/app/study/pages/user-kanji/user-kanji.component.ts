@@ -40,6 +40,7 @@ export class UserKanjiComponent implements OnInit {
         this.expressionsService.getExpressionsByUser();
       }
     })
+
   }
 
   showCards() {
