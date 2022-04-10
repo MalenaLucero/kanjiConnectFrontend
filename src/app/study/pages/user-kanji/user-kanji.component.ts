@@ -17,7 +17,8 @@ export class UserKanjiComponent implements OnInit {
   columnTitles = ['number', 'kanji', 'expressions', 'kun_readings', 'on_readings'];
   areCardsShown: boolean = true;
   cardData: TableKanji[] = [];
-  lesson2Kanji = ['臨','透','揺','染','芝','尽','哀','護','岐','帳','潜','腐'];
+  lesson2Kanji = ['臨', '透', '揺', '染', '芝', '尽', '哀', '護', '岐', '帳', '潜', '腐'];
+  lesson3Kanji = ['脚', '郭', '致', '舗', '稿', '繕', '泡', '坪', '霧', '焦', '浸', '牲'];
 
   constructor(private userKanjiService: UserKanjiService,
               private expressionsService: ExpressionsService,
@@ -26,13 +27,13 @@ export class UserKanjiComponent implements OnInit {
   ngOnInit(): void {
     this.userKanjiService.userKanji$.subscribe(res => {
       this.userKanji = res;
-      this.cardData = res.filter(data => this.lesson2Kanji.includes(data.kanji));
+      this.cardData = res.filter(data => this.lesson3Kanji.includes(data.kanji));
     })
     if(this.userKanji.length === 0) {
       this.userKanjiService.getUserKanjiByUser();
       this.userKanjiService.userKanji$.subscribe(res => {
         this.userKanji = res
-        this.cardData = res.filter(data => this.lesson2Kanji.includes(data.kanji));
+        this.cardData = res.filter(data => this.lesson3Kanji.includes(data.kanji));
       })
     }
     this.expressionsService.expressions$.pipe(take(1)).subscribe(res => {
@@ -40,7 +41,6 @@ export class UserKanjiComponent implements OnInit {
         this.expressionsService.getExpressionsByUser();
       }
     })
-
   }
 
   showCards() {
