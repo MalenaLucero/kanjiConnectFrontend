@@ -1,0 +1,21 @@
+.container{
+  display: flex;
+  gap: var(--big-padding);
+  justify-content: flex-end;
+  .button-wrapper{
+    border-bottom: 5px solid var(--light-main-color);
+    color: var(--dark-color);
+    cursor: pointer;
+    font-size: var(--font-medium);
+    padding-bottom: var(--small-padding);
+    transition: border-bottom 0.5s;
+    &:hover{
+      border-bottom: 5px solid var(--accent-color);
+    }
+    &.active{
+      border-bottom: 5px solid var(--accent-color);
+    }
+  }
+}
+
+

@@ -8,11 +8,11 @@ interface Page {
   location: string
 }
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-main-nav',
+  templateUrl: './main-nav.component.html',
+  styleUrls: ['./main-nav.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class MainNavComponent implements OnInit {
   public pages: Page[] = [
     { page: 'review', active: false, location: '' },
     { page: 'review', active: false, location: '/review' },

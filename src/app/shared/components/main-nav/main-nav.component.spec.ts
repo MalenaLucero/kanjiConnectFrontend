@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExpressionsComponent } from './expressions.component';
+import { MainNavComponent } from './main-nav.component';
 
-describe('ExpressionsComponent', () => {
-  let component: ExpressionsComponent;
-  let fixture: ComponentFixture<ExpressionsComponent>;
+describe('DashboardComponent', () => {
+  let component: MainNavComponent;
+  let fixture: ComponentFixture<MainNavComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExpressionsComponent ]
+      declarations: [ MainNavComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExpressionsComponent);
+    fixture = TestBed.createComponent(MainNavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -12,6 +12,14 @@
   --background-one: #C7CCDB;
   --background-two: #E1E5EE;
   --background-three: #e0d7fd;
+  --small-padding: 6px;
+  --default-padding: 15px;
+  --big-padding: 30px;
+  --small-margin: 6px;
+  --default-margin: 15px;
+  --big-margin: 30px;
+  --font-normal: 14px;
+  --font-medium: 18px;
 }
 
 .media-width{
@@ -43,7 +51,7 @@ body {
 
 h1 {
   color: var(--main-color);
-  font-size: 2.5em !important;
+  font-size: 3em !important;
   margin: 0 !important;
 }
 
@@ -71,6 +79,7 @@ a {
   text-decoration: none;
   font-weight: 500;
   cursor: pointer;
+  color: var(--main-color);
 }
 
 .form-buttons-container{

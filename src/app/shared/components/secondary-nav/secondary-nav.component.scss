@@ -1,0 +1,11 @@
+.container{
+  display: flex;
+  gap: var(--default-padding);
+  justify-content: flex-end;
+  .anchor{
+    color: var(--dark-color);
+    &:hover{
+      color: var(--accent-color);
+    }
+  }
+}

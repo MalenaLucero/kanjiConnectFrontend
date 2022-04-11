@@ -1,12 +1,18 @@
 .container{
-  text-align: center;
-  margin: 1em;
-  .upper-anchors{
+  padding: var(--default-padding) var(--big-padding);
+  .title-nav-container{
+    align-items:flex-end;
     display: flex;
-    justify-content: flex-end;
-  }
-  p{
-    color: var(--main-color);
-    margin-top: 0.2em !important;
+    justify-content: space-between;
+    @media(max-width: 768px){
+      flex-direction: column;
+      align-items: center;
+    }
+    .title-wrapper{
+      padding: var(--default-padding) 0;
+      .subtitle{
+        color: var(--main-color);
+      }
+    }
   }
 }

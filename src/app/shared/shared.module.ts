@@ -10,10 +10,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
 
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
+import { SecondaryNavComponent } from './components/secondary-nav/secondary-nav.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoginComponent } from './components/login/login.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
@@ -31,13 +31,14 @@ import { WarnButtonComponent } from './elements/buttons/warn-button/warn-button.
 import { AccentButtonComponent } from './elements/buttons/accent-button/accent-button.component';
 import { HomeComponent } from './pages/home/home.component';
 import { TableComponent } from './components/table/table.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
   declarations: [
-    DashboardComponent,
+    MainNavComponent,
     FooterComponent,
-    HeaderComponent,
+    SecondaryNavComponent,
     LoadingComponent,
     LoginComponent,
     SpinnerComponent,
@@ -55,6 +56,7 @@ import { TableComponent } from './components/table/table.component';
     AccentButtonComponent,
     HomeComponent,
     TableComponent,
+    HeaderComponent,
   ],
   imports: [
     CommonModule,
@@ -69,9 +71,7 @@ import { TableComponent } from './components/table/table.component';
     MatCheckboxModule,
     MatTableModule
   ], exports: [
-    DashboardComponent,
     FooterComponent,
-    HeaderComponent,
     LoadingComponent,
     LoginComponent,
     SpinnerComponent,
@@ -84,7 +84,8 @@ import { TableComponent } from './components/table/table.component';
     TransitivitySelectComponent,
     MainButtonComponent,
     FirstTitlecasePipe,
-    TableComponent
+    TableComponent,
+    HeaderComponent
   ]
 })
 export class SharedModule { }
