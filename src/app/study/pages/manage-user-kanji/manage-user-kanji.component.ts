@@ -1,4 +1,4 @@
-import { TableKanji } from './../../models/user-kanji.model';
+import { TableKanji } from '../../models/user-kanji.model';
 import { Component, OnInit } from '@angular/core';
 import { UserKanjiService } from '../../services/user-kanji.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -9,10 +9,10 @@ import { pipe, take } from 'rxjs';
 
 @Component({
   selector: 'app-user-kanji',
-  templateUrl: './user-kanji.component.html',
-  styleUrls: ['./user-kanji.component.scss']
+  templateUrl: './manage-user-kanji.component.html',
+  styleUrls: ['./manage-user-kanji.component.scss']
 })
-export class UserKanjiComponent implements OnInit {
+export class ManageUserKanjiComponent implements OnInit {
   userKanji: TableKanji[] = [];
   columnTitles = ['number', 'kanji', 'expressions', 'kun_readings', 'on_readings'];
   areCardsShown: boolean = true;

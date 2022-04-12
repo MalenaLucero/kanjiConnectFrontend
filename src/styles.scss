@@ -10,7 +10,7 @@
   --accent-color: #ffd74a;
   --dark-color: #333333;
   --background-one: #C7CCDB;
-  --background-two: #E1E5EE;
+  --background-two: #f0f1f6;
   --background-three: #e0d7fd;
   --small-padding: 6px;
   --default-padding: 15px;
@@ -33,8 +33,11 @@
 }
 
 .page-container{
-  border-top-right-radius: 4px;
+  box-sizing: border-box;
+  border-radius: 4px;
   margin: 0 1em;
+  padding: var(--default-padding);
+  position: relative;
   @media(max-width: 440px) {
     margin: 0;
   }

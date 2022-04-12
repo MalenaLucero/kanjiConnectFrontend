@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 
 import { ReviewComponent } from './pages/review/review.component';
-import { UploadComponent } from './pages/upload/upload.component';
+import { UploadExpressionComponent } from './pages/upload-expression/upload-expression.component';
 import { CardFilterComponent } from './components/card-filter/card-filter.component';
 import { SharedModule } from '../shared/shared.module';
 import { DifficultyButtonsComponent } from './components/difficulty-buttons/difficulty-buttons.component';
@@ -20,9 +20,16 @@ import { ExpressionCardComponent } from './components/review-card/review-card.co
 import { DifficultyPipe } from './pipes/difficulty.pipe';
 import { ExpressionCastPipe } from './pipes/expression-cast.pipe';
 import { UserKanjiCastPipe } from './pipes/user-kanji-cast.pipe';
-import { UserKanjiComponent } from './pages/user-kanji/user-kanji.component';
+import { ManageUserKanjiComponent } from './pages/manage-user-kanji/manage-user-kanji.component';
 import { UserKanjiCardComponent } from './components/user-kanji-card/user-kanji-card.component';
 import { ExpressionPopupComponent } from './components/expression-popup/expression-popup.component';
+import { UploadLessonComponent } from './pages/upload-lesson/upload-lesson.component';
+import { UploadTagComponent } from './pages/upload-tag/upload-tag.component';
+import { ManageExpressionsComponent } from './pages/manage-expressions/manage-expressions.component';
+import { ManageComponent } from './pages/manage/manage.component';
+import { ManageLessonsComponent } from './pages/manage-lessons/manage-lessons.component';
+import { ManageTagsComponent } from './pages/manage-tags/manage-tags.component';
+import { UploadComponent } from './pages/upload/upload.component';
 
 const routes: Routes = [
   {
@@ -33,10 +40,37 @@ const routes: Routes = [
         component: ReviewComponent
       }, {
         path: 'upload',
-        component: UploadComponent
+        component: UploadComponent,
+        children: [
+          {
+            path: 'expression',
+            component: UploadExpressionComponent
+          }, {
+            path: 'lesson',
+            component: UploadLessonComponent
+          }, {
+            path: 'tag',
+            component: UploadTagComponent
+          }
+        ]
       }, {
         path: 'manage',
-        component: UserKanjiComponent
+        component: ManageComponent,
+        children: [
+          {
+            path: 'expressions',
+            component: ManageExpressionsComponent
+          }, {
+            path: 'user-kanji',
+            component: ManageUserKanjiComponent
+          }, {
+            path: 'lessons',
+            component: ManageLessonsComponent
+          }, {
+            path: 'tags',
+            component: ManageTagsComponent
+          }
+        ]
       }
     ]
   }, {
@@ -58,10 +92,17 @@ const routes: Routes = [
     ExpressionCastPipe,
     UserKanjiCastPipe,
     ReviewComponent,
-    UploadComponent,
-    UserKanjiComponent,
+    UploadExpressionComponent,
+    ManageUserKanjiComponent,
     UserKanjiCardComponent,
     ExpressionPopupComponent,
+    UploadLessonComponent,
+    UploadTagComponent,
+    ManageExpressionsComponent,
+    ManageComponent,
+    ManageLessonsComponent,
+    ManageTagsComponent,
+    UploadComponent,
   ],
   imports: [
     CommonModule,

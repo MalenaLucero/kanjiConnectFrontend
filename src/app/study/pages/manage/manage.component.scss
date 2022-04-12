@@ -2,9 +2,10 @@
   display: flex;
   background-color: var(--background-three);
   justify-content: space-between;
+  gap: var(--default-padding);
   .nav-container{
-    width: 20%;
-    height: 120px;
+    min-width: 20%;
+    height: 175px;
     position: sticky;
     top: var(--default-padding);
     a{
