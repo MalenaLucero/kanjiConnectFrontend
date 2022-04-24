@@ -3,20 +3,32 @@
   @media(max-width: 700px) {
     margin: 0 0;
   }
-  nav{
-    margin-bottom: 15px;
-  }
-  a{
-    color: var(--main-color);
-    text-decoration: underline;
-    margin-right: 15px;
+  .header{
+    padding-bottom: var(--default-padding);
+    text-align: center;
+    h2{
+      font-size: var(--font-medium-big);
+    }
+    .form-card{
+      margin: var(--default-margin) 0;
+      .form-container{
+        display: flex;
+        gap: var(--default-padding);
+        align-items: baseline;
+        mat-form-field{
+          width: 400px;
+        }
+      }
+    }
+    nav{
+      button{
+        margin: var(--small-margin);
+      }
+    }
   }
   .cards-container{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: stretch; // <-- stretch vertical (default value, can be omitted here)
-    align-content: center;
     flex-wrap: wrap;
     gap: 15px;
     @media(max-width: 700px) {

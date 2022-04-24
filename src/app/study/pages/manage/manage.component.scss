@@ -3,11 +3,17 @@
   background-color: var(--background-three);
   justify-content: space-between;
   gap: var(--default-padding);
+  @media(max-width: 950px) {
+    flex-direction: column;
+  }
   .nav-container{
-    min-width: 20%;
+    min-width: 200px;
     height: 175px;
     position: sticky;
     top: var(--default-padding);
+    @media(max-width: 950px) {
+      position: static;
+    }
     a{
       color: var(--dark-color);
       display: inline-block;

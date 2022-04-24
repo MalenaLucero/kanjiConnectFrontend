@@ -1,6 +1,6 @@
 <div class="container page-container">
   <mat-card class="nav-container">
-      <nav>
+    <nav>
       <ul>
         <li><a routerLink="expressions" routerLinkActive="active">Expressions</a></li>
         <li><a routerLink="user-kanji" routerLinkActive="active">Kanji</a></li>
@@ -9,5 +9,7 @@
       </ul>
     </nav>
   </mat-card>
-  <router-outlet></router-outlet>
+  <div class="router-outlet-container">
+    <router-outlet></router-outlet>
+  </div>
 </div>

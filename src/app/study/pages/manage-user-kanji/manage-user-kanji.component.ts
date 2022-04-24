@@ -1,11 +1,13 @@
-import { TableKanji } from '../../models/user-kanji.model';
 import { Component, OnInit } from '@angular/core';
-import { UserKanjiService } from '../../services/user-kanji.service';
-import { MatDialog } from '@angular/material/dialog';
+import { Expression } from '../../models/expression.model';
 import { ExpressionPopupComponent } from '../../components/expression-popup/expression-popup.component';
 import { ExpressionsService } from '../../services/expressions.service';
-import { emptyExpression, Expression } from '../../models/expression.model';
-import { pipe, take } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { TableKanji } from '../../models/user-kanji.model';
+import { take } from 'rxjs';
+import { UserKanjiService } from '../../services/user-kanji.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-user-kanji',
@@ -16,32 +18,45 @@ export class ManageUserKanjiComponent implements OnInit {
   userKanji: TableKanji[] = [];
   columnTitles = ['number', 'kanji', 'expressions', 'kun_readings', 'on_readings'];
   areCardsShown: boolean = true;
-  cardData: TableKanji[] = [];
+  searchParams: string[] = [];
   lesson2Kanji = ['臨', '透', '揺', '染', '芝', '尽', '哀', '護', '岐', '帳', '潜', '腐'];
   lesson3Kanji = ['脚', '郭', '致', '舗', '稿', '繕'];
   lesson4Kanji = ['泡', '坪', '霧', '焦', '浸', '牲'];
+  public searchForm: FormGroup;
+  public panelOpenState = false;
 
   constructor(private userKanjiService: UserKanjiService,
               private expressionsService: ExpressionsService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private route: ActivatedRoute,
+              private formBuilder: FormBuilder) {
+                this.searchForm = this.formBuilder.group({
+                  search: ['']
+                })
+              }
 
   ngOnInit(): void {
+    this.route.queryParams.pipe(take(1)).subscribe(params => {
+      if (params['search']) {
+        this.searchParams = params['search'].split(',');
+      } else {
+        this.panelOpenState = true;
+      }
+    });
+    this.triggerSearch(this.searchParams);
+  }
+
+  triggerSearch(kanjiList: string[]) {
     this.userKanjiService.userKanji$.subscribe(res => {
-      this.userKanji = res;
-      this.cardData = res.filter(data => this.lesson3Kanji.includes(data.kanji));
-    })
-    if(this.userKanji.length === 0) {
-      this.userKanjiService.getUserKanjiByUser();
-      this.userKanjiService.userKanji$.subscribe(res => {
-        this.userKanji = res
-        this.cardData = res.filter(data => this.lesson3Kanji.includes(data.kanji));
-      })
-    }
-    this.expressionsService.expressions$.pipe(take(1)).subscribe(res => {
-      if(res.length === 0) {
-        this.expressionsService.getExpressionsByUser();
+      if (res.length > 0) {
+        this.userKanji = res.filter(data => kanjiList.includes(data.kanji));
       }
     })
+  }
+
+  search() {
+    const kanjiList = this.searchForm.value.search.split(',');
+    this.triggerSearch(kanjiList);
   }
 
   showCards() {

@@ -19,7 +19,9 @@
   --default-margin: 15px;
   --big-margin: 30px;
   --font-normal: 14px;
+  --font-normal-big: 16px;
   --font-medium: 18px;
+  --font-medium-big: 25px;
 }
 
 .media-width{
@@ -45,6 +47,10 @@
 
 mat-form-field{
   margin-right: 1em;
+}
+
+mat-panel-title{
+  font-weight: 500;
 }
 
 body {
