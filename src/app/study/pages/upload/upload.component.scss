@@ -2,11 +2,18 @@
   display: flex;
   background-color: var(--background-three);
   justify-content: space-between;
+  @media(max-width: 950px) {
+    flex-direction: column;
+    gap: var(--default-padding);
+  }
   .nav-container{
-    width: 20%;
+    min-width: 200px;
     height: 120px;
     position: sticky;
     top: var(--default-padding);
+    @media(max-width: 950px) {
+      position: static;
+    }
     a{
       color: var(--dark-color);
       display: inline-block;

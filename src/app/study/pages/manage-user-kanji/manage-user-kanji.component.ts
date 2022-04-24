@@ -21,7 +21,7 @@ export class ManageUserKanjiComponent implements OnInit {
   searchParams: string[] = [];
   lesson2Kanji = ['臨', '透', '揺', '染', '芝', '尽', '哀', '護', '岐', '帳', '潜', '腐'];
   lesson3Kanji = ['脚', '郭', '致', '舗', '稿', '繕'];
-  lesson4Kanji = ['泡', '坪', '霧', '焦', '浸', '牲'];
+  lesson4Kanji = ['泡', '坪', '霧', '焦', '浸', '牲', '妙', '淡', '蚊', '駄', '愚', '跳'];
   public searchForm: FormGroup;
   public panelOpenState = false;
 
