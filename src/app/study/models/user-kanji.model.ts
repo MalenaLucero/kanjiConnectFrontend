@@ -21,7 +21,8 @@ export interface UserKanjiFilter {
   lesson?: string,
   tags?: string[],
   jlpt?: Jlpt,
-  kanjiAsCharacter?: string
+  kanjiAsCharacter?: string,
+  kanjiList?: string[]
 }
 
 export const emptyUserKanji: UserKanji = {

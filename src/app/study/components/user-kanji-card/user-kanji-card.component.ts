@@ -1,4 +1,5 @@
-import { TableKanji, emptyTableKanji } from './../../models/user-kanji.model';
+import { Expression } from 'src/app/study/models/expression.model';
+import { UserKanji, emptyUserKanji } from 'src/app/study/models/user-kanji.model';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -7,8 +8,8 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./user-kanji-card.component.scss']
 })
 export class UserKanjiCardComponent implements OnInit {
-  @Input() cardData: TableKanji = emptyTableKanji;
-  @Output() expressionToOutput = new EventEmitter<string>();
+  @Input() cardData: UserKanji = emptyUserKanji;
+  @Output() expressionToOutput = new EventEmitter<Expression>();
 
   constructor() { }
 
@@ -16,7 +17,7 @@ export class UserKanjiCardComponent implements OnInit {
 
   }
 
-  outputExpression(expression: string) {
+  outputExpression(expression: Expression) {
     this.expressionToOutput.emit(expression);
   }
 

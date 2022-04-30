@@ -1,14 +1,14 @@
 <mat-card class="container">
   <div class="kanji-container">
-    <h4 class="kanji">{{cardData.kanji}}</h4>
+    <h4 class="kanji">{{cardData.kanji.kanji}}</h4>
   </div>
   <div class="content">
     <div class="readings-container">
       <ul class="readings-list">
-        <li *ngFor="let kun_reading of cardData.kun_readings">{{kun_reading}}</li>
+        <li *ngFor="let kun_reading of cardData.kanji.kun_readings">{{kun_reading}}</li>
       </ul>
       <ul class="readings-list">
-        <li *ngFor="let on_reading of cardData.on_readings">{{on_reading}}</li>
+        <li *ngFor="let on_reading of cardData.kanji.on_readings">{{on_reading}}</li>
       </ul>
     </div>
     <div class="extra-data-container">
@@ -16,7 +16,7 @@
       <ul>
         <li *ngFor="let expression of cardData.expressions">
           <a (click)="outputExpression(expression)">
-            {{expression}}
+            {{expression.word}}
           </a>
         </li>
       </ul>

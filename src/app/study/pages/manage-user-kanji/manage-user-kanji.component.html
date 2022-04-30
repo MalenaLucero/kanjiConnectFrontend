@@ -1,6 +1,7 @@
 <div class="container">
   <div class="header">
     <h2>Kanji</h2>
+    <!--EXPANSION PANEL-->
     <mat-expansion-panel (opened)="panelOpenState = true"
                           (closed)="panelOpenState = false"
                           [expanded]="panelOpenState" class="form-card">
@@ -9,6 +10,7 @@
           Filter kanji
         </mat-panel-title>
       </mat-expansion-panel-header>
+      <!--FORM-->
       <form class="form-container" [formGroup]="searchForm" (submit)="search()">
         <mat-form-field appearance="outline">
           <mat-label>Input one or more kanji separated by commas</mat-label>
@@ -17,18 +19,24 @@
         <button mat-raised-button color="primary">Search</button>
       </form>
     </mat-expansion-panel>
-    <nav *ngIf="userKanji.length > 0">
-      <button mat-raised-button color="accent" (click)="showCards()" [disabled]="areCardsShown">See cards</button>
-      <button mat-raised-button color="accent" (click)="showTable()" [disabled]="!areCardsShown">See table</button>
+    <!--NAV BUTTONS-->
+    <nav *ngIf="userKanjiList.length > 0">
+      <button mat-raised-button color="accent" (click)="areCardsShown = true" [disabled]="areCardsShown">
+        See cards
+      </button>
+      <button mat-raised-button color="accent" (click)="areCardsShown = false" [disabled]="!areCardsShown">
+        See table
+      </button>
     </nav>
   </div>
-  <div *ngIf="userKanji.length > 0">
+  <!--CARDS AND TABLE-->
+  <div *ngIf="userKanjiList.length > 0">
     <div *ngIf="areCardsShown" class="cards-container">
-      <app-user-kanji-card *ngFor="let data of userKanji" class="card"
+      <app-user-kanji-card *ngFor="let data of userKanjiList" class="card"
         [cardData]="data" (expressionToOutput)="showExpression($event)"></app-user-kanji-card>
     </div>
     <div *ngIf="!areCardsShown">
-      <app-table [columnTitles]="columnTitles" [dataToDisplay]="userKanji"></app-table>
+      <app-table [columnTitles]="columnTitles" [dataToDisplay]="tableUserKanji"></app-table>
     </div>
   </div>
 </div>

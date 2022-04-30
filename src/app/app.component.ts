@@ -18,7 +18,5 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.lessonsService.getLessons();
     this.tagsService.getTags();
-    this.userKanjiService.getUserKanjiByUser();
-    this.expressionsService.getExpressionsByUser();
   }
 }
