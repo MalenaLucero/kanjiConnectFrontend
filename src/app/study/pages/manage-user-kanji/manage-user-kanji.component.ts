@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Expression } from '../../models/expression.model';
 import { ExpressionPopupComponent } from '../../components/expression-popup/expression-popup.component';
-import { ExpressionsService } from '../../services/expressions.service';
 import { MatDialog } from '@angular/material/dialog';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { TableKanji, UserKanji, UserKanjiFilter } from '../../models/user-kanji.model';
 import { take } from 'rxjs';
 import { UserKanjiService } from '../../services/user-kanji.service';
@@ -27,21 +26,23 @@ export class ManageUserKanjiComponent implements OnInit {
   private lesson4Kanji = ['泡', '坪', '霧', '焦', '浸', '牲', '妙', '淡', '蚊', '駄', '愚', '跳'];
 
   constructor(private userKanjiService: UserKanjiService,
-              private expressionsService: ExpressionsService,
               private dialog: MatDialog,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder,
               private spinner: SpinnerService) {
                 this.searchForm = this.formBuilder.group({
-                  search: ['']
+                  kanjiList: [''],
+                  jlpt: null,
+                  lesson: [''],
+                  tags: ['']
                 })
               }
 
   ngOnInit(): void {
     this.route.queryParams.pipe(take(1)).subscribe(params => {
       if (params['search']) {
-        const kanjiList = params['search'].split(',');
-        this.filterUserKanji(kanjiList);
+        this.searchForm.get('kanjiList')?.setValue(params['search'])
+        this.filterUserKanji();
       } else {
         this.userKanjiService.userKanjiFilter$.pipe(take(1)).subscribe(res => {
           if (res.length > 0) {
@@ -56,13 +57,12 @@ export class ManageUserKanjiComponent implements OnInit {
   }
 
   search() {
-    const kanjiList = this.searchForm.value.search.split(',');
-    this.filterUserKanji(kanjiList);
+    this.filterUserKanji();
   }
 
-  filterUserKanji(kanjiList: string[]) {
+  filterUserKanji() {
     this.spinner.open();
-    const filter: UserKanjiFilter = {user: '61478fb9b2cfde16186509b5', kanjiList, jlpt: 1}
+    const filter = this.userKanjiService.generateFilter(this.searchForm.value);
     this.userKanjiService.filterUserKanji(filter).pipe(take(1)).subscribe(res => {
       this.userKanjiService.setUserKanjiFilter(res);
       this.userKanjiList = res;

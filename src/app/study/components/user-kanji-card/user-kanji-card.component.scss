@@ -25,12 +25,21 @@
       .subtitle{
         font-size: 14px;
         margin: 0;
+        font-weight: 500;
       }
       li{
         font-size: 18px;
         a{
           color: var(--main-color);
           text-decoration: underline;
+        }
+      }
+      .external-links{
+        margin-top: 15px;
+        a{
+          display: block;
+          font-size: 12px;
+          font-weight: normal;
         }
       }
     }

@@ -3,6 +3,7 @@
     <h4 class="kanji">{{cardData.kanji.kanji}}</h4>
   </div>
   <div class="content">
+    <span class="meanings">{{cardData.kanji.meanings | arrayToString | firstTitlecase}}</span>
     <div class="readings-container">
       <ul class="readings-list">
         <li *ngFor="let kun_reading of cardData.kanji.kun_readings">{{kun_reading}}</li>
@@ -20,6 +21,12 @@
           </a>
         </li>
       </ul>
+      <div class="external-links">
+        <a href={{kanjiDetailsLink}} target="_blank">
+          More kanji details</a>
+        <a href={{wordsContainingKanjiLink}} target="_blank">
+          Words containing this kanji</a>
+      </div>
     </div>
   </div>
 </mat-card>

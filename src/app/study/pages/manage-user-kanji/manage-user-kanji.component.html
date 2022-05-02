@@ -7,16 +7,25 @@
                           [expanded]="panelOpenState" class="form-card">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Filter kanji
+          Filter uploaded kanji
         </mat-panel-title>
       </mat-expansion-panel-header>
       <!--FORM-->
       <form class="form-container" [formGroup]="searchForm" (submit)="search()">
-        <mat-form-field appearance="outline">
-          <mat-label>Input one or more kanji separated by commas</mat-label>
-          <input formControlName="search" matInput name="kanji" autofocus>
-        </mat-form-field>
-        <button mat-raised-button color="primary">Search</button>
+        <div class="input-selects-container">
+          <mat-form-field appearance="outline">
+            <mat-label>Input one or more kanji separated by commas</mat-label>
+            <input formControlName="kanjiList" matInput name="kanji" autofocus>
+          </mat-form-field>
+          <div class="selects-container">
+            <app-jlpt-select formControlName="jlpt" class="select jlpt"></app-jlpt-select>
+            <app-lessons-select formControlName="lesson" class="select"></app-lessons-select>
+          </div>
+        </div>
+        <app-tags-select formControlName="tags"></app-tags-select>
+        <div class="form-button-container">
+          <button mat-raised-button color="primary">Search</button>
+        </div>
       </form>
     </mat-expansion-panel>
     <!--NAV BUTTONS-->

@@ -10,11 +10,15 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 export class UserKanjiCardComponent implements OnInit {
   @Input() cardData: UserKanji = emptyUserKanji;
   @Output() expressionToOutput = new EventEmitter<Expression>();
+  public kanjiDetailsLink: string = '';
+  public wordsContainingKanjiLink: string = '';
 
   constructor() { }
 
   ngOnInit(): void {
-
+    const kanji = this.cardData.kanji.kanji;
+    this.kanjiDetailsLink = `https://jisho.org/search/${kanji}%20%23kanji`;
+    this.wordsContainingKanjiLink = `https://jisho.org/search/*${kanji}*`;
   }
 
   outputExpression(expression: Expression) {

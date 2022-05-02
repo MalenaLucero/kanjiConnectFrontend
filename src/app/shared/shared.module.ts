@@ -32,6 +32,7 @@ import { AccentButtonComponent } from './elements/buttons/accent-button/accent-b
 import { HomeComponent } from './pages/home/home.component';
 import { TableComponent } from './components/table/table.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ArrayToStringPipe } from './pipes/array-to-string.pipe';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { HeaderComponent } from './components/header/header.component';
     HomeComponent,
     TableComponent,
     HeaderComponent,
+    ArrayToStringPipe,
   ],
   imports: [
     CommonModule,
@@ -85,7 +87,8 @@ import { HeaderComponent } from './components/header/header.component';
     MainButtonComponent,
     FirstTitlecasePipe,
     TableComponent,
-    HeaderComponent
+    HeaderComponent,
+    ArrayToStringPipe
   ]
 })
 export class SharedModule { }

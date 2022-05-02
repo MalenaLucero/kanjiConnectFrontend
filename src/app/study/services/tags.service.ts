@@ -37,4 +37,12 @@ export class TagsService {
       )
     })
   }
+
+  getTagIdsFromNames(tagNames: string[]): string[] {
+    let tagIds: string[] = [];
+    this.tags$.pipe(take(1)).subscribe(
+      res => tagIds = res.filter(tag => tagNames.includes(tag.name)).map(tag => tag._id)
+    )
+    return tagIds;
+  }
 }
