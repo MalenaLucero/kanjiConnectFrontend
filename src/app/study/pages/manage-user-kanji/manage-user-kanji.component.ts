@@ -24,6 +24,8 @@ export class ManageUserKanjiComponent implements OnInit {
   private lesson2Kanji = ['臨', '透', '揺', '染', '芝', '尽', '哀', '護', '岐', '帳', '潜', '腐'];
   private lesson3Kanji = ['脚', '郭', '致', '舗', '稿', '繕'];
   private lesson4Kanji = ['泡', '坪', '霧', '焦', '浸', '牲', '妙', '淡', '蚊', '駄', '愚', '跳'];
+  private lesson5Kanji = ['渋', '循', '繁', '弾', '寂', '汽', '疎', '犠', '竣', '遇', '赴', '義'];
+  private allKanji = this.lesson2Kanji.concat(this.lesson3Kanji, this.lesson4Kanji);
 
   constructor(private userKanjiService: UserKanjiService,
               private dialog: MatDialog,
@@ -64,6 +66,7 @@ export class ManageUserKanjiComponent implements OnInit {
     this.spinner.open();
     const filter = this.userKanjiService.generateFilter(this.searchForm.value);
     this.userKanjiService.filterUserKanji(filter).pipe(take(1)).subscribe(res => {
+      //res = res.filter(e => !this.allKanji.includes(e.kanji.kanji))
       this.userKanjiService.setUserKanjiFilter(res);
       this.userKanjiList = res;
       this.tableUserKanji = this.getTableUserKanji(res);
