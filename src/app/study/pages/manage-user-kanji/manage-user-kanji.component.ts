@@ -26,7 +26,8 @@ export class ManageUserKanjiComponent implements OnInit {
   private lesson4Kanji = ['泡', '坪', '霧', '焦', '浸', '牲', '妙', '淡', '蚊', '駄', '愚', '跳'];
   private lesson5Kanji = ['渋', '循', '繁', '弾', '寂', '汽', '疎', '犠', '竣', '遇', '赴', '義'];
   private lesson6Kanji = ['跡', '模', '敢', '粗', '施', '系', '懐', '往', '鮮', '携', '弧', '納'];
-  private allKanji = this.lesson2Kanji.concat(this.lesson3Kanji, this.lesson4Kanji, this.lesson5Kanji);
+  private lesson7Kanji = ['括', '芽', '削', '克', '微', '嫌', '紛', '頑', '槽'];
+  private allKanji = this.lesson2Kanji.concat(this.lesson3Kanji, this.lesson4Kanji, this.lesson5Kanji, this.lesson6Kanji);
 
   constructor(private userKanjiService: UserKanjiService,
               private dialog: MatDialog,
