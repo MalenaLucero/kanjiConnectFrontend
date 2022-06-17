@@ -1,5 +1,5 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, UntypedFormBuilder, UntypedFormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SelectValuesService } from 'src/app/study/services/select-values.service';
 
 @Component({
@@ -13,13 +13,13 @@ import { SelectValuesService } from 'src/app/study/services/select-values.servic
   }]
 })
 export class DifficultySelectComponent implements OnInit, ControlValueAccessor {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public difficultyValues: any;
 
   onChange = (e: any) => {}
   onTouched = () => {}
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private selectValuesService: SelectValuesService) {
     this.difficultyValues = this.selectValuesService.getDifficulty(),
     this.form = this.formBuilder.group({

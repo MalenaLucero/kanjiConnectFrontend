@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TableKanji, UserKanji, UserKanjiFilter } from '../../models/user-kanji.model';
 import { take } from 'rxjs';
 import { UserKanjiService } from '../../services/user-kanji.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
 
 @Component({
@@ -17,7 +17,7 @@ import { SpinnerService } from 'src/app/shared/components/spinner/spinner.servic
 export class ManageUserKanjiComponent implements OnInit {
   public areCardsShown: boolean = true;
   public panelOpenState = false;
-  public searchForm: FormGroup;
+  public searchForm: UntypedFormGroup;
   public userKanjiList: UserKanji[] = [];
   public tableUserKanji: TableKanji[] = [];
   public columnTitles = ['number', 'kanji', 'expressions', 'kun_readings', 'on_readings'];
@@ -32,7 +32,7 @@ export class ManageUserKanjiComponent implements OnInit {
   constructor(private userKanjiService: UserKanjiService,
               private dialog: MatDialog,
               private route: ActivatedRoute,
-              private formBuilder: FormBuilder,
+              private formBuilder: UntypedFormBuilder,
               private spinner: SpinnerService) {
                 this.searchForm = this.formBuilder.group({
                   kanjiList: [''],

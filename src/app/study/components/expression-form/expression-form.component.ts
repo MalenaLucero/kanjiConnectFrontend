@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, Validators, FormControl, FormArray, FormGroupDirective } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl, UntypedFormArray, FormGroupDirective } from '@angular/forms';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -14,14 +14,14 @@ import { SpinnerService } from '../../../shared/components/spinner/spinner.servi
   styleUrls: ['./expression-form.component.scss']
 })
 export class ExpressionFormComponent implements OnInit {
-  public form = new FormGroup({});
+  public form = new UntypedFormGroup({});
   public externalExpressions: ExternalExpression[] = [];
   public currentExternalExpression: ExternalExpression = new ExternalExpressionInitializer();
   public formActiveArea: 'expression' | 'englishMeaning' | 'japaneseMeaning' | 'exampleSentences' | 'lesson' | 'none' = 'expression';
 
   @Output() formData = new EventEmitter();
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private expressionsService: ExpressionsService,
               private tagsService: TagsService,
               private spinner: SpinnerService,
@@ -36,37 +36,37 @@ export class ExpressionFormComponent implements OnInit {
     this.formActiveArea = area;
   }
 
-  get englishMeaning(): FormArray {
-    return this.form.controls['englishMeaning'] as FormArray;
+  get englishMeaning(): UntypedFormArray {
+    return this.form.controls['englishMeaning'] as UntypedFormArray;
   }
 
-  get japaneseMeaning(): FormArray {
-    return this.form.controls['japaneseMeaning'] as FormArray;
+  get japaneseMeaning(): UntypedFormArray {
+    return this.form.controls['japaneseMeaning'] as UntypedFormArray;
   }
 
-  get exampleSentences(): FormArray {
-    return this.form.controls['exampleSentences'] as FormArray;
+  get exampleSentences(): UntypedFormArray {
+    return this.form.controls['exampleSentences'] as UntypedFormArray;
   }
 
   addToFormArray(formArray: string, content?: string) {
-    const form = this.form.controls[formArray] as FormArray;
+    const form = this.form.controls[formArray] as UntypedFormArray;
     if (formArray === 'exampleSentences') {
-      form.push(new FormGroup({
-        sentence: new FormControl(''),
-        source: new FormControl(''),
+      form.push(new UntypedFormGroup({
+        sentence: new UntypedFormControl(''),
+        source: new UntypedFormControl(''),
       }))
     } else {
-      form.push(new FormGroup({ meaning: new FormControl( content ? content : '' ) }))
+      form.push(new UntypedFormGroup({ meaning: new UntypedFormControl( content ? content : '' ) }))
     }
   }
 
   deleteFromFormArray(formArray: string, index: any) {
-    const form = this.form.controls[formArray] as FormArray;
+    const form = this.form.controls[formArray] as UntypedFormArray;
     form.removeAt(index);
   }
 
   cleanValuesFromFormArray(formArray: string) {
-    const form = this.form.controls[formArray] as FormArray;
+    const form = this.form.controls[formArray] as UntypedFormArray;
     const length = form.length;
     for (let i = 0; i < length; i++) {
       form.removeAt(0);
@@ -122,15 +122,15 @@ export class ExpressionFormComponent implements OnInit {
       word: ['', Validators.required],
       reading: [''],
       englishMeaning: this.formBuilder.array([
-        new FormGroup({ meaning: new FormControl('') })
+        new UntypedFormGroup({ meaning: new UntypedFormControl('') })
       ]),
       japaneseMeaning: this.formBuilder.array([
-        new FormGroup({ meaning: new FormControl('') })
+        new UntypedFormGroup({ meaning: new UntypedFormControl('') })
       ]),
       exampleSentences: this.formBuilder.array([
-        new FormGroup({
-          sentence: new FormControl(''),
-          source: new FormControl('')
+        new UntypedFormGroup({
+          sentence: new UntypedFormControl(''),
+          source: new UntypedFormControl('')
         })
       ]),
       jlpt: [null],

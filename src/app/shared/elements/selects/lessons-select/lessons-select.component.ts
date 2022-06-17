@@ -2,7 +2,7 @@ import { emptyLesson } from '../../../../study/models/lesson.model';
 import { Lesson } from 'src/app/study/models/lesson.model';
 import { LessonsService } from 'src/app/study/services/lessons.service';
 import { Component, OnInit, forwardRef } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, UntypedFormBuilder, UntypedFormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable, of, Subscription } from 'rxjs';
 
 @Component({
@@ -18,14 +18,14 @@ import { Observable, of, Subscription } from 'rxjs';
   ]
 })
 export class LessonsSelectComponent implements OnInit, ControlValueAccessor {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public lessons$: Observable<Lesson[]> = of([emptyLesson]);
 
   onChange = (e: any) => {}
   onTouched = () => {}
 
   constructor(private lessonsService: LessonsService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: UntypedFormBuilder) {
     this.form = this.formBuilder.group({
       lesson: ['']
     })

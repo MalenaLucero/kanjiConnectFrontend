@@ -1,5 +1,5 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Jlpt } from 'src/app/shared/models/custom-types.model';
 import { SelectValuesService } from 'src/app/study/services/select-values.service';
 
@@ -14,14 +14,14 @@ import { SelectValuesService } from 'src/app/study/services/select-values.servic
   }]
 })
 export class JlptSelectComponent implements OnInit, ControlValueAccessor {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public jlptValues: { name: number | '', value: Jlpt}[] = [{ name: '', value: null }]
 
   onChange = (e: any) => {}
   onTouched = () => {}
 
   constructor(private selectValuesService: SelectValuesService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: UntypedFormBuilder) {
     this.jlptValues = this.selectValuesService.getJlpt();
     this.form = this.formBuilder.group({
       jlpt: [null]

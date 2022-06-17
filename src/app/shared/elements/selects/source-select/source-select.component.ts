@@ -1,5 +1,5 @@
 import { Component, forwardRef, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { take } from 'rxjs/operators';
 import { Source } from 'src/app/study/models/source.model';
 import { LessonsService } from 'src/app/study/services/lessons.service';
@@ -15,7 +15,7 @@ import { LessonsService } from 'src/app/study/services/lessons.service';
   }]
 })
 export class SourceSelectComponent implements OnInit {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public sourceValues: Source[] = [];
 
   @Input() set lessonId(id: string) {
@@ -31,7 +31,7 @@ export class SourceSelectComponent implements OnInit {
   onChange = (e: any) => {}
   onTouched = () => {}
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private lessonsService: LessonsService) {
     this.form = this.formBuilder.group({
       source: ['']

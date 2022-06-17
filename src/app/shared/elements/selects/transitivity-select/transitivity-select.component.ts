@@ -1,5 +1,5 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, UntypedFormBuilder, UntypedFormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Transitivity } from 'src/app/shared/models/custom-types.model';
 import { SelectValuesService } from 'src/app/study/services/select-values.service';
 
@@ -16,14 +16,14 @@ import { SelectValuesService } from 'src/app/study/services/select-values.servic
   ]
 })
 export class TransitivitySelectComponent implements OnInit, ControlValueAccessor {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public transitivityValues: { name: string, value: Transitivity }[] = [{ name: '', value: null}];
 
   onChange = (e: any) => {}
   onTouched = () => {}
 
   constructor(private selectValuesService: SelectValuesService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: UntypedFormBuilder) {
     this.transitivityValues = this.selectValuesService.getTransitivity();
     this.form = this.formBuilder.group({
       transitivity: [null]

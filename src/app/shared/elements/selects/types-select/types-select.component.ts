@@ -1,5 +1,5 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, UntypedFormBuilder, UntypedFormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DataType } from 'src/app/shared/models/custom-types.model';
 import { SelectValuesService } from 'src/app/study/services/select-values.service';
 
@@ -16,13 +16,13 @@ import { SelectValuesService } from 'src/app/study/services/select-values.servic
   ]
 })
 export class TypesSelectComponent implements OnInit, ControlValueAccessor {
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public types: { name: string, value: DataType }[] = [];
 
   onChange = (e: any) => {};
   onTouched = () => {};
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private selectValuesService: SelectValuesService) {
     this.types = this.selectValuesService.getDataType();
     this.form = this.formBuilder.group({

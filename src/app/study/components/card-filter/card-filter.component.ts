@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Tag } from 'src/app/study/models/tag.model';
 import { SelectValuesService } from 'src/app/study/services/select-values.service';
 import { CardFilterService } from './card-filter.service';
@@ -13,10 +13,10 @@ export class CardFilterComponent implements OnInit {
   @Output() filter = new EventEmitter();
   @Input() tags: Tag[] = [];
 
-  public filterForm: FormGroup;
+  public filterForm: UntypedFormGroup;
   public panelOpenState: boolean = true;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
               private selectValuesService: SelectValuesService,
               private cardFilterService: CardFilterService) {
     this.filterForm = this.formBuilder.group({
