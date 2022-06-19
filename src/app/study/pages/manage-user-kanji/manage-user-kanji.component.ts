@@ -8,7 +8,9 @@ import { take } from 'rxjs';
 import { UserKanjiService } from '../../services/user-kanji.service';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
+import { ManageUserKanjiService } from './manage-user-kanji.service';
 
+type FilterOptions = 'jlpt' | 'lesson';
 @Component({
   selector: 'app-user-kanji',
   templateUrl: './manage-user-kanji.component.html',
@@ -33,7 +35,8 @@ export class ManageUserKanjiComponent implements OnInit {
               private dialog: MatDialog,
               private route: ActivatedRoute,
               private formBuilder: UntypedFormBuilder,
-              private spinner: SpinnerService) {
+              private spinner: SpinnerService,
+              private manageUserKanjiService: ManageUserKanjiService) {
                 this.searchForm = this.formBuilder.group({
                   kanjiList: [''],
                   jlpt: null,
@@ -46,6 +49,14 @@ export class ManageUserKanjiComponent implements OnInit {
     this.route.queryParams.pipe(take(1)).subscribe(params => {
       if (params['search']) {
         this.searchForm.get('kanjiList')?.setValue(params['search'])
+        this.filterUserKanji();
+      } else if (params['filter']) {
+        const filter = this.manageUserKanjiService.getFilterFromParams(params['filter']);
+        Object.keys(filter).forEach(key => {
+          if (key === 'jlpt' || key === 'lesson') {
+            this.searchForm.get(key)?.setValue(filter[key]);
+          }
+        });
         this.filterUserKanji();
       } else {
         this.userKanjiService.userKanjiFilter$.pipe(take(1)).subscribe(res => {

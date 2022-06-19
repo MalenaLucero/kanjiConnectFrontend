@@ -42,9 +42,7 @@ export class LessonsSelectComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(value: string): void {
-    if (value) {
-      console.log(value)
-    }
+
   }
 
   registerOnChange(fn: any): void {
