@@ -27,4 +27,8 @@ export class ExpressionsService {
   getExpressionExternalData(expression: string) {
     return this.http.get<ExternalExpression[]>(environment.expressions + '/external-data/' + expression);
   }
+
+  getExpressionsByUser() {
+    return this.http.get<Expression[]>(environment.expressions + '/user/' + this.user);
+  }
 }
