@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TransitivitySelectComponent } from './transitivity-select.component';
 
-describe('TransitivitySelectComponent', () => {
+xdescribe('TransitivitySelectComponent', () => {
   let component: TransitivitySelectComponent;
   let fixture: ComponentFixture<TransitivitySelectComponent>;
 

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { CardFilterService } from './card-filter.service';
 
-describe('CardFilterService', () => {
+xdescribe('CardFilterService', () => {
   let service: CardFilterService;
 
   beforeEach(() => {

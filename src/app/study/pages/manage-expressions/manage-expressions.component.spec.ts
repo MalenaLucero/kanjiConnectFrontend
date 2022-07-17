@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ManageExpressionsComponent } from './manage-expressions.component';
 
-describe('ManageExpressionsComponent', () => {
+xdescribe('ManageExpressionsComponent', () => {
   let component: ManageExpressionsComponent;
   let fixture: ComponentFixture<ManageExpressionsComponent>;
 

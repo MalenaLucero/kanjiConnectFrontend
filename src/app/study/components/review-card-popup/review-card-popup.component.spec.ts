@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReviewCardPopupComponent } from './review-card-popup.component';
 
-describe('ReviewCardPopupComponent', () => {
+xdescribe('ReviewCardPopupComponent', () => {
   let component: ReviewCardPopupComponent;
   let fixture: ComponentFixture<ReviewCardPopupComponent>;
 

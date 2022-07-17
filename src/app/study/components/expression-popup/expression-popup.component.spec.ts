@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ExpressionPopupComponent } from './expression-popup.component';
 
-describe('ExpressionPopupComponent', () => {
+xdescribe('ExpressionPopupComponent', () => {
   let component: ExpressionPopupComponent;
   let fixture: ComponentFixture<ExpressionPopupComponent>;
 
