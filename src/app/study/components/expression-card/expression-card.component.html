@@ -1,0 +1,25 @@
+<mat-card class="container">
+  <div class="card-title">
+    <h3>{{ expression.word }}</h3>
+    <p class="text">{{ expression.reading }}</p>
+  </div>
+  <div *ngIf="expression.englishMeaning.length > 0">
+    <h4 class="subtitle">English Meaning</h4>
+    <p class="text" *ngFor="let englishMeaning of expression.englishMeaning">{{ englishMeaning }}</p>
+  </div>
+  <div *ngIf="expression.japaneseMeaning.length > 0">
+    <h4 class="subtitle">Japanese Meaning</h4>
+    <p class="text" *ngFor="let japaneseMeaning of expression.japaneseMeaning">{{ japaneseMeaning }}</p>
+  </div>
+  <div *ngIf="expression.exampleSentences.length > 0">
+    <h4 class="subtitle">Example sentences</h4>
+    <p class="text" *ngFor="let exampleSentence of expression.exampleSentences">{{ exampleSentence.sentence }}</p>
+  </div>
+  <p class="text" *ngIf="expression.transitivity">
+    <span class="subtitle">Transitivity:</span>
+      {{ expression.transitivity }}</p>
+  <p class="text" *ngIf="expression.jlpt">
+    <span class="subtitle">JLPT:</span>
+      {{ expression.jlpt }}
+  </p>
+</mat-card>

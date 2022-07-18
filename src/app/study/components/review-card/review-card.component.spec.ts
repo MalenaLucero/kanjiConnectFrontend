@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExpressionCardComponent } from './review-card.component';
+import { ReviewCardComponent } from './review-card.component';
 
 xdescribe('ExpressionCardComponent', () => {
-  let component: ExpressionCardComponent;
-  let fixture: ComponentFixture<ExpressionCardComponent>;
+  let component: ReviewCardComponent;
+  let fixture: ComponentFixture<ReviewCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExpressionCardComponent ]
+      declarations: [ ReviewCardComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExpressionCardComponent);
+    fixture = TestBed.createComponent(ReviewCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

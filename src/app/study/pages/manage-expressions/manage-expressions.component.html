@@ -1,1 +1,51 @@
-<p>manage-expressions works!</p>
+<div class="container">
+  <div class="header">
+    <h2>Expressions</h2>
+    <!--EXPANSION PANEL-->
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                          (closed)="panelOpenState = false"
+                          [expanded]="panelOpenState" class="form-card">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Filter uploaded expressions
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <!--FORM-->
+      <form class="form-container" [formGroup]="searchForm" (submit)="search()">
+        <div class="form-selects-container">
+          <app-jlpt-select formControlName="jlpt" class="select jlpt"></app-jlpt-select>
+          <app-lessons-select formControlName="lesson" class="select lesson"></app-lessons-select>
+        </div>
+        <app-tags-select formControlName="tags"></app-tags-select>
+        <div class="form-button-container">
+          <button mat-raised-button color="primary">Search</button>
+        </div>
+      </form>
+    </mat-expansion-panel>
+    <!--NAV BUTTONS-->
+    <nav *ngIf="filteredExpressions.length > 0">
+      <button mat-raised-button color="accent" (click)="areCardsShown = true" [disabled]="areCardsShown" class="card">
+        See cards
+      </button>
+      <button mat-raised-button color="accent" (click)="areCardsShown = false" [disabled]="!areCardsShown">
+        See table
+      </button>
+    </nav>
+  </div>
+  <!--CARDS AND TABLE-->
+  <div *ngIf="filteredExpressions.length > 0">
+    <div *ngIf="areCardsShown" class="cards-container">
+      <app-expression-card
+        *ngFor="let expression of filteredExpressions"
+        [expression]="expression"
+        class="card">
+      </app-expression-card>
+    </div>
+    <div *ngIf="!areCardsShown">
+      <app-table
+        [columnTitles]="columnTitles"
+        [dataToDisplay]="filteredExpressions">
+      </app-table>
+    </div>
+  </div>
+</div>

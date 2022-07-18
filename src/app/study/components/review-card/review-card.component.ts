@@ -11,7 +11,7 @@ import { emptyExpressionCard, ExpressionCard, UserKanjiCard } from 'src/app/stud
   templateUrl: './review-card.component.html',
   styleUrls: ['./review-card.component.scss']
 })
-export class ExpressionCardComponent implements OnInit, OnChanges {
+export class ReviewCardComponent implements OnInit, OnChanges {
   @Input() reviewData: Expression | UserKanji = emptyExpression;
   @Input() fetchedDataState: FetchedDataState = 'init';
   @Input() type: DataType = 'expression';

@@ -16,7 +16,7 @@ import { DifficultyButtonsComponent } from './components/difficulty-buttons/diff
 import { ExpressionFormComponent } from './components/expression-form/expression-form.component';
 import { ReviewCardPopupComponent } from './components/review-card-popup/review-card-popup.component';
 import { ReviewCounterComponent } from './components/review-counter/review-counter.component';
-import { ExpressionCardComponent } from './components/review-card/review-card.component';
+import { ReviewCardComponent } from './components/review-card/review-card.component';
 import { DifficultyPipe } from './pipes/difficulty.pipe';
 import { ExpressionCastPipe } from './pipes/expression-cast.pipe';
 import { UserKanjiCastPipe } from './pipes/user-kanji-cast.pipe';
@@ -30,6 +30,7 @@ import { ManageComponent } from './pages/manage/manage.component';
 import { ManageLessonsComponent } from './pages/manage-lessons/manage-lessons.component';
 import { ManageTagsComponent } from './pages/manage-tags/manage-tags.component';
 import { UploadComponent } from './pages/upload/upload.component';
+import { ExpressionCardComponent } from './components/expression-card/expression-card.component';
 
 const routes: Routes = [
   {
@@ -87,7 +88,7 @@ const routes: Routes = [
     ExpressionFormComponent,
     ReviewCardPopupComponent,
     ReviewCounterComponent,
-    ExpressionCardComponent,
+    ReviewCardComponent,
     DifficultyPipe,
     ExpressionCastPipe,
     UserKanjiCastPipe,
@@ -103,6 +104,7 @@ const routes: Routes = [
     ManageLessonsComponent,
     ManageTagsComponent,
     UploadComponent,
+    ExpressionCardComponent,
   ],
   imports: [
     CommonModule,

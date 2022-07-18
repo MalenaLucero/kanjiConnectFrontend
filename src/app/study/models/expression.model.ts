@@ -48,6 +48,7 @@ export interface FilterExpressionsDto {
   tags?: string[];
   lesson?: string;
   difficulty?: Difficulty;
+  jlpt?: Jlpt;
 }
 
 
