@@ -1,5 +1,5 @@
 .container{
-  min-height: 150px;
+  min-height: 100px;
   p.text{
     margin: 0;
   }
@@ -8,7 +8,6 @@
     padding: 20px 16px 20px 0;
     h3{
       font-size: 40px;
-      font-weight: bold;
       margin: 10px;
     }
     p{
@@ -20,5 +19,21 @@
   .subtitle{
     margin: 0;
     color: grey;
+  }
+  .bullet{
+    color: var(--main-color);
+    padding-right: 5px;
+  }
+  .external-links{
+    margin-top: 15px;
+    .definition-links{
+      display: flex;
+      gap: 16px;
+    }
+    a{
+      display: block;
+      font-size: 12px;
+      font-weight: normal;
+    }
   }
 }

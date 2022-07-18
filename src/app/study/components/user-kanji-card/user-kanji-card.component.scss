@@ -1,46 +1,41 @@
 .container{
-  display: flex;
   .kanji-container{
-    min-width: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    float: left;
+    margin: 30px 30px 30px 20px;
     .kanji{
       font-size: 50px;
       margin: 0;
     }
   }
-  .content{
-    .readings-container{
-      color: grey;
-      .readings-list{
-        li{
-          display: inline;
-          margin-right: 10px;
-        }
+  .readings-container{
+    color: grey;
+    .readings-list{
+      li{
+        display: inline;
+        margin-right: 10px;
       }
     }
-    .extra-data-container{
-      margin: 10px 0;
-      .subtitle{
-        font-size: 14px;
-        margin: 0;
-        font-weight: 500;
+  }
+  .extra-data-container{
+    margin: 10px 0;
+    .subtitle{
+      font-size: 14px;
+      margin: 0;
+      font-weight: 500;
+    }
+    li{
+      font-size: 18px;
+      a{
+        color: var(--main-color);
+        text-decoration: underline;
       }
-      li{
-        font-size: 18px;
-        a{
-          color: var(--main-color);
-          text-decoration: underline;
-        }
-      }
-      .external-links{
-        margin-top: 15px;
-        a{
-          display: block;
-          font-size: 12px;
-          font-weight: normal;
-        }
+    }
+    .external-links{
+      margin-top: 15px;
+      a{
+        display: block;
+        font-size: 12px;
+        font-weight: normal;
       }
     }
   }

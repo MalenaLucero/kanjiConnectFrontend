@@ -8,11 +8,17 @@ import { emptyExpression, Expression } from '../../models/expression.model';
 })
 export class ExpressionCardComponent implements OnInit {
   @Input() expression: Expression = emptyExpression;
+  public englishDefinitionLink: string = '';
+  public japaneseDefinitionLink: string = '';
+  public exampleSentencesLink: string = '';
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.expression);
+    const word = this.expression.word;
+    this.englishDefinitionLink = `https://jisho.org/search/${word}`;
+    this.japaneseDefinitionLink = `https://dictionary.goo.ne.jp/srch/all/${word}/m0u/`;
+    this.exampleSentencesLink = `https://jisho.org/search/${word}%20%23sentences`;
   }
 
 }
