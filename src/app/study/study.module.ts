@@ -41,6 +41,9 @@ const routes: Routes = [
         component: ReviewComponent
       }, {
         path: 'upload',
+        redirectTo: 'upload/expression',
+      }, {
+        path: 'upload',
         component: UploadComponent,
         children: [
           {
@@ -54,6 +57,9 @@ const routes: Routes = [
             component: UploadTagComponent
           }
         ]
+      }, {
+        path: 'manage',
+        redirectTo: 'manage/expressions',
       }, {
         path: 'manage',
         component: ManageComponent,
