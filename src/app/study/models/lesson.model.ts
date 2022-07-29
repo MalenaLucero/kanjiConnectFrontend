@@ -9,6 +9,13 @@ export interface Lesson {
   _id: string;
 }
 
+export interface FormLesson {
+  user?: string;
+  date: Date;
+  topic: string;
+  link: string;
+}
+
 export const emptyLesson: Lesson = {
   user:  '',
   date: new Date,

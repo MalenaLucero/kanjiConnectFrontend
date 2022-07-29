@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudyModule } from './study/study.module';
 import { SharedModule } from './shared/shared.module';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { SharedModule } from './shared/shared.module';
     provide: HTTP_INTERCEPTORS, useClass: TimeInterceptor, multi: true
   }, {
     provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true
-  }],
+  }, {provide: MAT_DATE_LOCALE, useValue: 'es-AR'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

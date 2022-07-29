@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { emptyLesson, Lesson, loadingLesson } from '../models/lesson.model';
+import { emptyLesson, FormLesson, Lesson, loadingLesson } from '../models/lesson.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 
@@ -29,5 +29,9 @@ export class LessonsService {
         this.lessons.next(res)
       }
     )
+  }
+
+  uploadLesson(data: FormLesson) {
+    return this.http.post<Lesson>(environment.lessons, data);
   }
 }

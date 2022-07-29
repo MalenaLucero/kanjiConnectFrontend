@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { ReviewComponent } from './pages/review/review.component';
 import { UploadExpressionComponent } from './pages/upload-expression/upload-expression.component';
@@ -31,6 +32,8 @@ import { ManageLessonsComponent } from './pages/manage-lessons/manage-lessons.co
 import { ManageTagsComponent } from './pages/manage-tags/manage-tags.component';
 import { UploadComponent } from './pages/upload/upload.component';
 import { ExpressionCardComponent } from './components/expression-card/expression-card.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { LessonFormComponent } from './components/lesson-form/lesson-form.component';
 
 const routes: Routes = [
   {
@@ -111,6 +114,7 @@ const routes: Routes = [
     ManageTagsComponent,
     UploadComponent,
     ExpressionCardComponent,
+    LessonFormComponent,
   ],
   imports: [
     CommonModule,
@@ -121,6 +125,8 @@ const routes: Routes = [
     MatCardModule,
     SharedModule,
     MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     RouterModule.forChild(routes),
   ],
   exports: [
