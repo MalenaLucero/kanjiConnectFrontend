@@ -34,6 +34,7 @@ import { UploadComponent } from './pages/upload/upload.component';
 import { ExpressionCardComponent } from './components/expression-card/expression-card.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LessonFormComponent } from './components/lesson-form/lesson-form.component';
+import { SourceFormComponent } from './components/source-form/source-form.component';
 
 const routes: Routes = [
   {
@@ -115,6 +116,7 @@ const routes: Routes = [
     UploadComponent,
     ExpressionCardComponent,
     LessonFormComponent,
+    SourceFormComponent,
   ],
   imports: [
     CommonModule,

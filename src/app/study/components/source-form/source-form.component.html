@@ -1,0 +1,28 @@
+<mat-card class="source-form-container">
+  <h2>Add source to lesson</h2>
+  <form [formGroup]="sourceForm" class="form-container">
+    <app-lessons-select formControlName="lessonId" class="select lesson"></app-lessons-select>
+    <div>
+      <p *ngIf="currentLesson.topic">Lesson sources:</p>
+      <ul *ngIf="currentLesson.topic && currentLesson.sources.length > 0">
+        <li *ngFor="let source of currentLesson.sources">
+          {{ source.name }}
+        </li>
+      </ul>
+      <p *ngIf="currentLesson.topic && currentLesson.sources.length === 0">
+        The lesson has no sources
+      </p>
+    </div>
+    <mat-form-field class="input-name">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" autofocus>
+    </mat-form-field>
+    <mat-form-field class="input-link">
+      <mat-label>Link</mat-label>
+      <input matInput formControlName="link" autofocus>
+    </mat-form-field>
+    <div class="form-button-container">
+      <button mat-raised-button color="primary" (click)="addSource()">Add source</button>
+    </div>
+  </form>
+</mat-card>

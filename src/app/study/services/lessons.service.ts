@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { emptyLesson, FormLesson, Lesson, loadingLesson } from '../models/lesson.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { UploadSource } from '../models/source.model';
 
 
 @Injectable({
@@ -33,5 +34,9 @@ export class LessonsService {
 
   uploadLesson(data: FormLesson) {
     return this.http.post<Lesson>(environment.lessons, data);
+  }
+
+  uploadSourceToLesson(lessonId: string, sourceData: UploadSource) {
+    return this.http.put<Lesson>(environment.lessons + '/source/' + lessonId, sourceData);
   }
 }

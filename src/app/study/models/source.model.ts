@@ -9,3 +9,14 @@ export const emptySource = {
   link: '',
   _id: ''
 }
+
+export interface FormSource {
+  lessonId: string,
+  name: string,
+  link?: string
+}
+
+export interface UploadSource {
+  name: string,
+  link?: string
+}

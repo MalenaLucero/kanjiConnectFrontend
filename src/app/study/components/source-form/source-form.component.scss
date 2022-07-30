@@ -1,0 +1,16 @@
+.source-form-container{
+  margin-top: 16px;
+  width: 600px;
+  @media(max-width: 950px) {
+    width: auto;
+  }
+  .form-container{
+    mat-form-field{
+      width: 100%;
+    }
+  }
+  .form-button-container{
+    margin-top: 16px;
+    text-align: center;
+  }
+}

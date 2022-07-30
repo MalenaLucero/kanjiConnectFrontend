@@ -1,3 +1,7 @@
 <div class="upload-lesson-container">
   <app-lesson-form (formData)="uploadLesson($event)"></app-lesson-form>
+  <app-source-form
+    [updatedLesson]="updatedLesson"
+    (formData)="uploadSource($event)">
+  </app-source-form>
 </div>
