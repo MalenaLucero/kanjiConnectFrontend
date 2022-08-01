@@ -8,6 +8,17 @@
     mat-form-field{
       width: 100%;
     }
+    .lesson-sources-container{
+      margin-bottom: 8px;
+      .lesson-sources-title{
+        color: grey;
+      }
+      .bullet{
+        color: var(--main-color);
+        padding-right: 5px;
+        font-size: 12px;
+      }
+    }
   }
   .form-button-container{
     margin-top: 16px;

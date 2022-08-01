@@ -37,6 +37,8 @@ export class SourceFormComponent implements OnInit {
 
   addSource() {
     this.formData.emit(this.sourceForm.value);
+    this.sourceForm.get('name')?.setValue('');
+    this.sourceForm.get('link')?.setValue('');
   }
 
 }

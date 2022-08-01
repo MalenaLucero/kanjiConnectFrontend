@@ -2,15 +2,15 @@
   <h2>Add source to lesson</h2>
   <form [formGroup]="sourceForm" class="form-container">
     <app-lessons-select formControlName="lessonId" class="select lesson"></app-lessons-select>
-    <div>
-      <p *ngIf="currentLesson.topic">Lesson sources:</p>
-      <ul *ngIf="currentLesson.topic && currentLesson.sources.length > 0">
-        <li *ngFor="let source of currentLesson.sources">
-          {{ source.name }}
+    <div class="lesson-sources-container" *ngIf="currentLesson.topic">
+      <p class="lesson-sources-title">Lesson sources:</p>
+      <ul *ngIf="currentLesson.sources.length > 0">
+        <li *ngFor="let source of currentLesson.sources" class="lesson-source">
+          <span class="bullet">●</span>{{ source.name }}
         </li>
       </ul>
-      <p *ngIf="currentLesson.topic && currentLesson.sources.length === 0">
-        The lesson has no sources
+      <p *ngIf="currentLesson.sources.length === 0">
+        This lesson has no sources
       </p>
     </div>
     <mat-form-field class="input-name">

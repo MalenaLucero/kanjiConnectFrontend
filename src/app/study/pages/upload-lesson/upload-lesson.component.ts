@@ -31,6 +31,7 @@ export class UploadLessonComponent implements OnInit {
           this.uploadedLesson = res;
           this.snackBar.open('Lesson created', 'OK', { duration: 3000 });
           this.spinner.close();
+          this.lessonsService.getLessons();
         }, error: err => {
           this.snackBar.open(`Lesson couldn't be created`, err.error.message, { duration: 3000 });
           this.spinner.close();
