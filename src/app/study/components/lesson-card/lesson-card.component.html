@@ -1,0 +1,18 @@
+<mat-card class="container">
+  <h3>{{lesson.topic}}
+    <span class="date">({{lesson.date | date}})</span>
+  </h3>
+  <a href={{lesson.link}} class="lesson-link" target="_blank">Go to lesson</a>
+  <div *ngIf="lesson.sources.length > 0" class="sources-container">
+    <h4>Sources:</h4>
+    <ul>
+      <li *ngFor="let source of lesson.sources" class="source-container">
+        <span class="bullet">●</span>
+        {{source.name}}
+        <a href={{source.link}} class="source-link" target="_blank">
+          <mat-icon class="source-link-icon">open_in_new</mat-icon>
+        </a>
+      </li>
+    </ul>
+  </div>
+</mat-card>

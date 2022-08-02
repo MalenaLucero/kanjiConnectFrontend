@@ -1,1 +1,30 @@
-<p>manage-lessons works!</p>
+<div class="container">
+  <h2>Lessons</h2>
+  <div class="filter-container">
+    <button mat-raised-button color="accent"
+      (click)="filterLessons(2021)"
+      [disabled]="filteredYear === 2021">
+        2021
+    </button>
+    <button mat-raised-button color="accent"
+      (click)="filterLessons(2022)"
+      [disabled]="filteredYear === 2022">
+        2022
+    </button>
+    <button mat-raised-button color="accent"
+      (click)="filterLessons('reverse')">
+        Reverse order
+    </button>
+    <button mat-raised-button color="accent"
+      (click)="filterLessons('all')"
+      [disabled]="filteredYear === null">
+        Show all
+    </button>
+  </div>
+  <p *ngIf="filteredLessons.length === 0">No lessons found</p>
+  <ul *ngIf="filteredLessons.length > 0">
+    <li *ngFor="let lesson of filteredLessons" class="lesson-card-container">
+      <app-lesson-card [lesson]="lesson"></app-lesson-card>
+    </li>
+  </ul>
+</div>
