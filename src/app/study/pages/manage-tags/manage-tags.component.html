@@ -1,1 +1,10 @@
-<p>manage-tags works!</p>
+<div class="container">
+  <h2>Tags</h2>
+  <div *ngIf="tags.length > 0" class="tags-container">
+    <app-tag-card class="tag-card"
+      *ngFor="let tag of tags"
+      [tag]="tag"
+      (id)="deleteTag($event)">
+    </app-tag-card>
+  </div>
+</div>

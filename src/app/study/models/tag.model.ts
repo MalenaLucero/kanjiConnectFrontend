@@ -11,3 +11,14 @@ export const emptyTag = {
   description: '',
   _id: ''
 }
+
+export interface FormTag{
+  name: string,
+  description: string,
+}
+
+export interface UploadTag{
+  name: string,
+  description: string,
+  user: string
+}

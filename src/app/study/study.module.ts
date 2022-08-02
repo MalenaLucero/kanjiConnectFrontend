@@ -36,6 +36,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { LessonFormComponent } from './components/lesson-form/lesson-form.component';
 import { SourceFormComponent } from './components/source-form/source-form.component';
 import { LessonCardComponent } from './components/lesson-card/lesson-card.component';
+import { TagFormComponent } from './components/tag-form/tag-form.component';
+import { TagCardComponent } from './components/tag-card/tag-card.component';
 
 const routes: Routes = [
   {
@@ -119,6 +121,8 @@ const routes: Routes = [
     LessonFormComponent,
     SourceFormComponent,
     LessonCardComponent,
+    TagFormComponent,
+    TagCardComponent,
   ],
   imports: [
     CommonModule,

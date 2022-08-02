@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Tag } from '../models/tag.model';
+import { Tag, UploadTag } from '../models/tag.model';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { take, takeWhile } from 'rxjs/operators';
@@ -44,5 +44,13 @@ export class TagsService {
       res => tagIds = res.filter(tag => tagNames.includes(tag.name)).map(tag => tag._id)
     )
     return tagIds;
+  }
+
+  uploadTag(data: UploadTag) {
+    return this.http.post(environment.tags, data);
+  }
+
+  deleteTag(id: string) {
+    return this.http.delete<Tag>(environment.tags + '/' + id);
   }
 }
