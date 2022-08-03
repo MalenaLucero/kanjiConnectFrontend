@@ -39,4 +39,8 @@ export class LessonsService {
   uploadSourceToLesson(lessonId: string, sourceData: UploadSource) {
     return this.http.put<Lesson>(environment.lessons + '/source/' + lessonId, sourceData);
   }
+
+  deleteLesson(id: string) {
+    return this.http.delete<Lesson>(environment.lessons + '/' + id);
+  }
 }

@@ -33,6 +33,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { TableComponent } from './components/table/table.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ArrayToStringPipe } from './pipes/array-to-string.pipe';
+import { DeleteConfirmComponent } from './components/delete-confirm/delete-confirm.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { ArrayToStringPipe } from './pipes/array-to-string.pipe';
     TableComponent,
     HeaderComponent,
     ArrayToStringPipe,
+    DeleteConfirmComponent,
   ],
   imports: [
     CommonModule,
@@ -88,7 +90,8 @@ import { ArrayToStringPipe } from './pipes/array-to-string.pipe';
     FirstTitlecasePipe,
     TableComponent,
     HeaderComponent,
-    ArrayToStringPipe
+    ArrayToStringPipe,
+    DeleteConfirmComponent
   ]
 })
 export class SharedModule { }

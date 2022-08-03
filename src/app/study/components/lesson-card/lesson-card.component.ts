@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { emptyLesson, Lesson } from '../../models/lesson.model';
 
 @Component({
@@ -8,10 +8,15 @@ import { emptyLesson, Lesson } from '../../models/lesson.model';
 })
 export class LessonCardComponent implements OnInit {
   @Input() lesson: Lesson = emptyLesson;
+  @Output() outputLesson = new EventEmitter<Lesson>();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  deleteLesson() {
+    this.outputLesson.emit(this.lesson);
   }
 
 }

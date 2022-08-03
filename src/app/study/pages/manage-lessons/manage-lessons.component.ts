@@ -1,4 +1,8 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
+import { DeleteConfirmService } from 'src/app/shared/components/delete-confirm/delete-confirm.service';
+import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
+import { ConfirmDeleteData } from 'src/app/shared/models/confirm.model';
 import { Lesson } from '../../models/lesson.model';
 import { LessonsService } from '../../services/lessons.service';
 
@@ -11,7 +15,10 @@ export class ManageLessonsComponent implements OnInit {
   public lessons: Lesson[] = [];
   public filteredLessons: Lesson[] = [];
   public filteredYear: number | null = null;
-  constructor(private lessonsService: LessonsService) { }
+  constructor(private lessonsService: LessonsService,
+              private deleteConfirmService: DeleteConfirmService,
+              private spinner: SpinnerService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.lessonsService.lessons$.subscribe(res => {
@@ -39,5 +46,29 @@ export class ManageLessonsComponent implements OnInit {
         this.filteredYear = null;
         break;
     }
+  }
+
+  deleteLesson(lesson: Lesson) {
+    const deleteData: ConfirmDeleteData = {
+      name: lesson.topic,
+      type: 'lesson',
+      id: lesson._id
+    }
+    this.deleteConfirmService.openDialog(deleteData)
+    .subscribe(confirmResponse => {
+      if (typeof confirmResponse === 'string') {
+        this.spinner.open();
+        this.lessonsService.deleteLesson(confirmResponse).subscribe({
+          next: res => {
+            this.snackBar.open(res.topic + ' lesson deleted', 'OK', { duration: 3000 });
+            this.spinner.close();
+            this.lessonsService.getLessons();
+          }, error: err => {
+            this.snackBar.open(`Lesson couldn't be deleted`, err.error.message, { duration: 3000 });
+            this.spinner.close();
+          }
+        });
+      }
+    });
   }
 }

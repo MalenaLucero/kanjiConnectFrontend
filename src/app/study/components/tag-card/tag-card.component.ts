@@ -8,7 +8,7 @@ import { emptyTag, Tag } from '../../models/tag.model';
 })
 export class TagCardComponent implements OnInit {
   @Input() tag: Tag = emptyTag;
-  @Output() id = new EventEmitter<string>();
+  @Output() id = new EventEmitter<Tag>();
 
   constructor() { }
 
@@ -16,7 +16,7 @@ export class TagCardComponent implements OnInit {
   }
 
   deleteTag() {
-    this.id.emit(this.tag._id);
+    this.id.emit(this.tag);
   }
 
 }

@@ -1,0 +1,6 @@
+<h3>Delete {{data.type}}</h3>
+<p>Are you sure you want to delete {{data.type}} <strong>{{data.name}}</strong>?</p>
+<div class="buttons-container">
+  <button mat-stroked-button color="primary" (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="warn" (click)="confirmDelete()">Delete</button>
+</div>
