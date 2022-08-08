@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TableKanji, UserKanji, UserKanjiFilter } from '../../models/user-kanji.model';
 import { take } from 'rxjs';
 import { UserKanjiService } from '../../services/user-kanji.service';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
 import { ManageUserKanjiService } from './manage-user-kanji.service';
 
@@ -19,22 +19,17 @@ type FilterOptions = 'jlpt' | 'lesson';
 export class ManageUserKanjiComponent implements OnInit {
   public areCardsShown: boolean = true;
   public panelOpenState = false;
-  public searchForm: UntypedFormGroup;
+  public searchForm: FormGroup;
   public userKanjiList: UserKanji[] = [];
   public tableUserKanji: TableKanji[] = [];
   public columnTitles = ['number', 'kanji', 'expressions', 'kun_readings', 'on_readings'];
-  private lesson2Kanji = ['臨', '透', '揺', '染', '芝', '尽', '哀', '護', '岐', '帳', '潜', '腐'];
-  private lesson3Kanji = ['脚', '郭', '致', '舗', '稿', '繕'];
-  private lesson4Kanji = ['泡', '坪', '霧', '焦', '浸', '牲', '妙', '淡', '蚊', '駄', '愚', '跳'];
-  private lesson5Kanji = ['渋', '循', '繁', '弾', '寂', '汽', '疎', '犠', '竣', '遇', '赴', '義'];
-  private lesson6Kanji = ['跡', '模', '敢', '粗', '施', '系', '懐', '往', '鮮', '携', '弧', '納'];
-  private lesson7Kanji = ['括', '芽', '削', '克', '微', '嫌', '紛', '頑', '槽'];
-  private allKanji = this.lesson2Kanji.concat(this.lesson3Kanji, this.lesson4Kanji, this.lesson5Kanji, this.lesson6Kanji);
+  public filterUrl = '';
+  public showFilterUrl = false;
 
   constructor(private userKanjiService: UserKanjiService,
               private dialog: MatDialog,
               private route: ActivatedRoute,
-              private formBuilder: UntypedFormBuilder,
+              private formBuilder: FormBuilder,
               private spinner: SpinnerService,
               private manageUserKanjiService: ManageUserKanjiService) {
                 this.searchForm = this.formBuilder.group({
@@ -73,13 +68,14 @@ export class ManageUserKanjiComponent implements OnInit {
 
   search() {
     this.filterUserKanji();
+    this.showFilterUrl = false;
+    this.generateFilterUrl();
   }
 
   filterUserKanji() {
     this.spinner.open();
     const filter = this.userKanjiService.generateFilter(this.searchForm.value);
     this.userKanjiService.filterUserKanji(filter).pipe(take(1)).subscribe(res => {
-      //res = res.filter(e => !this.allKanji.includes(e.kanji.kanji))
       this.userKanjiService.setUserKanjiFilter(res);
       this.userKanjiList = res;
       this.tableUserKanji = this.getTableUserKanji(res);
@@ -105,5 +101,23 @@ export class ManageUserKanjiComponent implements OnInit {
       height: '80vh',
       data: expression
     });
+  }
+
+  generateFilterUrl() {
+    const baseUrl = 'https://kanji-connect.vercel.app/study/manage/user-kanji?';
+    const filter = this.searchForm.value;
+    let filterString = '';
+    if (filter.kanjiList.length > 0) {
+      filterString = baseUrl + 'search=' + filter.kanjiList;
+    } else {
+      filterString = baseUrl + 'filter=';
+      if (filter.jlpt !== null && filter.jlpt > 0) {
+        filterString = filterString + 'jlpt:' + filter.jlpt + '%7C'
+      }
+      if (filter.lesson !== null && filter.lesson.length > 0) {
+        filterString = filterString + 'lesson:' + filter.lesson;
+      }
+    }
+    this.filterUrl = filterString;
   }
 }
