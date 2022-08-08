@@ -2,6 +2,9 @@
   <button mat-icon-button color="warn" class="delete" (click)="deleteLesson()">
     <mat-icon>delete</mat-icon>
   </button>
+  <button mat-icon-button color="primary" class="delete" (click)="editLesson()">
+    <mat-icon>edit</mat-icon>
+  </button>
   <h3>{{lesson.topic}}
     <span class="date">({{lesson.date | date}})</span>
   </h3>

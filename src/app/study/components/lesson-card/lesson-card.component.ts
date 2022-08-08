@@ -19,4 +19,8 @@ export class LessonCardComponent implements OnInit {
     this.outputLesson.emit(this.lesson);
   }
 
+  editLesson() {
+
+  }
+
 }
