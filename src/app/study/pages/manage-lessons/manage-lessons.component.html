@@ -24,7 +24,12 @@
   <p *ngIf="filteredLessons.length === 0">No lessons found</p>
   <ul *ngIf="filteredLessons.length > 0">
     <li *ngFor="let lesson of filteredLessons" class="lesson-card-container">
-      <app-lesson-card [lesson]="lesson" (outputLesson)="deleteLesson($event)"></app-lesson-card>
+      <app-lesson-card
+        [lesson]="lesson"
+        (outputLesson)="deleteLesson($event)"
+        (lessonToEdit)="editLesson($event)"
+        >
+      </app-lesson-card>
     </li>
   </ul>
 </div>

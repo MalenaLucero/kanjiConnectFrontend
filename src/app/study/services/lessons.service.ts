@@ -43,4 +43,8 @@ export class LessonsService {
   deleteLesson(id: string) {
     return this.http.delete<Lesson>(environment.lessons + '/' + id);
   }
+
+  updateLesson(id: string, data: FormLesson) {
+    return this.http.put<Lesson>(environment.lessons + '/' + id, data);
+  }
 }

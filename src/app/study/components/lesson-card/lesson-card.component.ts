@@ -1,3 +1,4 @@
+import { FormLesson } from './../../models/lesson.model';
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { emptyLesson, Lesson } from '../../models/lesson.model';
 
@@ -7,8 +8,10 @@ import { emptyLesson, Lesson } from '../../models/lesson.model';
   styleUrls: ['./lesson-card.component.scss']
 })
 export class LessonCardComponent implements OnInit {
+  public editMode = false;
   @Input() lesson: Lesson = emptyLesson;
   @Output() outputLesson = new EventEmitter<Lesson>();
+  @Output() lessonToEdit = new EventEmitter<Lesson>();
 
   constructor() { }
 
@@ -19,8 +22,10 @@ export class LessonCardComponent implements OnInit {
     this.outputLesson.emit(this.lesson);
   }
 
-  editLesson() {
-
+  editLesson(event: FormLesson) {
+    this.editMode = true;
+    const editedLesson = { ...this.lesson, ...event };
+    this.lessonToEdit.emit(editedLesson);
   }
 
 }

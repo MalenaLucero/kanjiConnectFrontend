@@ -2,13 +2,22 @@
   <button mat-icon-button color="warn" class="delete" (click)="deleteLesson()">
     <mat-icon>delete</mat-icon>
   </button>
-  <button mat-icon-button color="primary" class="delete" (click)="editLesson()">
+  <button mat-icon-button color="primary" class="delete" (click)="editMode = true">
     <mat-icon>edit</mat-icon>
   </button>
-  <h3>{{lesson.topic}}
-    <span class="date">({{lesson.date | date}})</span>
-  </h3>
-  <a href={{lesson.link}} class="lesson-link" target="_blank">Go to lesson</a>
+  <div *ngIf="!editMode">
+    <h3>{{lesson.topic}}
+      <span class="date">({{lesson.date | date}})</span>
+    </h3>
+    <a href={{lesson.link}} class="lesson-link" target="_blank">Go to lesson</a>
+  </div>
+  <div *ngIf="editMode">
+    <app-lesson-form
+      [formInput]="lesson"
+      (formData)="editLesson($event)"
+      (cancel)="editMode = false">
+    </app-lesson-form>
+  </div>
   <div *ngIf="lesson.sources.length > 0" class="sources-container">
     <h4>Sources:</h4>
     <ul>

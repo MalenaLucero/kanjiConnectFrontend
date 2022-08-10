@@ -1,27 +1,27 @@
-<mat-card class="lesson-form-container">
-  <h2>Upload new lesson</h2>
-  <form [formGroup]="lessonForm">
-    <mat-form-field class="input-topic">
-      <mat-label>Topic</mat-label>
-      <input matInput formControlName="topic" autofocus>
+<form [formGroup]="lessonForm">
+  <mat-form-field class="input-topic">
+    <mat-label>Topic</mat-label>
+    <input matInput formControlName="topic" autofocus>
+  </mat-form-field>
+  <div class="link-date-container">
+    <mat-form-field class="input-link">
+      <mat-label>Link</mat-label>
+      <input matInput formControlName="link">
     </mat-form-field>
-    <div class="link-date-container">
-      <mat-form-field class="input-link">
-        <mat-label>Link</mat-label>
-        <input matInput formControlName="link" autofocus>
-      </mat-form-field>
-      <mat-form-field class="input-date">
-        <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="date">
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-    </div>
-    <div class="form-button-container">
-      <button mat-raised-button color="primary" (click)="uploadLesson()">
-        Create lesson
-      </button>
-    </div>
-  </form>
-</mat-card>
+    <mat-form-field class="input-date">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="form-button-container">
+    <button mat-stroked-button color="primary" (click)="reset()">
+      {{ resetText }}
+    </button>
+    <button mat-raised-button color="primary" (click)="submit()">
+      {{ submitText }}
+    </button>
+  </div>
+</form>

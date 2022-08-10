@@ -1,3 +1,4 @@
+import { FormLesson } from './../../models/lesson.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import { DeleteConfirmService } from 'src/app/shared/components/delete-confirm/delete-confirm.service';
@@ -70,5 +71,25 @@ export class ManageLessonsComponent implements OnInit {
         });
       }
     });
+  }
+
+  editLesson(event: Lesson) {
+    this.spinner.open();
+    const editedLesson: FormLesson = {
+      topic: event.topic,
+      link: event.link,
+      date: event.date
+    }
+    this.lessonsService.updateLesson(event._id, editedLesson)
+      .subscribe({
+        next: res => {
+          this.snackBar.open(res.topic + ' lesson edited', 'OK', { duration: 3000 });
+          this.spinner.close();
+          this.lessonsService.getLessons();
+        }, error: err => {
+          this.snackBar.open(`Lesson couldn't be edited`, err.error.message, { duration: 3000 });
+          this.spinner.close();
+        }
+      })
   }
 }
