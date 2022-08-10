@@ -1,18 +1,18 @@
-<mat-card class="tag-form-container">
-  <h2>Upload new tag</h2>
-  <form [formGroup]="tagForm">
-    <mat-form-field class="input-name">
-      <mat-label>Label</mat-label>
-      <input matInput formControlName="name" autofocus>
-    </mat-form-field>
-    <mat-form-field class="input-description">
-      <mat-label>Description</mat-label>
-      <input matInput formControlName="description" autofocus>
-    </mat-form-field>
-    <div class="form-button-container">
-      <button mat-raised-button color="primary" (click)="uploadTag()">
-        Create tag
-      </button>
-    </div>
-  </form>
-</mat-card>
+<form [formGroup]="tagForm">
+  <mat-form-field class="input-name">
+    <mat-label>Label</mat-label>
+    <input matInput formControlName="name" autofocus>
+  </mat-form-field>
+  <mat-form-field class="input-description">
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="description" autofocus>
+  </mat-form-field>
+  <div class="form-button-container">
+    <button mat-stroked-button color="primary" (click)="reset()">
+      {{resetText}}
+    </button>
+    <button mat-raised-button color="primary" (click)="submit()">
+      {{submitText}}
+    </button>
+  </div>
+</form>

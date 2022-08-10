@@ -1,3 +1,4 @@
+import { FormTag } from './../models/tag.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Tag, UploadTag } from '../models/tag.model';
@@ -52,5 +53,9 @@ export class TagsService {
 
   deleteTag(id: string) {
     return this.http.delete<Tag>(environment.tags + '/' + id);
+  }
+
+  updateTag(id: string, data: FormTag) {
+    return this.http.put<Tag>(environment.tags + '/' + id, data);
   }
 }

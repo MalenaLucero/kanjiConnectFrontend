@@ -4,7 +4,8 @@
     <app-tag-card class="tag-card"
       *ngFor="let tag of tags"
       [tag]="tag"
-      (id)="deleteTag($event)">
+      (tagToEdit)="editTag($event)"
+      (tagToDelete)="deleteTag($event)">
     </app-tag-card>
   </div>
 </div>

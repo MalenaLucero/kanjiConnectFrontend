@@ -1,3 +1,4 @@
+import { FormTag } from './../../models/tag.model';
 import { ConfirmDeleteData } from './../../../shared/models/confirm.model';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -49,6 +50,24 @@ export class ManageTagsComponent implements OnInit {
           });
         }
       });
+  }
+
+  editTag(event: Tag) {
+    this.spinner.open();
+    const updatedTag: FormTag = {
+      name: event.name,
+      description: event.description
+    }
+    this.tagsService.updateTag(event._id, updatedTag).subscribe({
+      next: res => {
+        this.snackBar.open(res.name + ' tag updated', 'OK', { duration: 3000 });
+        this.spinner.close();
+        this.tagsService.getTags();
+      }, error: err => {
+        this.snackBar.open(`Tag couldn't be updated`, err.error.message, { duration: 3000 });
+        this.spinner.close();
+      }
+    });
   }
 
 }

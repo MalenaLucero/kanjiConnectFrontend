@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { emptyTag, Tag } from '../../models/tag.model';
+import { emptyTag, FormTag, Tag } from '../../models/tag.model';
 
 @Component({
   selector: 'app-tag-card',
@@ -7,8 +7,10 @@ import { emptyTag, Tag } from '../../models/tag.model';
   styleUrls: ['./tag-card.component.scss']
 })
 export class TagCardComponent implements OnInit {
+  public editMode = false;
   @Input() tag: Tag = emptyTag;
-  @Output() id = new EventEmitter<Tag>();
+  @Output() tagToDelete = new EventEmitter<Tag>();
+  @Output() tagToEdit = new EventEmitter<Tag>();
 
   constructor() { }
 
@@ -16,7 +18,13 @@ export class TagCardComponent implements OnInit {
   }
 
   deleteTag() {
-    this.id.emit(this.tag);
+    this.tagToDelete.emit(this.tag);
+  }
+
+  editTag(event: FormTag) {
+    this.editMode = false;
+    const updatedTag: Tag = { ...this.tag, ...event };
+    this.tagToEdit.emit(updatedTag);
   }
 
 }

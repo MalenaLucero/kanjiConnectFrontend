@@ -2,9 +2,21 @@
   <button mat-icon-button color="warn" class="delete" (click)="deleteTag()">
     <mat-icon>delete</mat-icon>
   </button>
-  <h3>{{tag.name}}</h3>
-  <p>
-    <span class="description-title">Description: </span>
-      {{tag.description}}
-  </p>
+  <button mat-icon-button color="primary" class="delete" (click)="editMode = true">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <div *ngIf="!editMode">
+    <h3>{{tag.name}}</h3>
+    <p>
+      <span class="description-title">Description: </span>
+        {{tag.description}}
+    </p>
+  </div>
+  <div *ngIf="editMode">
+    <app-tag-form
+      [inputTag]="tag"
+      (formData)="editTag($event)"
+      (cancel)="editMode = false">
+    </app-tag-form>
+  </div>
 </mat-card>

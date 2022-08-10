@@ -1,13 +1,11 @@
-.tag-form-container{
-  width: 600px;
-  @media(max-width: 950px) {
-    width: auto;
-  }
+form{
   .input-name, .input-description{
     width: 100%;
   }
   .form-button-container{
     margin-top: 16px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
   }
 }
