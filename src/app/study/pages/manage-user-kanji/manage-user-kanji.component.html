@@ -36,11 +36,7 @@
       <button mat-raised-button color="accent" (click)="areCardsShown = false" [disabled]="!areCardsShown">
         See table
       </button>
-      <button mat-raised-button color="accent" (click)="showFilterUrl = !showFilterUrl" [disabled]="!(filterUrl.length > 0)">
-        Get filter url
-      </button>
     </nav>
-    <p *ngIf="showFilterUrl">{{filterUrl}}</p>
   </div>
   <!--CARDS AND TABLE-->
   <div *ngIf="userKanjiList.length > 0">
