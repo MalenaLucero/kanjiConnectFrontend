@@ -1,18 +1,26 @@
 .container{
-  .kanji-container{
-    float: left;
-    margin: 30px 30px 30px 20px;
+  .header{
+    display: flex;
     .kanji{
-      font-size: 50px;
-      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px 32px 16px 16px;
+      h4{
+        font-size: 50px;
+        margin: 0;
+        line-height: 50px;
+      }
     }
-  }
-  .readings-container{
-    color: grey;
-    .readings-list{
-      li{
-        display: inline;
-        margin-right: 10px;
+    .kanji-detail{
+      .readings-container{
+        color: grey;
+        .readings-list{
+          li{
+            display: inline;
+            margin-right: 10px;
+          }
+        }
       }
     }
   }
