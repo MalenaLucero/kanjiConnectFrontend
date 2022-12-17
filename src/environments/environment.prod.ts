@@ -1,4 +1,4 @@
-const apiUrl = 'https://kanji-connect.herokuapp.com';
+const apiUrl = 'https://kanji-connect-backend-nextjs.vercel.app/api';
 
 export const environment = {
   production: true,
