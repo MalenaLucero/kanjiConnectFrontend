@@ -34,6 +34,7 @@ import { TableComponent } from './components/table/table.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ArrayToStringPipe } from './pipes/array-to-string.pipe';
 import { DeleteConfirmComponent } from './components/delete-confirm/delete-confirm.component';
+import { BoldWordInStringPipe } from './pipes/bold-word-in-string.pipe';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { DeleteConfirmComponent } from './components/delete-confirm/delete-confi
     HeaderComponent,
     ArrayToStringPipe,
     DeleteConfirmComponent,
+    BoldWordInStringPipe,
   ],
   imports: [
     CommonModule,
@@ -91,7 +93,8 @@ import { DeleteConfirmComponent } from './components/delete-confirm/delete-confi
     TableComponent,
     HeaderComponent,
     ArrayToStringPipe,
-    DeleteConfirmComponent
+    DeleteConfirmComponent,
+    BoldWordInStringPipe,
   ]
 })
 export class SharedModule { }

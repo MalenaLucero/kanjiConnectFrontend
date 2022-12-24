@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { ReviewComponent } from './pages/review/review.component';
 import { UploadExpressionComponent } from './pages/upload-expression/upload-expression.component';
@@ -135,6 +136,7 @@ const routes: Routes = [
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTabsModule,
     RouterModule.forChild(routes),
   ],
   exports: [

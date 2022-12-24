@@ -1,5 +1,6 @@
 //const apiUrl = 'http://localhost:3000';
-const apiUrl = 'https://kanji-connect.herokuapp.com';
+//const apiUrl = 'http://localhost:3000/api';
+const apiUrl = 'https://kanji-connect-backend-nextjs.vercel.app/api';
 
 export const environment = {
   production: false,

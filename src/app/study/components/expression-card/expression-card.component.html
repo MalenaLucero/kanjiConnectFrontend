@@ -1,37 +1,45 @@
 <mat-card class="container">
-  <div class="card-title">
-    <h3>{{ expression.word }}</h3>
-    <p class="text">{{ expression.reading }}</p>
+  <div class="header">
+    <div class="card-title">
+      <h3>{{ expression.word }}</h3>
+      <p class="text">{{ expression.reading }}</p>
+    </div>
+    <div *ngIf="expression.exampleSentences.length > 0">
+      <h4 class="subtitle">Example sentences</h4>
+      <p class="text" *ngFor="let exampleSentence of expression.exampleSentences"
+        [innerHTML]="exampleSentence.sentence | boldWordInString:expression.word">
+      </p>
+    </div>
   </div>
-  <div *ngIf="expression.exampleSentences.length > 0">
-    <h4 class="subtitle">Example sentences</h4>
-    <p class="text" *ngFor="let exampleSentence of expression.exampleSentences">{{ exampleSentence.sentence }}</p>
-  </div>
-  <div *ngIf="expression.englishMeaning.length > 0">
+  <div *ngIf="expression.englishMeaning.length > 0" class="details-container">
     <h4 class="subtitle">English Meaning</h4>
     <p class="text" *ngFor="let englishMeaning of expression.englishMeaning">
-      <span class="bullet">●</span>{{ englishMeaning }}
+      <span class="bullet">●</span>{{ englishMeaning | firstTitlecase }}
     </p>
   </div>
-  <div *ngIf="expression.japaneseMeaning.length > 0">
+  <div *ngIf="expression.japaneseMeaning.length > 0" class="details-container">
     <h4 class="subtitle">Japanese Meaning</h4>
     <p class="text" *ngFor="let japaneseMeaning of expression.japaneseMeaning">
       <span class="bullet">●</span>{{ japaneseMeaning }}
     </p>
   </div>
-  <p class="text" *ngIf="expression.transitivity">
-    <span class="subtitle">Transitivity:</span>
-      {{ expression.transitivity }}</p>
-  <p class="text" *ngIf="expression.jlpt">
-    <span class="subtitle">JLPT:</span>
-      {{ expression.jlpt }}
-  </p>
+  <div class="details-container">
+    <p class="text" *ngIf="expression.transitivity">
+      <span class="subtitle">Transitivity:</span>
+        {{ expression.transitivity }}</p>
+  </div>
+  <div class="details-container">
+    <p class="text" *ngIf="expression.jlpt">
+      <span class="subtitle">JLPT:</span>
+        {{ expression.jlpt }}
+    </p>
+  </div>
   <div class="external-links">
     <div class="definition-links">
       <a href={{englishDefinitionLink}} target="_blank">
-      Jisho.org definition</a>
+        Jisho.org definition</a>
       <a href={{japaneseDefinitionLink}} target="_blank">
-        Japanese definition</a>
+      Japanese definition</a>
       <a href={{exampleSentencesLink}} target="_blank">
         More example sentences</a>
     </div>

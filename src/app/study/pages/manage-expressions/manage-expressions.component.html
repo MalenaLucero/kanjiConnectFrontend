@@ -22,30 +22,26 @@
         </div>
       </form>
     </mat-expansion-panel>
-    <!--NAV BUTTONS-->
-    <nav *ngIf="filteredExpressions.length > 0">
-      <button mat-raised-button color="accent" (click)="areCardsShown = true" [disabled]="areCardsShown" class="card">
-        See cards
-      </button>
-      <button mat-raised-button color="accent" (click)="areCardsShown = false" [disabled]="!areCardsShown">
-        See table
-      </button>
-    </nav>
   </div>
-  <!--CARDS AND TABLE-->
-  <div *ngIf="filteredExpressions.length > 0">
-    <div *ngIf="areCardsShown" class="cards-container">
-      <app-expression-card
-        *ngFor="let expression of filteredExpressions"
-        [expression]="expression"
-        class="card">
-      </app-expression-card>
-    </div>
-    <div *ngIf="!areCardsShown">
-      <app-table
-        [columnTitles]="columnTitles"
-        [dataToDisplay]="filteredExpressions">
-      </app-table>
-    </div>
-  </div>
+  <!--RESPONSE-->
+  <mat-card *ngIf="filteredExpressions.length > 0" class="response-container">
+    <mat-tab-group mat-stretch-tabs="true" mat-align-tabs="start">
+      <mat-tab label="List">
+        <div class="cards-container">
+          <app-expression-card
+            *ngFor="let expression of filteredExpressions"
+            [expression]="expression"
+            class="card">
+          </app-expression-card>
+        </div>
+      </mat-tab>
+      <mat-tab label="Table">
+        <app-table
+          [columnTitles]="columnTitles"
+          [dataToDisplay]="filteredExpressions">
+        </app-table>
+      </mat-tab>
+      <mat-tab label="Grouped by tags"></mat-tab>
+    </mat-tab-group>
+  </mat-card>
 </div>

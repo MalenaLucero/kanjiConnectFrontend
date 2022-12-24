@@ -15,7 +15,6 @@ export class ManageExpressionsComponent implements OnInit {
   public searchForm: UntypedFormGroup;
   public filteredExpressions: Expression[] = [];
   public columnTitles: string[] = ['word', 'reading', 'englishMeaning'];
-  public areCardsShown: boolean = true;
 
   constructor(private formBuilder: FormBuilder,
               private expressionsService: ExpressionsService,
