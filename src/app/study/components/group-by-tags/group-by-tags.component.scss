@@ -1,0 +1,33 @@
+.container{
+  margin-top: 10px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  mat-card{
+    background-color: rgb(243, 243, 243);
+    width: 45%;
+    flex-grow: 1;
+    .tags-container{
+      display: flex;
+      gap: 10px;
+    }
+    .expressions-wrapper{
+      margin-top: 15px;
+      .expressions-container{
+        display: flex;
+        gap: 15px;
+        margin-top: 10px;
+        flex-wrap: wrap;
+        a {
+          font-size: 18px;
+          white-space: nowrap;
+          color: var(--main-color);
+          font-weight: 500;
+          &:hover{
+            color: var(--medium-main-color);
+          }
+        }
+      }
+    }
+  }
+}

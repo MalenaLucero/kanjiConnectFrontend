@@ -58,4 +58,20 @@ export class TagsService {
   updateTag(id: string, data: FormTag) {
     return this.http.put<Tag>(environment.tags + '/' + id, data);
   }
+
+  getAllPossibleTagCombinations(arr: string[]): string[][] {
+    if (arr.length === 1) return [arr];
+    else {
+      const subarr = this.getAllPossibleTagCombinations(arr.slice(1));
+      return subarr.concat(subarr.map(e => e.concat(arr[0])), [[arr[0]]]);
+    }
+  }
+
+  filterTagsById(tagIds: string[]): Tag[] {
+    let tags: Tag[] = [];
+    this.tags$.pipe(take(1)).subscribe(
+      res => tags = res.filter(tag => tagIds.includes(tag._id))
+    )
+    return tags;
+  }
 }

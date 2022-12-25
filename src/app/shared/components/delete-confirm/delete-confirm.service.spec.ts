@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { DeleteConfirmService } from './delete-confirm.service';
 
-describe('DeleteConfirmService', () => {
+xdescribe('DeleteConfirmService', () => {
   let service: DeleteConfirmService;
 
   beforeEach(() => {

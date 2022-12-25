@@ -40,7 +40,9 @@
           [tableData]="tableData">
         </app-table>
       </mat-tab>
-      <mat-tab label="Grouped by tags"></mat-tab>
+      <mat-tab label="Grouped by tags">
+        <app-group-by-tags [data]="tagCombinations"></app-group-by-tags>
+      </mat-tab>
     </mat-tab-group>
   </mat-card>
 </div>

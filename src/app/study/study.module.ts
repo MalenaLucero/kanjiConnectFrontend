@@ -39,6 +39,7 @@ import { SourceFormComponent } from './components/source-form/source-form.compon
 import { LessonCardComponent } from './components/lesson-card/lesson-card.component';
 import { TagFormComponent } from './components/tag-form/tag-form.component';
 import { TagCardComponent } from './components/tag-card/tag-card.component';
+import { GroupByTagsComponent } from './components/group-by-tags/group-by-tags.component';
 
 const routes: Routes = [
   {
@@ -124,6 +125,7 @@ const routes: Routes = [
     LessonCardComponent,
     TagFormComponent,
     TagCardComponent,
+    GroupByTagsComponent,
   ],
   imports: [
     CommonModule,

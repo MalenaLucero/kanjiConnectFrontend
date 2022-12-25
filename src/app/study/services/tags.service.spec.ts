@@ -1,16 +1,19 @@
 import { TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { TagsService } from './tags.service';
 
-xdescribe('TagsService', () => {
+describe('TagsService', () => {
   let service: TagsService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+    });
     service = TestBed.inject(TagsService);
   });
 
-  it('should be created', () => {
+  xit('should be created', () => {
     expect(service).toBeTruthy();
   });
 });

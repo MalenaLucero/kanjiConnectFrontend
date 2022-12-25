@@ -1,0 +1,17 @@
+<div class="container">
+  <mat-card *ngFor="let element of inputData">
+    <ul class="tags-container">
+      <li *ngFor="let tag of element.tagCombination" class="tag">
+        {{ tag.name }}
+      </li>
+    </ul>
+    <div class="expressions-wrapper">
+      <p class="subtitle">Expressions:</p>
+      <ul class="expressions-container">
+        <li *ngFor="let expression of element.expressions">
+          <a (click)="showExpression(expression)">{{ expression.word }}</a>
+        </li>
+      </ul>
+    </div>
+  </mat-card>
+</div>

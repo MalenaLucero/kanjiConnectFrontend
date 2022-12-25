@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExpressionCardComponent } from './expression-card.component';
+import { GroupByTagsComponent } from './group-by-tags.component';
 
-xdescribe('ExpressionCardComponent', () => {
-  let component: ExpressionCardComponent;
-  let fixture: ComponentFixture<ExpressionCardComponent>;
+describe('GroupByTagsComponent', () => {
+  let component: GroupByTagsComponent;
+  let fixture: ComponentFixture<GroupByTagsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExpressionCardComponent ]
+      declarations: [ GroupByTagsComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ExpressionCardComponent);
+    fixture = TestBed.createComponent(GroupByTagsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

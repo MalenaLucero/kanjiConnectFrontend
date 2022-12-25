@@ -5,6 +5,7 @@ import { SpinnerService } from 'src/app/shared/components/spinner/spinner.servic
 import { Expression } from '../../models/expression.model';
 import { ExpressionsService } from '../../services/expressions.service';
 import { ManageExpressionsService } from './manage-expressions.service';
+import { TagsService } from '../../services/tags.service';
 
 @Component({
   selector: 'app-manage-expressions',
@@ -16,10 +17,12 @@ export class ManageExpressionsComponent implements OnInit {
   public searchForm: UntypedFormGroup;
   public filteredExpressions: Expression[] = [];
   public tableData: TableData = emptyTableData;
+  public tagCombinations: any = [];
 
   constructor(private formBuilder: FormBuilder,
               private expressionsService: ExpressionsService,
               private manageExpressionsService: ManageExpressionsService,
+              private tagsService: TagsService,
               private spinner: SpinnerService) {
     this.searchForm = this.formBuilder.group({
       jlpt: null,
@@ -38,6 +41,26 @@ export class ManageExpressionsComponent implements OnInit {
       res => {
         this.filteredExpressions = res;
         this.tableData = this.manageExpressionsService.generateTableData(this.filteredExpressions);
+        const tagList = this.filteredExpressions.map(expression => expression.tags)
+        const concatTags: string[] = [];
+        tagList.forEach(list => list.forEach(tag => concatTags.push(tag)))
+        const tagSet = new Set(concatTags)
+        const tagCombinations = this.tagsService.getAllPossibleTagCombinations(Array.from(tagSet));
+        this.tagCombinations = tagCombinations.map(tagCombination => {
+          return {
+            tagCombination: this.tagsService.filterTagsById(tagCombination),
+            expressions: this.filteredExpressions.filter(expression =>
+              expression.tags.length === tagCombination.length &&
+              expression.tags.every(tag => tagCombination.includes(tag))
+            )
+          }
+        }).filter(e => e.expressions.length > 0).sort((a, b) => {
+          if (a.tagCombination.length < b.tagCombination.length) {
+            return -1
+          } else {
+            return 1
+          }
+        })
         this.spinner.close();
       }
     )
