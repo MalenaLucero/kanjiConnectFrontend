@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { TableData } from '../../models/table-data.model';
 
 @Component({
   selector: 'app-table',
@@ -6,17 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./table.component.scss']
 })
 
-
 export class TableComponent implements OnInit {
+  dataSource: any = [];
   displayedColumns: string[] = [];
-  dataSource: any = []
+  propertyNames: string[] = [];
 
-  @Input() set columnTitles(titles: string[]) {
-    this.displayedColumns = titles;
-  }
-
-  @Input() set dataToDisplay(data: any[]) {
-    this.dataSource = data;
+  @Input() set tableData(value: TableData) {
+    this.displayedColumns = value.displayedColumns;
+    this.dataSource = value.data;
+    this.propertyNames = value.propertyNames;
   }
 
   constructor() {}

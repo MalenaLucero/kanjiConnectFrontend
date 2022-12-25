@@ -10,10 +10,29 @@
 
 .mat-header-cell{
   font-size: 16px;
-  padding: 0 5px;
+  padding: 0 10px;
+  white-space: nowrap;
 }
 
 .mat-cell{
   font-size: 20px;
-  padding: 0 5px;
+  padding: 0 10px;
+}
+
+.cdk-column-expression{
+  white-space: nowrap;
+}
+
+.cdk-column-reading{
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.cdk-column-english-meaning, .cdk-column-expressions, .cdk-column-kun-readings, .cdk-column-on-readings{
+  font-size: 16px;
+}
+
+.cdk-column-no-{
+  color: grey;
+  font-size: 16px;
 }

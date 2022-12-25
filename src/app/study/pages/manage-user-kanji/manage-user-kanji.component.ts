@@ -1,17 +1,18 @@
+import { emptyTableData } from './../../../shared/models/table-data.model';
 import { Component, OnInit } from '@angular/core';
 import { Expression } from '../../models/expression.model';
 import { ExpressionPopupComponent } from '../../components/expression-popup/expression-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
-import { TableKanji, UserKanji, UserKanjiFilter } from '../../models/user-kanji.model';
+import { UserKanji } from '../../models/user-kanji.model';
 import { take } from 'rxjs';
 import { UserKanjiService } from '../../services/user-kanji.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
 import { ManageUserKanjiService } from './manage-user-kanji.service';
 import { QuerySearchService } from '../../services/query-search.service';
+import { TableData } from 'src/app/shared/models/table-data.model';
 
-type FilterOptions = 'jlpt' | 'lesson';
 @Component({
   selector: 'app-user-kanji',
   templateUrl: './manage-user-kanji.component.html',
@@ -22,8 +23,7 @@ export class ManageUserKanjiComponent implements OnInit {
   public panelOpenState = false;
   public searchForm: FormGroup;
   public userKanjiList: UserKanji[] = [];
-  public tableUserKanji: TableKanji[] = [];
-  public columnTitles = ['number', 'kanji', 'expressions', 'kun_readings', 'on_readings'];
+  public tableData: TableData = emptyTableData;
 
   constructor(private userKanjiService: UserKanjiService,
               private dialog: MatDialog,
@@ -53,7 +53,7 @@ export class ManageUserKanjiComponent implements OnInit {
         this.userKanjiService.userKanjiFilter$.pipe(take(1)).subscribe(res => {
           if (res.length > 0) {
             this.userKanjiList = res;
-            this.tableUserKanji = this.getTableUserKanji(res);
+            this.tableData = this.manageUserKanjiService.getTableData(res);
           } else {
             this.panelOpenState = true;
           }
@@ -80,20 +80,8 @@ export class ManageUserKanjiComponent implements OnInit {
     this.userKanjiService.filterUserKanji(filter).pipe(take(1)).subscribe(res => {
       this.userKanjiService.setUserKanjiFilter(res);
       this.userKanjiList = res;
-      this.tableUserKanji = this.getTableUserKanji(res);
+      this.tableData = this.manageUserKanjiService.getTableData(res);
       this.spinner.close();
-    })
-  }
-
-  getTableUserKanji(userKanjiList: UserKanji[]): TableKanji[] {
-    return userKanjiList.map((userKanji, index) => {
-      return {
-        kanji: userKanji.kanji.kanji,
-        expressions: userKanji.expressions.map(e => e.word),
-        on_readings: userKanji.kanji.on_readings,
-        kun_readings: userKanji.kanji.kun_readings,
-        number: index + 1
-      }
     })
   }
 

@@ -28,24 +28,19 @@
         </div>
       </form>
     </mat-expansion-panel>
-    <!--NAV BUTTONS-->
-    <nav *ngIf="userKanjiList.length > 0">
-      <button mat-raised-button color="accent" (click)="areCardsShown = true" [disabled]="areCardsShown">
-        See cards
-      </button>
-      <button mat-raised-button color="accent" (click)="areCardsShown = false" [disabled]="!areCardsShown">
-        See table
-      </button>
-    </nav>
   </div>
   <!--CARDS AND TABLE-->
-  <div *ngIf="userKanjiList.length > 0">
-    <div *ngIf="areCardsShown" class="cards-container">
-      <app-user-kanji-card *ngFor="let data of userKanjiList" class="card"
-        [cardData]="data" (expressionToOutput)="showExpression($event)"></app-user-kanji-card>
-    </div>
-    <div *ngIf="!areCardsShown">
-      <app-table [columnTitles]="columnTitles" [dataToDisplay]="tableUserKanji"></app-table>
-    </div>
-  </div>
+  <mat-card *ngIf="userKanjiList.length > 0" class="response-container">
+    <mat-tab-group mat-stretch-tabs="true">
+      <mat-tab label="List">
+        <div class="cards-container">
+          <app-user-kanji-card *ngFor="let data of userKanjiList" class="card"
+            [cardData]="data" (expressionToOutput)="showExpression($event)"></app-user-kanji-card>
+        </div>
+      </mat-tab>
+      <mat-tab label="Table">
+        <app-table [tableData]="tableData"></app-table>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
 </div>

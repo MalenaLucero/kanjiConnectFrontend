@@ -1,3 +1,4 @@
+import { emptyTableData, TableData } from './../../../shared/models/table-data.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, UntypedFormGroup } from '@angular/forms';
 import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
@@ -14,7 +15,7 @@ export class ManageExpressionsComponent implements OnInit {
   public panelOpenState = true;
   public searchForm: UntypedFormGroup;
   public filteredExpressions: Expression[] = [];
-  public columnTitles: string[] = ['word', 'reading', 'englishMeaning'];
+  public tableData: TableData = emptyTableData;
 
   constructor(private formBuilder: FormBuilder,
               private expressionsService: ExpressionsService,
@@ -36,6 +37,7 @@ export class ManageExpressionsComponent implements OnInit {
     this.expressionsService.filterExpressions(filter).subscribe(
       res => {
         this.filteredExpressions = res;
+        this.tableData = this.manageExpressionsService.generateTableData(this.filteredExpressions);
         this.spinner.close();
       }
     )
