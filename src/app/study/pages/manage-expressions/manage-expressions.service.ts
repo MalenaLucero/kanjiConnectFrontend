@@ -2,7 +2,12 @@ import { TableData } from './../../../shared/models/table-data.model';
 import { Injectable } from '@angular/core';
 import { Expression, FilterExpressionsDto } from '../../models/expression.model';
 import { TagsService } from '../../services/tags.service';
+import { Jlpt } from 'src/app/shared/models/custom-types.model';
 
+interface ParamsFilter {
+  jlpt?: number;
+  lesson?: string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -37,5 +42,29 @@ export class ManageExpressionsService {
       displayedColumns,
       data,
     }
+  }
+
+  getFilterFromParams(filter: string): FilterExpressionsDto {
+    const paramsFilter: FilterExpressionsDto = { user: this.user };
+
+    filter.split('|').forEach(e => {
+      const key = e.split(':')[0];
+      if (key === 'jlpt' || key === 'lesson' || 'tags') {
+        const value = e.split(':')[1];
+        switch(key) {
+          case 'jlpt':
+            paramsFilter.jlpt = parseInt(value, 10) as Jlpt;
+            break;
+          case 'lesson':
+            paramsFilter.lesson = value;
+            break;
+          case 'tags':
+            paramsFilter.tags = value.split(',');
+            break;
+        }
+      }
+    })
+
+    return paramsFilter;
   }
 }

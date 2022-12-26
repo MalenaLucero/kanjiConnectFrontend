@@ -2,10 +2,12 @@ import { emptyTableData, TableData } from './../../../shared/models/table-data.m
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, UntypedFormGroup } from '@angular/forms';
 import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
-import { Expression } from '../../models/expression.model';
+import { Expression, FilterExpressionsDto } from '../../models/expression.model';
 import { ExpressionsService } from '../../services/expressions.service';
 import { ManageExpressionsService } from './manage-expressions.service';
 import { TagsService } from '../../services/tags.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { QuerySearchService } from '../../services/query-search.service';
 
 @Component({
   selector: 'app-manage-expressions',
@@ -23,7 +25,10 @@ export class ManageExpressionsComponent implements OnInit {
               private expressionsService: ExpressionsService,
               private manageExpressionsService: ManageExpressionsService,
               private tagsService: TagsService,
-              private spinner: SpinnerService) {
+              private spinner: SpinnerService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private querySearchService: QuerySearchService) {
     this.searchForm = this.formBuilder.group({
       jlpt: null,
       lesson: [''],
@@ -32,11 +37,26 @@ export class ManageExpressionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      if (params['search'] || params['filter']) {
+        this.panelOpenState = false;
+        this.spinner.open();
+        const filter = this.manageExpressionsService.getFilterFromParams(params['filter']);
+        this.filter(filter);
+      }
+    })
   }
 
   search() {
     this.spinner.open();
     const filter = this.manageExpressionsService.generateFilter(this.searchForm.value);
+    const url = this.querySearchService.generateUrlfromAnyFilter(filter)
+    if (url !== null) {
+      this.router.navigate(['/study/manage/expressions'], { queryParams: url });
+    }
+  }
+
+  filter(filter: FilterExpressionsDto) {
     this.expressionsService.filterExpressions(filter).subscribe(
       res => {
         this.filteredExpressions = res;

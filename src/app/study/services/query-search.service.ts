@@ -6,10 +6,10 @@ interface SearchParams {
 }
 
 interface FormData {
-  searchList: string,
-  jlpt: number,
-  lesson: string,
-  tags: string[]
+  searchList?: string,
+  jlpt?: number,
+  lesson?: string,
+  tags?: string[]
 }
 
 @Injectable({
@@ -23,16 +23,43 @@ export class QuerySearchService {
     let key: 'search' | 'filter' | null = null;
     const filter = formData;
     let filterString = '';
-    if (filter.searchList.length > 0) {
+    if (filter.searchList !== undefined && filter.searchList.length > 0) {
       key = 'search';
       filterString = filter.searchList;
     } else {
       key = 'filter';
-      if (filter.jlpt !== null && filter.jlpt > 0) {
+      if (filter.jlpt !== null && filter.jlpt !== undefined && filter.jlpt > 0) {
         filterString = filterString + 'jlpt:' + filter.jlpt + '|'
       }
-      if (filter.lesson !== null && filter.lesson.length > 0) {
+      if (filter.lesson !== null && filter.lesson !== undefined && filter.lesson.length > 0) {
         filterString = filterString + 'lesson:' + filter.lesson;
+      }
+    }
+    if (key === 'search') {
+      return { search: filterString }
+    } else if (key === 'filter'){
+      return { filter: filterString }
+    }
+    return null;
+  }
+
+  generateUrlfromAnyFilter(formData: any): { search: string } | { filter: string } | null {
+    let key: 'search' | 'filter' | null = null;
+    const filter = formData;
+    let filterString = '';
+    if (filter.searchList !== undefined && filter.searchList.length > 0) {
+      key = 'search';
+      filterString = filter.searchList;
+    } else {
+      key = 'filter';
+      if (filter.jlpt !== null && filter.jlpt !== undefined && filter.jlpt > 0) {
+        filterString = filterString + 'jlpt:' + filter.jlpt + '|'
+      }
+      if (filter.lesson !== null && filter.lesson !== undefined && filter.lesson.length > 0) {
+        filterString = filterString + 'lesson:' + filter.lesson + '|';
+      }
+      if (filter.tags !== null && filter.tags !== undefined && filter.tags.length > 0) {
+        filterString = filterString + 'tags:' + filter.tags.toString();
       }
     }
     if (key === 'search') {

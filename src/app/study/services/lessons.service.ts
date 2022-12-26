@@ -26,7 +26,7 @@ export class LessonsService {
   getLessons() {
     this.http.get<Lesson[]>(environment.lessons + '/user/' + this.user).subscribe(
       res => {
-        res.unshift(emptyLesson);
+        res.reverse().unshift(emptyLesson);
         this.lessons.next(res)
       }
     )
