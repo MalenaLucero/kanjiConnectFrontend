@@ -7,6 +7,13 @@
     <mat-label>Description</mat-label>
     <input matInput formControlName="description" autofocus>
   </mat-form-field>
+  <div class="color-buttons-container">
+    <button *ngFor="let n of [1, 2, 3, 4, 5]"
+      [ngClass]="'color-button ' + 'color-' + n + (color === n ? ' focused' : ' unfocused')"
+      type="button"
+      (click)="setColor(n)">
+    </button>
+  </div>
   <div class="form-button-container">
     <button mat-stroked-button color="primary" (click)="reset()">
       {{resetText}}

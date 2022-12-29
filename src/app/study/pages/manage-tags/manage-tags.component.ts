@@ -56,7 +56,8 @@ export class ManageTagsComponent implements OnInit {
     this.spinner.open();
     const updatedTag: FormTag = {
       name: event.name,
-      description: event.description
+      description: event.description,
+      color: event.color,
     }
     this.tagsService.updateTag(event._id, updatedTag).subscribe({
       next: res => {

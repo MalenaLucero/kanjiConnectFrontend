@@ -75,7 +75,7 @@ import { BoldWordInStringPipe } from './pipes/bold-word-in-string.pipe';
     MatButtonModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatTableModule
+    MatTableModule,
   ], exports: [
     FooterComponent,
     LoadingComponent,

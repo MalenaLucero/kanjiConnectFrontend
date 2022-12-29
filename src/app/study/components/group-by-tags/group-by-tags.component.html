@@ -1,7 +1,8 @@
 <div class="container">
   <mat-card *ngFor="let element of inputData">
     <ul class="tags-container">
-      <li *ngFor="let tag of element.tagCombination" class="tag">
+      <li *ngFor="let tag of element.tagCombination"
+          [ngClass]="'tag ' + 'color' + tag.color">
         {{ tag.name }}
       </li>
     </ul>

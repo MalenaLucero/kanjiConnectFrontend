@@ -12,6 +12,11 @@
   --background-one: #C7CCDB;
   --background-two: #f0f1f6;
   --background-three: #e0d7fd;
+  --tag1: #809bce;
+  --tag2: #95b8d1;
+  --tag3: #b8e0d2;
+  --tag4: #d6eadf;
+  --tag5: #eac4d5;
   --small-padding: 6px;
   --default-padding: 15px;
   --big-padding: 30px;
@@ -99,11 +104,31 @@ a {
 }
 
 .tag{
-  background-color: var(--medium-main-color);
+  background-color: var(--tag1);
   display: block;
   padding: 0.3em;
   border-radius: 8px;
   box-shadow: 1px 1px 4px -2px rgba(0,0,0,0.75);
+}
+
+.color1{
+  background-color: var(--tag1);
+}
+
+.color2{
+  background-color: var(--tag2);
+}
+
+.color3{
+  background-color: var(--tag3);
+}
+
+.color4{
+  background-color: var(--tag4);
+}
+
+.color5{
+  background-color: var(--tag5);
 }
 
 .m-s-td{

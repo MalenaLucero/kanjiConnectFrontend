@@ -23,7 +23,8 @@ export class TagsService {
   getTags() {
     this.http.get<Tag[]>(environment.tags + '/user/' + this.user).subscribe(
       res => {
-        this.tags.next(res);
+        const sortedTags = res.sort((a, b) => a.color < b.color ? -1 : 1)
+        this.tags.next(sortedTags);
       }
     )
   }

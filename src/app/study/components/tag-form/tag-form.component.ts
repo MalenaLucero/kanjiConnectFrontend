@@ -11,6 +11,8 @@ export class TagFormComponent implements OnInit {
   public tagForm: FormGroup;
   public submitText: string = 'Create tag';
   public resetText: string = 'Clean form';
+  public color: number = 1;
+
   @Input() inputTag: Tag | null = null;
   @Output() formData = new EventEmitter<FormTag>();
   @Output() cancel = new EventEmitter<boolean>();
@@ -28,11 +30,18 @@ export class TagFormComponent implements OnInit {
       this.resetText = 'Cancel';
       this.tagForm.get('name')?.setValue(this.inputTag.name);
       this.tagForm.get('description')?.setValue(this.inputTag.description);
+      this.color = this.inputTag.color;
     }
   }
 
+  setColor(color: number) {
+    this.color = color;
+  }
+
   submit() {
-    this.formData.emit(this.tagForm.value);
+    const data = { ...this.tagForm.value, color: this.color };
+    console.log(data);
+    this.formData.emit(data);
     this.tagForm.reset();
   }
 

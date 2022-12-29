@@ -6,7 +6,7 @@
     <mat-icon>edit</mat-icon>
   </button>
   <div *ngIf="!editMode">
-    <h3>{{tag.name}}</h3>
+    <h3 [ngClass]="'tag ' + 'color' + tag.color">{{tag.name}}</h3>
     <p>
       <span class="description-title">Description: </span>
         {{tag.description}}

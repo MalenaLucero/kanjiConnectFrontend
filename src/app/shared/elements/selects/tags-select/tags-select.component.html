@@ -4,7 +4,7 @@
     <ul>
       <li *ngFor="let tag of tags$ | async">
         <mat-checkbox formControlName="{{ tag.name }}">
-          <span class="tag">{{ tag.name }}</span>
+          <span [ngClass]="'tag ' + 'color' + tag.color">{{ tag.name }}</span>
         </mat-checkbox>
       </li>
     </ul>
