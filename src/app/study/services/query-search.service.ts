@@ -1,99 +1,96 @@
 import { Injectable } from '@angular/core';
-
-interface SearchParams {
-  search?: string,
-  filter?: string,
-}
-
+import { Jlpt } from 'src/app/shared/models/custom-types.model';
+import { ValidationService } from 'src/app/shared/services/validation.service';
+import { GenericFilter, SearchParams } from '../models/query-search.model';
+import { TagsService } from './tags.service';
 interface FormData {
   searchList?: string,
   jlpt?: number,
   lesson?: string,
   tags?: string[]
 }
-
 @Injectable({
   providedIn: 'root'
 })
 export class QuerySearchService {
+  private user = '61478fb9b2cfde16186509b5';
 
-  constructor() { }
+  constructor(private validationService: ValidationService,
+              private tagsService: TagsService) { }
 
-  generateUrlfromFilter(formData: FormData): { search: string } | { filter: string } | null {
+  generateUrlfromFilter(formData: FormData): { key: string, url: string } {
     let key: 'search' | 'filter' | null = null;
-    const filter = formData;
     let filterString = '';
-    if (filter.searchList !== undefined && filter.searchList.length > 0) {
+    if (formData.searchList && formData.searchList.length > 0) {
       key = 'search';
-      filterString = filter.searchList;
+      filterString = formData.searchList;
     } else {
       key = 'filter';
-      if (filter.jlpt !== null && filter.jlpt !== undefined && filter.jlpt > 0) {
-        filterString = filterString + 'jlpt:' + filter.jlpt + '|'
+      if (formData.jlpt && formData.jlpt > 0) {
+        filterString = filterString + 'jlpt:' + formData.jlpt + '|'
       }
-      if (filter.lesson !== null && filter.lesson !== undefined && filter.lesson.length > 0) {
-        filterString = filterString + 'lesson:' + filter.lesson;
+      if (formData.lesson && formData.lesson.length > 0) {
+        filterString = filterString + 'lesson:' + formData.lesson + '|';
+      }
+      if (formData.tags) {
+        const tagNames = Object.entries(formData.tags)
+          .filter(tag => tag[1]).map(tag => tag[0]);
+        if (tagNames.length > 0) {
+          const tagIds = this.tagsService.getTagIdsFromNames(tagNames);
+          filterString = filterString + 'tags:' + tagIds.toString();
+        }
       }
     }
-    if (key === 'search') {
-      return { search: filterString }
-    } else if (key === 'filter'){
-      return { filter: filterString }
+
+    return {
+      key: key,
+      url: filterString,
     }
-    return null;
   }
 
-  generateUrlfromAnyFilter(formData: any): { search: string } | { filter: string } | null {
-    let key: 'search' | 'filter' | null = null;
-    const filter = formData;
-    let filterString = '';
-    if (filter.searchList !== undefined && filter.searchList.length > 0) {
-      key = 'search';
-      filterString = filter.searchList;
-    } else {
-      key = 'filter';
-      if (filter.jlpt !== null && filter.jlpt !== undefined && filter.jlpt > 0) {
-        filterString = filterString + 'jlpt:' + filter.jlpt + '|'
-      }
-      if (filter.lesson !== null && filter.lesson !== undefined && filter.lesson.length > 0) {
-        filterString = filterString + 'lesson:' + filter.lesson + '|';
-      }
-      if (filter.tags !== null && filter.tags !== undefined && filter.tags.length > 0) {
-        filterString = filterString + 'tags:' + filter.tags.toString();
-      }
-    }
-    if (key === 'search') {
-      return { search: filterString }
-    } else if (key === 'filter'){
-      return { filter: filterString }
-    }
-    return null;
-  }
+  getFilterFromUrlParams(params: SearchParams): GenericFilter {
+    const { search, filter } = params;
+    const formData: GenericFilter = {};
+    if (search) {
+      formData.searchList = [search];
+      return formData;
+    } else if (filter) {
+      const rawObjectFromParams: any = {}
+      filter.split('|')
+        .forEach(str => {
+          const key = str.split(':')[0];
+          const value = str.split(':')[1];
+          rawObjectFromParams[key] = value;
+        })
+      const formData: GenericFilter = {};
+      const filterKeys = ['jlpt', 'lesson', 'tags'];
 
-  getFilterFromUrlParams(params: SearchParams) {
-    const formData: FormData = {
-      searchList: '',
-      jlpt: 0,
-      lesson: '',
-      tags: []
-    }
-    if (params.search) {
-      formData.searchList = params.search;
-    } else if (params.filter) {
-      params.filter.split('|').forEach(e => {
-        const key = e.split(':')[0];
-        if (key === 'jlpt' || key === 'lesson') {
-          const value = e.split(':')[1];
+      Object.keys(rawObjectFromParams).forEach(key => {
+        if (filterKeys.includes(key)) {
+          const value = rawObjectFromParams[key];
           switch(key) {
             case 'jlpt':
-              formData.jlpt = parseInt(value, 10);
+              const jlpt = parseInt(value, 10) as Jlpt;
+              if (this.validationService.isJlptValid(jlpt)){
+                formData.jlpt = jlpt;
+              }
               break;
             case 'lesson':
-              formData.lesson = value;
+              if (this.validationService.isMongoIdValid(value)) {
+                formData.lesson = value;
+              }
+              break;
+            case 'tags':
+              const tagIds = value.split(',');
+              const validationArray = tagIds.map((id: string) => this.validationService.isMongoIdValid(id))
+              if (this.validationService.isValidationArrayValid(validationArray)) {
+                formData.tags = tagIds;
+              }
               break;
           }
         }
       })
+      return formData
     }
     return formData;
   }

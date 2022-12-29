@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GroupByTagsComponent } from './group-by-tags.component';
 
-describe('GroupByTagsComponent', () => {
+xdescribe('GroupByTagsComponent', () => {
   let component: GroupByTagsComponent;
   let fixture: ComponentFixture<GroupByTagsComponent>;
 

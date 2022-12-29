@@ -12,6 +12,7 @@ import { SpinnerService } from 'src/app/shared/components/spinner/spinner.servic
 import { ManageUserKanjiService } from './manage-user-kanji.service';
 import { QuerySearchService } from '../../services/query-search.service';
 import { TableData } from 'src/app/shared/models/table-data.model';
+import { GenericFilter } from '../../models/query-search.model';
 
 @Component({
   selector: 'app-user-kanji',
@@ -45,10 +46,7 @@ export class ManageUserKanjiComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (params['search'] || params['filter']) {
         const filter = this.querySearchService.getFilterFromUrlParams(params);
-        this.searchForm.get('kanjiList')?.setValue(filter.searchList);
-        this.searchForm.get('jlpt')?.setValue(filter.jlpt);
-        this.searchForm.get('lesson')?.setValue(filter.lesson);
-        this.filterUserKanji();
+        this.filterUserKanji(filter);
       } else {
         this.userKanjiService.userKanjiFilter$.pipe(take(1)).subscribe(res => {
           if (res.length > 0) {
@@ -70,13 +68,12 @@ export class ManageUserKanjiComponent implements OnInit {
     delete formData.kanjiList;
     const url = this.querySearchService.generateUrlfromFilter(formData);
     if (url !== null) {
-      this.router.navigate(['/study/manage/user-kanji'], { queryParams: url });
+      this.router.navigate(['/study/manage/user-kanji'], { queryParams: {[url.key]: url.url} });
     }
   }
 
-  filterUserKanji() {
+  filterUserKanji(filter: GenericFilter) {
     this.spinner.open();
-    const filter = this.userKanjiService.generateFilter(this.searchForm.value);
     this.userKanjiService.filterUserKanji(filter).pipe(take(1)).subscribe(res => {
       this.userKanjiService.setUserKanjiFilter(res);
       this.userKanjiList = res;

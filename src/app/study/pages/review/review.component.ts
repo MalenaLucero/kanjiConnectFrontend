@@ -13,6 +13,7 @@ import { UserKanji, UserKanjiFilter } from 'src/app/study/models/user-kanji.mode
 import { UserKanjiService } from 'src/app/study/services/user-kanji.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
+import { GenericFilter } from '../../models/query-search.model';
 
 @Component({
   selector: 'app-review',

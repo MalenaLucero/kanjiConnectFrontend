@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { CreateExpressionDto, Expression, FilterExpressionsDto, UpdateExpressionDto, ExternalExpression } from '../models/expression.model';
 import { BehaviorSubject } from 'rxjs';
+import { GenericFilter } from '../models/query-search.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class ExpressionsService {
 
   constructor(private http: HttpClient) { }
 
-  filterExpressions(filter: FilterExpressionsDto) {
+  filterExpressions(filter: GenericFilter | FilterExpressionsDto) {
+    filter.user = this.user;
     return this.http.post<Expression[]>(environment.expressions + '/filter', filter);
   }
 

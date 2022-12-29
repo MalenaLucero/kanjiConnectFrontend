@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { UserKanji, UserKanjiFilter } from '../models/user-kanji.model';
 import { BehaviorSubject } from 'rxjs';
 import { TagsService } from './tags.service';
+import { GenericFilter } from '../models/query-search.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class UserKanjiService {
   constructor(private http: HttpClient,
               private tagsService: TagsService) { }
 
-  filterUserKanji(filter: UserKanjiFilter) {
+  filterUserKanji(filter: UserKanjiFilter | GenericFilter) {
+    filter.user = this.user;
     return this.http.post<UserKanji[]>(environment.userKanji + '/filter', filter);
   }
 

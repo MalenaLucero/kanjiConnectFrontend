@@ -8,6 +8,7 @@ import { ManageExpressionsService } from './manage-expressions.service';
 import { TagsService } from '../../services/tags.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuerySearchService } from '../../services/query-search.service';
+import { GenericFilter } from '../../models/query-search.model';
 
 @Component({
   selector: 'app-manage-expressions',
@@ -41,7 +42,7 @@ export class ManageExpressionsComponent implements OnInit {
       if (params['search'] || params['filter']) {
         this.panelOpenState = false;
         this.spinner.open();
-        const filter = this.manageExpressionsService.getFilterFromParams(params['filter']);
+        const filter = this.querySearchService.getFilterFromUrlParams(params);
         this.filter(filter);
       }
     })
@@ -49,14 +50,13 @@ export class ManageExpressionsComponent implements OnInit {
 
   search() {
     this.spinner.open();
-    const filter = this.manageExpressionsService.generateFilter(this.searchForm.value);
-    const url = this.querySearchService.generateUrlfromAnyFilter(filter)
+    const url = this.querySearchService.generateUrlfromFilter(this.searchForm.value);
     if (url !== null) {
-      this.router.navigate(['/study/manage/expressions'], { queryParams: url });
+      this.router.navigate(['/study/manage/expressions'], { queryParams: {[url.key]: url.url} });
     }
   }
 
-  filter(filter: FilterExpressionsDto) {
+  filter(filter: GenericFilter) {
     this.expressionsService.filterExpressions(filter).subscribe(
       res => {
         this.filteredExpressions = res;
@@ -74,7 +74,8 @@ export class ManageExpressionsComponent implements OnInit {
               expression.tags.every(tag => tagCombination.includes(tag))
             )
           }
-        }).filter(e => e.expressions.length > 0).sort((a, b) => {
+        }).filter(e => e.expressions.length > 0)
+        .sort((a, b) => {
           if (a.tagCombination.length < b.tagCombination.length) {
             return -1
           } else {
