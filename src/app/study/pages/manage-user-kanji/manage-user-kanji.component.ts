@@ -45,6 +45,7 @@ export class ManageUserKanjiComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       if (params['search'] || params['filter']) {
+        this.panelOpenState = false;
         const filter = this.querySearchService.getFilterFromUrlParams(params);
         this.filterUserKanji(filter);
       } else {

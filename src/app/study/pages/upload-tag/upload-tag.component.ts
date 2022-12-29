@@ -23,16 +23,16 @@ export class UploadTagComponent implements OnInit {
     this.spinner.open();
     const data: UploadTag = {...event, user: this.user};
     console.log(data)
-  //   this.tagsService.uploadTag(data).subscribe({
-  //     next: res => {
-  //       this.snackBar.open('Tag created', 'OK', { duration: 3000 });
-  //       this.spinner.close();
-  //       this.tagsService.getTags();
-  //     }, error: err => {
-  //       this.snackBar.open(`Tag couldn't be created`, err.error.message, { duration: 3000 });
-  //       this.spinner.close();
-  //     }
-  //   });
+    this.tagsService.uploadTag(data).subscribe({
+      next: res => {
+        this.snackBar.open('Tag created', 'OK', { duration: 3000 });
+        this.spinner.close();
+        this.tagsService.getTags();
+      }, error: err => {
+        this.snackBar.open(`Tag couldn't be created`, err.error.message, { duration: 3000 });
+        this.spinner.close();
+      }
+    });
    }
 
 }
