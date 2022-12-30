@@ -5,6 +5,7 @@ import { Tag, UploadTag } from '../models/tag.model';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { take, takeWhile } from 'rxjs/operators';
+import { SortingService } from './sorting.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class TagsService {
   private tags = new BehaviorSubject<Tag[]>([]);
   tags$ = this.tags.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private sortingService: SortingService) { }
 
   getTagsByUser(user: string) {
     return this.http.get<Tag[]>(environment.tags + '/user/' + user);
@@ -23,7 +25,7 @@ export class TagsService {
   getTags() {
     this.http.get<Tag[]>(environment.tags + '/user/' + this.user).subscribe(
       res => {
-        const sortedTags = res.sort((a, b) => a.color < b.color ? -1 : 1)
+        const sortedTags = this.sortingService.sortTagsByColor(res);
         this.tags.next(sortedTags);
       }
     )

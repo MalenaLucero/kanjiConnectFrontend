@@ -141,7 +141,9 @@ export class ExpressionFormComponent implements OnInit {
   }
 
   cleanForm() {
+    const lesson = this.form.value.lesson;
     this.createForm();
+    this.form.controls['lesson'].setValue(lesson);
   }
 
   getRandomWord() {

@@ -14,6 +14,7 @@ import { UserKanjiService } from 'src/app/study/services/user-kanji.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
 import { GenericFilter } from '../../models/query-search.model';
+import { SortingService } from '../../services/sorting.service';
 
 @Component({
   selector: 'app-review',
@@ -35,7 +36,8 @@ export class ReviewComponent implements OnInit {
               private tagsService: TagsService,
               private snackBar: MatSnackBar,
               private dialog: MatDialog,
-              private spinner: SpinnerService) { }
+              private spinner: SpinnerService,
+              private sortingService: SortingService) { }
 
   ngOnInit(): void {
     this.getTags();
@@ -63,7 +65,7 @@ export class ReviewComponent implements OnInit {
         next: res => {
           this.spinner.close();
           if (res.length > 0) {
-            this.reviewDataList = res;
+            this.reviewDataList = this.sortingService.sortByDifficulty(res);
             this.total = this.reviewDataList.length;
             this.currentReviewData = this.reviewDataList[this.currentIndex];
             this.openDialog(this.reviewDataList, this.type);
@@ -79,7 +81,7 @@ export class ReviewComponent implements OnInit {
         next: res => {
           this.spinner.close();
           if (res.length > 0) {
-            this.reviewDataList = res;
+            this.reviewDataList = this.sortingService.sortByDifficulty(res);;
             this.total = this.reviewDataList.length;
             this.currentReviewData = this.reviewDataList[this.currentIndex];
             this.openDialog(this.reviewDataList, this.type);
