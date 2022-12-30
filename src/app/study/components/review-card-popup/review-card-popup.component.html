@@ -1,5 +1,5 @@
 <!--CARD FRONT-->
-<div *ngIf="cardFlipState === 'front'" class="card front">
+<div *ngIf="cardFlipState === 'front' && !isReviewCompleted" class="card front">
   <mat-icon class="popup-close-button" (click)="close()">close</mat-icon>
   <app-review-counter [total]="total" [currentIndex]="currentIndex" [fetchedDataState]="'loaded'"></app-review-counter>
   <h3>{{ cardData.main }}</h3>
@@ -13,7 +13,7 @@
   <app-main-button (click)="cardFlipState = 'back'" text="Show reverse"></app-main-button>
 </div>
 <!--CARD REVERSE-->
-<div *ngIf="cardFlipState === 'back'" class="card back">
+<div *ngIf="cardFlipState === 'back' && !isReviewCompleted" class="card back">
   <mat-icon class="popup-close-button" (click)="close()">close</mat-icon>
   <h4>{{ cardData.main }}</h4>
   <!-- EXPRESSION -->
@@ -61,4 +61,11 @@
     <app-difficulty-buttons [difficulty]="cardData.difficulty"
                             (updatedDifficulty)="updateDifficulty($event)"></app-difficulty-buttons>
   </div>
+</div>
+<!--REVIEW COMPLETED CARD-->
+<div *ngIf="isReviewCompleted" class="review-completed-container">
+  <mat-icon class="check-icon">
+    task_alt
+  </mat-icon>
+  <p>Review completed!</p>
 </div>

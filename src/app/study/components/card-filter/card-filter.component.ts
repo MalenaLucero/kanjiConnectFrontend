@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { DataType } from 'src/app/shared/models/custom-types.model';
 import { Tag } from 'src/app/study/models/tag.model';
 import { SelectValuesService } from 'src/app/study/services/select-values.service';
 import { CardFilterService } from './card-filter.service';
@@ -14,11 +15,12 @@ export class CardFilterComponent implements OnInit {
   @Input() tags: Tag[] = [];
 
   public filterForm: UntypedFormGroup;
-  public panelOpenState: boolean = true;
+  public dataTypes: { name: string, value: DataType }[] = [];
 
   constructor(private formBuilder: UntypedFormBuilder,
               private selectValuesService: SelectValuesService,
               private cardFilterService: CardFilterService) {
+    this.dataTypes = this.selectValuesService.getDataType();
     this.filterForm = this.formBuilder.group({
       type: [this.selectValuesService.getDefaultDataTypeValue()],
       lesson: [''],
@@ -36,7 +38,6 @@ export class CardFilterComponent implements OnInit {
 
   sendFilter() {
     const filter = this.cardFilterService.generateFilter(this.filterForm.value);
-    //this.panelOpenState = false;
     this.filter.emit(filter);
   }
 

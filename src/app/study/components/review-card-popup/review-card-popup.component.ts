@@ -20,6 +20,7 @@ export class ReviewCardPopupComponent implements OnInit {
   public currentIndex: number = 0;
   public total: number = 0;
   public type: DataType = 'expression';
+  public isReviewCompleted: boolean = false;
   private wasFirstSnackShown = false;
 
   constructor(private expressionCardService: ExpressionCardService,
@@ -41,7 +42,10 @@ export class ReviewCardPopupComponent implements OnInit {
       this.cardFlipState = 'front';
       this.showHint = false;
     } else {
-      this.dialogRef.close();
+      this.isReviewCompleted = true;
+      setTimeout(() => {
+        this.dialogRef.close();
+      }, 1500);
     }
   }
 

@@ -22,7 +22,6 @@ import { DifficultySelectComponent } from './elements/selects/difficulty-select/
 import { JlptSelectComponent } from './elements/selects/jlpt-select/jlpt-select.component';
 import { LessonsSelectComponent } from './elements/selects/lessons-select/lessons-select.component';
 import { TagsSelectComponent } from './elements/selects/tags-select/tags-select.component';
-import { TypesSelectComponent } from './elements/selects/types-select/types-select.component';
 import { TransitivitySelectComponent } from './elements/selects/transitivity-select/transitivity-select.component';
 import { MainButtonComponent } from './elements/buttons/main-button/main-button.component';
 import { FirstTitlecasePipe } from './pipes/first-titlecase.pipe';
@@ -50,7 +49,6 @@ import { BoldWordInStringPipe } from './pipes/bold-word-in-string.pipe';
     JlptSelectComponent,
     LessonsSelectComponent,
     TagsSelectComponent,
-    TypesSelectComponent,
     TransitivitySelectComponent,
     MainButtonComponent,
     FirstTitlecasePipe,
@@ -86,7 +84,6 @@ import { BoldWordInStringPipe } from './pipes/bold-word-in-string.pipe';
     JlptSelectComponent,
     LessonsSelectComponent,
     TagsSelectComponent,
-    TypesSelectComponent,
     TransitivitySelectComponent,
     MainButtonComponent,
     FirstTitlecasePipe,

@@ -12,6 +12,11 @@
         2022
     </button>
     <button mat-raised-button color="accent"
+      (click)="filterLessons(2023)"
+      [disabled]="filteredYear === 2023">
+        2023
+    </button>
+    <button mat-raised-button color="accent"
       (click)="filterLessons('reverse')">
         Reverse order
     </button>

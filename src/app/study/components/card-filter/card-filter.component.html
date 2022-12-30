@@ -1,19 +1,15 @@
-<mat-expansion-panel (opened)="panelOpenState = true"
-                    (closed)="panelOpenState = false"
-                    [expanded]="panelOpenState">
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      Filter cards to review
-    </mat-panel-title>
-  </mat-expansion-panel-header>
+<mat-card>
   <form [formGroup]="filterForm" class="m-m-td">
+    <div class="form-header">
+      <p>You are reviewing</p>
+      <mat-button-toggle-group formControlName="type">
+        <mat-button-toggle *ngFor="let dataType of dataTypes" [value]="dataType.value">
+          {{ dataType.name }}
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
     <div class="select-container">
-      <div>
-        <app-types-select formControlName="type"></app-types-select>
-      </div>
-      <div>
-        <app-jlpt-select formControlName="jlpt"></app-jlpt-select>
-      </div>
+
     </div>
     <div class="select-container">
       <div>
@@ -24,6 +20,9 @@
       </div>
     </div>
     <div class="select-container">
+      <div>
+        <app-jlpt-select formControlName="jlpt"></app-jlpt-select>
+      </div>
       <div *ngIf="filterForm.get('type')?.value === 'expression'">
         <app-transitivity-select formControlName="transitivity"></app-transitivity-select>
       </div>
@@ -32,10 +31,10 @@
       <app-tags-select formControlName="tags"></app-tags-select>
     </div>
     <div class="form-button-container">
-      <button mat-raised-button color="primary" (click)="sendFilter()">Filter</button>
+      <button mat-raised-button color="primary" (click)="sendFilter()">Review</button>
     </div>
   </form>
-</mat-expansion-panel>
+</mat-card>
 
 
 

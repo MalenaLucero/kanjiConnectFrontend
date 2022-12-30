@@ -46,3 +46,22 @@
     display: block;
   }
 }
+
+.review-completed-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  .check-icon{
+    color: green;
+    font-size: 150px !important;
+    width: 150px;
+    height: 150px;
+  }
+  p{
+    padding-top: 30px;
+    font-size: 20px;
+    color: green;
+  }
+}
