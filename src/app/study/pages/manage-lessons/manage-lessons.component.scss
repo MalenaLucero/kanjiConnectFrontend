@@ -8,6 +8,11 @@
     gap: 16px;
     justify-content: center;
     margin-bottom: 16px;
+    flex-wrap: wrap;
+    div{
+      display: flex;
+      gap: 16px;
+    }
   }
   .lesson-card-container{
     margin-bottom: 16px;
