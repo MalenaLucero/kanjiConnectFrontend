@@ -52,7 +52,7 @@ export class QuerySearchService {
     const { search, filter } = params;
     const formData: GenericFilter = {};
     if (search) {
-      formData.searchList = [search];
+      formData.searchList = search.split(',').map(e => e.trim());
       return formData;
     } else if (filter) {
       const rawObjectFromParams: any = {}

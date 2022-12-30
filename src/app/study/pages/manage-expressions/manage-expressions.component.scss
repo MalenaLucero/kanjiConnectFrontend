@@ -1,18 +1,22 @@
 .form-selects-container{
   display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  @media(max-width: 700px) {
+  flex-direction: row;
+  @media(max-width: 950px) {
     flex-direction: column;
   }
-  .jlpt{
-    width: 30%;
-    @media(max-width: 700px) {
+  .selects-container{
+    width: 50%;
+    display: flex;
+    gap: var(--default-margin);
+    @media(max-width: 950px) {
       width: 100%;
     }
-  }
-  .lesson{
-    width: 100%;
+    .select{
+      width: 100%;
+      &.jlpt{
+        width: 100px;
+      }
+    }
   }
 }
 
