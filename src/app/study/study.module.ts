@@ -41,7 +41,6 @@ import { TagFormComponent } from './components/tag-form/tag-form.component';
 import { TagCardComponent } from './components/tag-card/tag-card.component';
 import { GroupByTagsComponent } from './components/group-by-tags/group-by-tags.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { ReviewCompletedComponent } from './components/review-completed/review-completed.component';
 
 const routes: Routes = [
   {
@@ -128,7 +127,6 @@ const routes: Routes = [
     TagFormComponent,
     TagCardComponent,
     GroupByTagsComponent,
-    ReviewCompletedComponent,
   ],
   imports: [
     CommonModule,

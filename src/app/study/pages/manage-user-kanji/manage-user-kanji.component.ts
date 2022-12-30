@@ -13,6 +13,7 @@ import { ManageUserKanjiService } from './manage-user-kanji.service';
 import { QuerySearchService } from '../../services/query-search.service';
 import { TableData } from 'src/app/shared/models/table-data.model';
 import { GenericFilter } from '../../models/query-search.model';
+import { SortingService } from '../../services/sorting.service';
 
 @Component({
   selector: 'app-user-kanji',
@@ -33,7 +34,8 @@ export class ManageUserKanjiComponent implements OnInit {
               private formBuilder: FormBuilder,
               private spinner: SpinnerService,
               private manageUserKanjiService: ManageUserKanjiService,
-              private querySearchService: QuerySearchService) {
+              private querySearchService: QuerySearchService,
+              private sortingService: SortingService) {
                 this.searchForm = this.formBuilder.group({
                   kanjiList: [''],
                   jlpt: null,
@@ -76,9 +78,10 @@ export class ManageUserKanjiComponent implements OnInit {
   filterUserKanji(filter: GenericFilter) {
     this.spinner.open();
     this.userKanjiService.filterUserKanji(filter).pipe(take(1)).subscribe(res => {
-      this.userKanjiService.setUserKanjiFilter(res);
-      this.userKanjiList = res;
-      this.tableData = this.manageUserKanjiService.getTableData(res);
+      const orderedUserKanji = this.sortingService.sortKanjiByJlptLevel(res);
+      this.userKanjiService.setUserKanjiFilter(orderedUserKanji);
+      this.userKanjiList = orderedUserKanji;
+      this.tableData = this.manageUserKanjiService.getTableData(orderedUserKanji);
       this.spinner.close();
     })
   }

@@ -63,22 +63,24 @@ export class ManageExpressionsComponent implements OnInit {
     this.expressionsService.filterExpressions(filter).subscribe(
       res => {
         this.filteredExpressions = res;
-        this.tableData = this.manageExpressionsService.generateTableData(this.filteredExpressions);
-        const tagList = this.filteredExpressions.map(expression => expression.tags)
-        const concatTags: string[] = [];
-        tagList.forEach(list => list.forEach(tag => concatTags.push(tag)))
-        const tagSet = new Set(concatTags)
-        const tagCombinations = this.tagsService.getAllPossibleTagCombinations(Array.from(tagSet));
-        const aux = tagCombinations.map(tagCombination => {
-          return {
-            tagCombination: this.tagsService.filterTagsById(tagCombination),
-            expressions: this.filteredExpressions.filter(expression =>
-              expression.tags.length === tagCombination.length &&
-              expression.tags.every(tag => tagCombination.includes(tag))
-            )
-          }
-        }).filter(e => e.expressions.length > 0);
-        this.tagCombinations = this.sortingService.sortByNumberOfTags(aux)
+        if (this.filteredExpressions.length > 0) {
+          this.tableData = this.manageExpressionsService.generateTableData(this.filteredExpressions);
+          const tagList = this.filteredExpressions.map(expression => expression.tags)
+          const concatTags: string[] = [];
+          tagList.forEach(list => list.forEach(tag => concatTags.push(tag)))
+          const tagSet = new Set(concatTags)
+          const tagCombinations = this.tagsService.getAllPossibleTagCombinations(Array.from(tagSet));
+          const aux = tagCombinations.map(tagCombination => {
+            return {
+              tagCombination: this.tagsService.filterTagsById(tagCombination),
+              expressions: this.filteredExpressions.filter(expression =>
+                expression.tags.length === tagCombination.length &&
+                expression.tags.every(tag => tagCombination.includes(tag))
+              )
+            }
+          }).filter(e => e.expressions.length > 0);
+          this.tagCombinations = this.sortingService.sortByNumberOfTags(aux)
+        }
         this.spinner.close();
       }
     )

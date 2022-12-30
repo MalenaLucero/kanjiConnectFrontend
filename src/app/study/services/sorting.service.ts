@@ -22,4 +22,14 @@ export class SortingService {
     return arr.sort((a, b) => a.tagCombination.length < b.tagCombination.length ? -1 : 1);
   }
 
+  sortKanjiByJlptLevel(arr: UserKanji[]) {
+    return arr.sort((a, b) => {
+      if (a.kanji.jlpt !== null && b.kanji.jlpt !== null && a.kanji.jlpt < b.kanji.jlpt) {
+        return -1
+      } else {
+        return 1;
+      }
+    })
+  }
+
 }

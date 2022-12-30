@@ -8,14 +8,21 @@ import { emptyLesson, Lesson } from '../../models/lesson.model';
   styleUrls: ['./lesson-card.component.scss']
 })
 export class LessonCardComponent implements OnInit {
-  public editMode = false;
   @Input() lesson: Lesson = emptyLesson;
   @Output() outputLesson = new EventEmitter<Lesson>();
   @Output() lessonToEdit = new EventEmitter<Lesson>();
 
+  public editMode = false;
+  private url = 'https://kanji-connect.vercel.app/study/manage';
+  public lessonExpressionsLink: string = '';
+  public lessonUserKanjiLink: string = '';
+
+
   constructor() { }
 
   ngOnInit(): void {
+    this.lessonExpressionsLink = this.url + '/expressions?filter=lesson:' + this.lesson._id;
+    this.lessonUserKanjiLink = this.url + '/user-kanji?filter=lesson:' + this.lesson._id;
   }
 
   deleteLesson() {

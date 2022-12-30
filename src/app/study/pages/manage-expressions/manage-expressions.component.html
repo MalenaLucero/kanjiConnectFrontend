@@ -51,4 +51,7 @@
       </mat-tab>
     </mat-tab-group>
   </mat-card>
+  <p *ngIf="filteredExpressions.length === 0" class="response-container">
+    No expressions found
+  </p>
 </div>
