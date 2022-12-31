@@ -14,6 +14,7 @@ import { QuerySearchService } from '../../services/query-search.service';
 import { TableData } from 'src/app/shared/models/table-data.model';
 import { GenericFilter } from '../../models/query-search.model';
 import { SortingService } from '../../services/sorting.service';
+import { FetchedDataState } from 'src/app/shared/models/custom-types.model';
 
 @Component({
   selector: 'app-user-kanji',
@@ -26,6 +27,7 @@ export class ManageUserKanjiComponent implements OnInit {
   public searchForm: FormGroup;
   public userKanjiList: UserKanji[] = [];
   public tableData: TableData = emptyTableData;
+  public fetchedDataState: FetchedDataState = 'init';
 
   constructor(private userKanjiService: UserKanjiService,
               private dialog: MatDialog,
@@ -76,12 +78,17 @@ export class ManageUserKanjiComponent implements OnInit {
   }
 
   filterUserKanji(filter: GenericFilter) {
+    this.fetchedDataState = 'loading';
     this.spinner.open();
     this.userKanjiService.filterUserKanji(filter).pipe(take(1)).subscribe(res => {
-      const orderedUserKanji = this.sortingService.sortKanjiByJlptLevel(res);
-      this.userKanjiService.setUserKanjiFilter(orderedUserKanji);
-      this.userKanjiList = orderedUserKanji;
-      this.tableData = this.manageUserKanjiService.getTableData(orderedUserKanji);
+      if (res.length > 0) {
+        const orderedUserKanji = this.sortingService.sortKanjiByJlptLevel(res);
+        this.userKanjiService.setUserKanjiFilter(orderedUserKanji);
+        this.userKanjiList = orderedUserKanji;
+        this.tableData = this.manageUserKanjiService.getTableData(orderedUserKanji);
+      } else {
+        this.fetchedDataState = 'no data';
+      }
       this.spinner.close();
     })
   }

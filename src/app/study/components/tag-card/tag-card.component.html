@@ -7,7 +7,7 @@
   </button>
   <div *ngIf="!editMode">
     <h3 [ngClass]="'tag ' + 'color' + tag.color">{{tag.name}}</h3>
-    <p>
+    <p class="description-container">
       <span class="description-title">Description: </span>
         {{tag.description}}
     </p>
@@ -18,5 +18,13 @@
       (formData)="editTag($event)"
       (cancel)="editMode = false">
     </app-tag-form>
+  </div>
+  <div class="external-links">
+    <a [href]="tagExpressionsLink" target="_blank">
+      Tag's expressions
+    </a>
+    <a [href]="tagUserKanjiLink" target="_blank">
+      Tag's kanji
+    </a>
   </div>
 </mat-card>

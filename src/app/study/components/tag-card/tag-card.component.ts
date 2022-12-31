@@ -8,6 +8,10 @@ import { emptyTag, FormTag, Tag } from '../../models/tag.model';
 })
 export class TagCardComponent implements OnInit {
   public editMode = false;
+  private url = 'https://kanji-connect.vercel.app/study/manage';
+  public tagExpressionsLink: string = '';
+  public tagUserKanjiLink: string = '';
+
   @Input() tag: Tag = emptyTag;
   @Output() tagToDelete = new EventEmitter<Tag>();
   @Output() tagToEdit = new EventEmitter<Tag>();
@@ -15,6 +19,8 @@ export class TagCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.tagExpressionsLink = this.url + '/expressions?filter=tags:' + this.tag._id;
+    this.tagUserKanjiLink = this.url + '/user-kanji?filter=tags:' + this.tag._id;
   }
 
   deleteTag() {

@@ -23,13 +23,16 @@ export class SortingService {
   }
 
   sortKanjiByJlptLevel(arr: UserKanji[]) {
-    return arr.sort((a, b) => {
+    const nullArrElements = arr.filter(e => e.kanji.jlpt === null);
+    const arrWithoutNull = arr.filter(e => e.kanji.jlpt !== null);
+    arrWithoutNull.sort((a, b) => {
       if (a.kanji.jlpt !== null && b.kanji.jlpt !== null && a.kanji.jlpt < b.kanji.jlpt) {
         return -1
       } else {
         return 1;
       }
     })
+    return arrWithoutNull.concat(nullArrElements);
   }
 
 }

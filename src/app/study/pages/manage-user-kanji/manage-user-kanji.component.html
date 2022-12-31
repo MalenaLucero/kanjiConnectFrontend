@@ -43,7 +43,7 @@
       </mat-tab>
     </mat-tab-group>
   </mat-card>
-  <p *ngIf="userKanjiList.length === 0">
+  <p *ngIf="fetchedDataState === 'no data'">
     No kanji found
   </p>
 </div>

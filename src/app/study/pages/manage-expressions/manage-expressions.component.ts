@@ -10,6 +10,7 @@ import { TagsService } from '../../services/tags.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuerySearchService } from '../../services/query-search.service';
 import { GenericFilter } from '../../models/query-search.model';
+import { FetchedDataState } from 'src/app/shared/models/custom-types.model';
 
 @Component({
   selector: 'app-manage-expressions',
@@ -22,6 +23,7 @@ export class ManageExpressionsComponent implements OnInit {
   public filteredExpressions: Expression[] = [];
   public tableData: TableData = emptyTableData;
   public tagCombinations: any = [];
+  public fetchedDataState: FetchedDataState = 'init';
 
   constructor(private formBuilder: FormBuilder,
               private expressionsService: ExpressionsService,
@@ -60,6 +62,7 @@ export class ManageExpressionsComponent implements OnInit {
   }
 
   filter(filter: GenericFilter) {
+    this.fetchedDataState = 'loading';
     this.expressionsService.filterExpressions(filter).subscribe(
       res => {
         this.filteredExpressions = res;
@@ -80,6 +83,8 @@ export class ManageExpressionsComponent implements OnInit {
             }
           }).filter(e => e.expressions.length > 0);
           this.tagCombinations = this.sortingService.sortByNumberOfTags(aux)
+        } else {
+          this.fetchedDataState = 'no data';
         }
         this.spinner.close();
       }
