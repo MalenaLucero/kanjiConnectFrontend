@@ -1,0 +1,18 @@
+.review-completed-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  .check-icon{
+    color: green;
+    font-size: 80px !important;
+    width: 80px;
+    height: 80px;
+  }
+  p{
+    padding-top: 30px;
+    font-size: 20px;
+    color: green;
+  }
+}

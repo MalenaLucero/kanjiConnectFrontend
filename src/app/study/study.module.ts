@@ -20,8 +20,6 @@ import { ReviewCardPopupComponent } from './components/review-card-popup/review-
 import { ReviewCounterComponent } from './components/review-counter/review-counter.component';
 import { ReviewCardComponent } from './components/review-card/review-card.component';
 import { DifficultyPipe } from './pipes/difficulty.pipe';
-import { ExpressionCastPipe } from './pipes/expression-cast.pipe';
-import { UserKanjiCastPipe } from './pipes/user-kanji-cast.pipe';
 import { ManageUserKanjiComponent } from './pages/manage-user-kanji/manage-user-kanji.component';
 import { UserKanjiCardComponent } from './components/user-kanji-card/user-kanji-card.component';
 import { ExpressionPopupComponent } from './components/expression-popup/expression-popup.component';
@@ -41,6 +39,9 @@ import { TagFormComponent } from './components/tag-form/tag-form.component';
 import { TagCardComponent } from './components/tag-card/tag-card.component';
 import { GroupByTagsComponent } from './components/group-by-tags/group-by-tags.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { ReviewCardFrontComponent } from './components/review-card-front/review-card-front.component';
+import { ReviewCardBackComponent } from './components/review-card-back/review-card-back.component';
+import { ReviewCardCompleteComponent } from './components/review-card-complete/review-card-complete.component';
 
 const routes: Routes = [
   {
@@ -106,8 +107,6 @@ const routes: Routes = [
     ReviewCounterComponent,
     ReviewCardComponent,
     DifficultyPipe,
-    ExpressionCastPipe,
-    UserKanjiCastPipe,
     ReviewComponent,
     UploadExpressionComponent,
     ManageUserKanjiComponent,
@@ -127,6 +126,9 @@ const routes: Routes = [
     TagFormComponent,
     TagCardComponent,
     GroupByTagsComponent,
+    ReviewCardFrontComponent,
+    ReviewCardBackComponent,
+    ReviewCardCompleteComponent,
   ],
   imports: [
     CommonModule,

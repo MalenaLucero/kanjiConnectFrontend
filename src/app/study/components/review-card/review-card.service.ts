@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ExpressionCard, UserKanjiCard } from 'src/app/study/models/card.model';
+import { Card } from 'src/app/study/models/card.model';
 import { DataType } from 'src/app/shared/models/custom-types.model';
 import { Expression } from 'src/app/study/models/expression.model';
 import { UserKanji } from 'src/app/study/models/user-kanji.model';
@@ -11,10 +11,10 @@ export class ExpressionCardService {
 
   constructor() { }
 
-  generateCardData(type: DataType, reviewData: Expression | UserKanji): ExpressionCard | UserKanjiCard {
+  generateCardData(type: DataType, reviewData: Expression | UserKanji): Card {
     if (type === 'expression') {
       const data = reviewData as Expression;
-      const expressionCard: ExpressionCard = {
+      const expressionCard: Card = {
         main: data.word,
         hint: data.exampleSentences.map(e => e.sentence)[0],
         reading: data.reading,
@@ -29,7 +29,7 @@ export class ExpressionCardService {
       return expressionCard;
     } else {
       const data = reviewData as UserKanji;
-      const userKanjiCard: UserKanjiCard = {
+      const userKanjiCard: Card = {
         main: data.kanji.kanji,
         hint: data.expressions.map(e => e.word)[0],
         onReadings: data.kanji.on_readings,

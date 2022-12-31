@@ -4,7 +4,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Expression, UpdateExpressionDto } from 'src/app/study/models/expression.model';
 import { UserKanji } from 'src/app/study/models/user-kanji.model';
 import { ExpressionCardService } from '../review-card/review-card.service';
-import { emptyExpressionCard, ExpressionCard, UserKanjiCard } from 'src/app/study/models/card.model';
+import { emptyCard, Card } from 'src/app/study/models/card.model';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ExpressionsService } from 'src/app/study/services/expressions.service';
 
@@ -14,9 +14,9 @@ import { ExpressionsService } from 'src/app/study/services/expressions.service';
   styleUrls: ['./review-card-popup.component.scss']
 })
 export class ReviewCardPopupComponent implements OnInit {
-  public cardFlipState: CardFlipState = 'front';
+  public cardFlipState: CardFlipState = 'back';
   public showHint: boolean = false;
-  public cardData: ExpressionCard | UserKanjiCard = emptyExpressionCard;
+  public cardData: Card = emptyCard;
   public currentIndex: number = 0;
   public total: number = 0;
   public type: DataType = 'expression';
@@ -49,10 +49,6 @@ export class ReviewCardPopupComponent implements OnInit {
     }
   }
 
-  close() {
-    this.dialogRef.close();
-  }
-
   updateDifficulty(updatedDifficulty: Difficulty) {
     const updateExpression: UpdateExpressionDto = { difficulty: updatedDifficulty };
     if (this.type === 'expression') {
@@ -72,6 +68,10 @@ export class ReviewCardPopupComponent implements OnInit {
 
     this.currentIndex += 1;
     this.showCardFront();
+  }
+
+  showReverse() {
+    this.cardFlipState = 'back';
   }
 
 }

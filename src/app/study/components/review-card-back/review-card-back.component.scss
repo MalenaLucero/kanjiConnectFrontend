@@ -1,0 +1,62 @@
+.back{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  h4{
+    font-size: 30px;
+    margin: 0 !important;
+  }
+  .card-detail{
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    p {
+      margin: 0 !important;
+    }
+    .reading{
+      font-weight: bold;
+      font-size: 20px;
+      text-align: center;
+    }
+    .transitivity{
+      text-align: center;
+      margin-top: 10px !important;
+    }
+    .card-list{
+      background-color: rgb(237, 237, 237);
+      border-radius: 4px;
+      padding: 10px;
+      .section-text{
+        color: grey;
+      }
+      .bullet{
+        color: var(--main-color);
+        padding-right: 0.3em;
+      }
+    }
+    .kanji-readings{
+      color: grey;
+      font-size: 16px;
+      p{
+        margin-bottom: 10px !important;
+        text-align: center;
+      }
+    }
+  }
+  .difficulty-section{
+    text-align: center;
+    display: block;
+    .difficulty-details{
+      padding-bottom: 10px;
+      .color-text{
+        color: var(--main-color);
+        font-weight: bold;
+      }
+    }
+  }
+}

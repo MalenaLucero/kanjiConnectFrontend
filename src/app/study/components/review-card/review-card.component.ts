@@ -4,7 +4,7 @@ import { emptyExpression, Expression } from 'src/app/study/models/expression.mod
 import { FetchedDataState } from 'src/app/shared/models/custom-types.model';
 import { UserKanji } from 'src/app/study/models/user-kanji.model';
 import { ExpressionCardService } from './review-card.service';
-import { emptyExpressionCard, ExpressionCard, UserKanjiCard } from 'src/app/study/models/card.model';
+import { emptyCard, Card } from 'src/app/study/models/card.model';
 
 @Component({
   selector: 'app-review-card',
@@ -19,7 +19,7 @@ export class ReviewCardComponent implements OnInit, OnChanges {
 
   public cardFlipState: CardFlipState = 'front';
   public showHint: boolean = false;
-  public cardData: ExpressionCard | UserKanjiCard = emptyExpressionCard;
+  public cardData: Card = emptyCard;
 
   constructor(private expressionCardService: ExpressionCardService) { }
 

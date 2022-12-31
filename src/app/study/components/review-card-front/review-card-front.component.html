@@ -1,0 +1,16 @@
+<div class="card front">
+  <app-review-counter [total]="total" [currentIndex]="currentIndex"></app-review-counter>
+  <h3>{{ cardData.main }}</h3>
+  <div class="hint-container">
+    <button mat-stroked-button color="primary"
+            *ngIf="!showHint" (click)="showHint = true">
+      Show hint
+    </button>
+    <p *ngIf="showHint"
+      [innerHTML]="cardData.hint | boldWordInString:cardData.main"></p>
+  </div>
+  <button mat-raised-button color="primary"
+    (click)="reverseCard()">
+    Show reverse
+  </button>
+</div>

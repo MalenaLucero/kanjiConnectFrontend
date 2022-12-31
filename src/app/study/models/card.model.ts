@@ -6,28 +6,22 @@ export interface Card {
   hint: string,
   jlpt: Jlpt,
   difficulty: Difficulty,
-  _id: string
-}
-
-export interface ExpressionCard extends Card {
-  reading: string,
-  englishMeaning: string[],
-  japaneseMeaning: string[],
-  exampleSentences: string[],
-  transitivity: Transitivity
-}
-
-export interface UserKanjiCard extends Card {
-  onReadings: string[],
-  kunReadings: string[],
-  meanings: string[],
-  expressions: {
+  _id: string,
+  onReadings?: string[],
+  kunReadings?: string[],
+  meanings?: string[],
+  expressions?: {
     word: string,
     reading: string
-  }[]
+  }[],
+  reading?: string,
+  englishMeaning?: string[],
+  japaneseMeaning?: string[],
+  exampleSentences?: string[],
+  transitivity?: Transitivity
 }
 
-export const emptyExpressionCard: ExpressionCard = {
+export const emptyCard: Card = {
   main: '',
   hint: '',
   reading: '',

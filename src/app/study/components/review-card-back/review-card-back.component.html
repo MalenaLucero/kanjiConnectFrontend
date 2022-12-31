@@ -1,0 +1,53 @@
+<div class="card back">
+  <h4>{{ cardData.main }}</h4>
+  <div class="card-detail">
+    <div>
+      <p *ngIf="cardData.reading" class="reading">{{ cardData.reading }}</p>
+      <p *ngIf="cardData.transitivity" class="transitivity">
+        {{ cardData.transitivity | firstTitlecase }}
+      </p>
+    </div>
+    <ul *ngIf="cardData.englishMeaning && cardData.englishMeaning.length > 0" class="card-list">
+      <li class="section-text">Meaning:</li>
+      <li *ngFor="let englishMeaning of cardData.englishMeaning">
+        <span class="bullet">●</span>{{ englishMeaning | firstTitlecase }}
+      </li>
+      <li *ngFor="let japaneseMeaning of cardData.japaneseMeaning">
+        <span class="bullet">●</span>{{ japaneseMeaning}}
+      </li>
+    </ul>
+    <ul *ngIf="cardData.exampleSentences && cardData.exampleSentences.length > 0" class="card-list">
+      <li class="section-text">Example Sentences:</li>
+      <li *ngFor="let sentence of cardData.exampleSentences">
+        <span class="bullet">●</span>{{ sentence }}
+      </li>
+    </ul>
+    <div class="kanji-readings">
+      <p *ngIf="cardData.kunReadings && cardData.kunReadings.length > 0">
+        {{ cardData.kunReadings | arrayToString }}
+      </p>
+      <p *ngIf="cardData.onReadings && cardData.onReadings.length > 0">
+        {{ cardData.onReadings | arrayToString }}
+      </p>
+    </div>
+    <ul *ngIf="cardData.meanings"  class="card-list">
+      <li class="section-text">Meanings:</li>
+      <li> {{ cardData.meanings | arrayToString | firstTitlecase }}</li>
+    </ul>
+    <ul *ngIf="cardData.expressions"  class="card-list">
+      <li class="section-text">Expressions:</li>
+      <li *ngFor="let expression of cardData.expressions">
+        {{expression.word}} ({{expression.reading}})
+      </li>
+    </ul>
+  </div>
+  <!-- DIFFICULTY -->
+  <div class="difficulty-section">
+    <div class="difficulty-details">
+      <p *ngIf="cardData.jlpt">Jlpt: <span class="color-text">{{ cardData.jlpt }}</span></p>
+      <p>Difficulty: <span class="color-text">{{ cardData.difficulty| difficulty }}</span></p>
+    </div>
+    <app-difficulty-buttons [difficulty]="cardData.difficulty"
+                            (updatedDifficulty)="updateDifficulty($event)"></app-difficulty-buttons>
+  </div>
+</div>
