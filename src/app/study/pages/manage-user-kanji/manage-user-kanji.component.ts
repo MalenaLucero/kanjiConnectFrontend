@@ -86,7 +86,7 @@ export class ManageUserKanjiComponent implements OnInit {
         const orderedUserKanji = this.sortingService.sortKanjiByJlptLevel(res);
         this.userKanjiService.setUserKanjiFilter(orderedUserKanji);
         this.userKanjiList = orderedUserKanji;
-        this.cardsUserKanjiList = orderedUserKanji.splice(0, 10);
+        this.cardsUserKanjiList = orderedUserKanji.slice(0, 10);
         this.tableData = this.manageUserKanjiService.getTableData(orderedUserKanji);
       } else {
         this.fetchedDataState = 'no data';

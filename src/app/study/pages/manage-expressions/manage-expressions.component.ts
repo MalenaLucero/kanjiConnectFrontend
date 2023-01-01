@@ -68,7 +68,7 @@ export class ManageExpressionsComponent implements OnInit {
       res => {
         this.filteredExpressions = res;
         if (this.filteredExpressions.length > 0) {
-          this.cardsFilteredExpressions = this.filteredExpressions.splice(0, 10);
+          this.cardsFilteredExpressions = this.filteredExpressions.slice(0, 10);
           this.tableData = this.manageExpressionsService.generateTableData(this.filteredExpressions);
           const tagList = this.filteredExpressions.map(expression => expression.tags)
           const concatTags: string[] = [];
