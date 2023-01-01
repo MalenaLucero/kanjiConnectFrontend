@@ -28,6 +28,7 @@ export class ManageUserKanjiComponent implements OnInit {
   public userKanjiList: UserKanji[] = [];
   public tableData: TableData = emptyTableData;
   public fetchedDataState: FetchedDataState = 'init';
+  public cardsUserKanjiList: UserKanji[] = [];
 
   constructor(private userKanjiService: UserKanjiService,
               private dialog: MatDialog,
@@ -85,6 +86,7 @@ export class ManageUserKanjiComponent implements OnInit {
         const orderedUserKanji = this.sortingService.sortKanjiByJlptLevel(res);
         this.userKanjiService.setUserKanjiFilter(orderedUserKanji);
         this.userKanjiList = orderedUserKanji;
+        this.cardsUserKanjiList = orderedUserKanji.splice(0, 10);
         this.tableData = this.manageUserKanjiService.getTableData(orderedUserKanji);
       } else {
         this.fetchedDataState = 'no data';
@@ -99,5 +101,9 @@ export class ManageUserKanjiComponent implements OnInit {
       height: '80vh',
       data: expression
     });
+  }
+
+  showMoreCards() {
+    this.cardsUserKanjiList = this.userKanjiList;
   }
 }

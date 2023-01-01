@@ -1,8 +1,7 @@
 <h4>{{ expression.word }}</h4>
 <div class="card-detail">
-  <p>
-    <span class="section-text">Reading: </span>
-    <span class="reading">{{ expression.reading }}</span>
+  <p class="reading">
+    {{ expression.reading }}
   </p>
   <p *ngIf="expression.transitivity">
     <span class="section-text">Transitivity: </span>
