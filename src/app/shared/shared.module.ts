@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { RouterModule } from '@angular/router';
@@ -74,6 +75,7 @@ import { BoldWordInStringPipe } from './pipes/bold-word-in-string.pipe';
     MatSelectModule,
     MatCheckboxModule,
     MatTableModule,
+    MatPaginatorModule,
   ], exports: [
     FooterComponent,
     LoadingComponent,

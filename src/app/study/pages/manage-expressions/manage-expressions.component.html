@@ -35,10 +35,16 @@
       <mat-tab label="List">
         <div class="cards-container">
           <app-expression-card
-            *ngFor="let expression of filteredExpressions"
+            *ngFor="let expression of cardsFilteredExpressions"
             [expression]="expression"
             class="card">
           </app-expression-card>
+        </div>
+        <div class="button-container">
+          <button mat-raised-button color="primary" (click)="showMoreCards()"
+                  *ngIf="cardsFilteredExpressions.length < filteredExpressions.length">
+            Show more
+          </button>
         </div>
       </mat-tab>
       <mat-tab label="Table">

@@ -24,6 +24,7 @@ export class ManageExpressionsComponent implements OnInit {
   public tableData: TableData = emptyTableData;
   public tagCombinations: any = [];
   public fetchedDataState: FetchedDataState = 'init';
+  public cardsFilteredExpressions: Expression[] = [];
 
   constructor(private formBuilder: FormBuilder,
               private expressionsService: ExpressionsService,
@@ -67,6 +68,7 @@ export class ManageExpressionsComponent implements OnInit {
       res => {
         this.filteredExpressions = res;
         if (this.filteredExpressions.length > 0) {
+          this.cardsFilteredExpressions = this.filteredExpressions.splice(0, 10);
           this.tableData = this.manageExpressionsService.generateTableData(this.filteredExpressions);
           const tagList = this.filteredExpressions.map(expression => expression.tags)
           const concatTags: string[] = [];
@@ -89,6 +91,10 @@ export class ManageExpressionsComponent implements OnInit {
         this.spinner.close();
       }
     )
+  }
+
+  showMoreCards() {
+    this.cardsFilteredExpressions = this.filteredExpressions;
   }
 
 }
