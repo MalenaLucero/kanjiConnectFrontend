@@ -19,20 +19,14 @@ export class TableComponent implements OnInit {
     this.displayedColumns = value.displayedColumns;
     this.propertyNames = value.propertyNames;
     this.dataSource = new MatTableDataSource(value.data);
+    this.dataSource.paginator = this.paginator;
   }
 
   constructor() {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-
-  handlePageEvent(event: any) {
-    console.log(event)
-  }
-
 }
