@@ -14,13 +14,12 @@
     .expressions-wrapper{
       margin-top: 15px;
       .expressions-container{
-        display: flex;
-        gap: 15px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
         margin-top: 10px;
-        flex-wrap: wrap;
         a {
           font-size: 18px;
-          white-space: nowrap;
           color: var(--main-color);
           font-weight: 500;
           &:hover{
