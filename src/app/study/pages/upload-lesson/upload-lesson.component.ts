@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { LessonsService } from '../../services/lessons.service';
 import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
 import { FormSource, UploadSource } from '../../models/source.model';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-upload-lesson',
@@ -11,13 +12,16 @@ import { FormSource, UploadSource } from '../../models/source.model';
   styleUrls: ['./upload-lesson.component.scss']
 })
 export class UploadLessonComponent implements OnInit {
-  private user = '61478fb9b2cfde16186509b5';
+  private user: string;
   private uploadedLesson: Lesson = emptyLesson;
   public updatedLesson: Lesson = emptyLesson;
 
   constructor(private lessonsService: LessonsService,
               private spinner: SpinnerService,
-              private snackBar: MatSnackBar) {}
+              private snackBar: MatSnackBar,
+              private authService: AuthService) {
+                this.user = this.authService.getUserId();
+              }
 
   ngOnInit(): void {
   }

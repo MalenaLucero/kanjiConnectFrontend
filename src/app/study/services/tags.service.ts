@@ -6,17 +6,21 @@ import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { take, takeWhile } from 'rxjs/operators';
 import { SortingService } from './sorting.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TagsService {
-  private user = '61478fb9b2cfde16186509b5';
+  private user: string;
   private tags = new BehaviorSubject<Tag[]>([]);
   tags$ = this.tags.asObservable();
 
   constructor(private http: HttpClient,
-              private sortingService: SortingService) { }
+              private sortingService: SortingService,
+              private authService: AuthService) {
+                this.user = this.authService.getUserId();
+              }
 
   getTagsByUser(user: string) {
     return this.http.get<Tag[]>(environment.tags + '/user/' + user);

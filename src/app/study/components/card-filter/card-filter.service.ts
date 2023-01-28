@@ -3,14 +3,18 @@ import { Injectable } from '@angular/core';
 import { CardFilter } from 'src/app/study/models/card-filter.model';
 import { Tag } from 'src/app/study/models/tag.model';
 import { take } from 'rxjs/operators';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardFilterService {
-  private user = '61478fb9b2cfde16186509b5';
+  private user: string;
 
-  constructor(private tagsService: TagsService) { }
+  constructor(private tagsService: TagsService,
+              private authService: AuthService) {
+    this.user = this.authService.getUserId();
+  }
 
   generateFilter(formValues: any): CardFilter {
     const cardFilter: CardFilter = { user: this.user };

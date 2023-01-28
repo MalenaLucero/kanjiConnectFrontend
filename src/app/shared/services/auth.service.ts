@@ -28,9 +28,7 @@ export class AuthService {
       )
   }
 
-  profile(token: string) {
-    //const headers = new HttpHeaders();
-    //headers.set('Authorization', 'Bearer ' + token)
-    return this.http.get<User>(environment.login + '/profile');
+  getUserId(): string {
+    return '61478fb9b2cfde16186509b5';
   }
 }

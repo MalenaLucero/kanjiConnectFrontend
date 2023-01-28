@@ -4,14 +4,18 @@ import { HttpClient } from '@angular/common/http';
 import { CreateExpressionDto, Expression, FilterExpressionsDto, UpdateExpressionDto, ExternalExpression } from '../models/expression.model';
 import { BehaviorSubject } from 'rxjs';
 import { GenericFilter } from '../models/query-search.model';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExpressionsService {
-  private user = '61478fb9b2cfde16186509b5';
+  private user: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private authService: AuthService) {
+    this.user = this.authService.getUserId();
+  }
 
   filterExpressions(filter: GenericFilter | FilterExpressionsDto) {
     filter.user = this.user;

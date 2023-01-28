@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Jlpt } from 'src/app/shared/models/custom-types.model';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { ValidationService } from 'src/app/shared/services/validation.service';
 import { GenericFilter, SearchParams } from '../models/query-search.model';
 import { TagsService } from './tags.service';
@@ -13,10 +14,13 @@ interface FormData {
   providedIn: 'root'
 })
 export class QuerySearchService {
-  private user = '61478fb9b2cfde16186509b5';
+  private user: string;
 
   constructor(private validationService: ValidationService,
-              private tagsService: TagsService) { }
+              private tagsService: TagsService,
+              private authService: AuthService) {
+                this.user = authService.getUserId();
+              }
 
   generateUrlfromFilter(formData: FormData): { key: string, url: string } {
     let key: 'search' | 'filter' | null = null;

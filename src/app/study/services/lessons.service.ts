@@ -12,12 +12,14 @@ import { UploadSource } from '../models/source.model';
 })
 
 export class LessonsService {
-  private user = '61478fb9b2cfde16186509b5';
+  private user: string;
   private lessons = new BehaviorSubject<Lesson[]>([loadingLesson]);
   lessons$ = this.lessons.asObservable();
 
   constructor(private http: HttpClient,
-              private authService: AuthService) { }
+              private authService: AuthService) {
+                this.user = this.authService.getUserId();
+              }
 
   getLessonsByUser(user: string) {
     return this.http.get<Lesson[]>(environment.lessons + '/user/' + user);

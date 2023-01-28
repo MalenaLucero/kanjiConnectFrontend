@@ -12,7 +12,6 @@ import { CardFilterService } from './card-filter.service';
 })
 export class CardFilterComponent implements OnInit {
   @Output() filter = new EventEmitter();
-  @Input() tags: Tag[] = [];
 
   public filterForm: UntypedFormGroup;
   public dataTypes: { name: string, value: DataType }[] = [];

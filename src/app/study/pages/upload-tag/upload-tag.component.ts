@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { FormTag, UploadTag } from '../../models/tag.model';
 import { TagsService } from '../../services/tags.service';
 
@@ -10,11 +11,14 @@ import { TagsService } from '../../services/tags.service';
   styleUrls: ['./upload-tag.component.scss']
 })
 export class UploadTagComponent implements OnInit {
-  private user = '61478fb9b2cfde16186509b5';
+  private user: string;
 
   constructor(private tagsService: TagsService,
               private snackBar: MatSnackBar,
-              private spinner: SpinnerService) { }
+              private spinner: SpinnerService,
+              private authService: AuthService) {
+                this.user = this.authService.getUserId()
+              }
 
   ngOnInit(): void {
   }

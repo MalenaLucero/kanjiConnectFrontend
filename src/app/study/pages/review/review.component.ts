@@ -5,15 +5,11 @@ import { DataType } from '../../../shared/models/custom-types.model';
 import { Component, OnInit } from '@angular/core';
 import { ExpressionsService } from 'src/app/study/services/expressions.service';
 import { Expression, FilterExpressionsDto } from 'src/app/study/models/expression.model';
-import { TagsService } from '../../services/tags.service';
-import { Tag } from 'src/app/study/models/tag.model';
 import { CardFilter } from 'src/app/study/models/card-filter.model';
-import { FetchedDataState } from 'src/app/shared/models/custom-types.model';
 import { UserKanji, UserKanjiFilter } from 'src/app/study/models/user-kanji.model';
 import { UserKanjiService } from 'src/app/study/services/user-kanji.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
-import { GenericFilter } from '../../models/query-search.model';
 import { SortingService } from '../../services/sorting.service';
 
 @Component({
@@ -26,21 +22,18 @@ export class ReviewComponent implements OnInit {
   public reviewDataList: Expression[] | UserKanji[] = [];
   public total: number = 0;
   public currentIndex: number = 0;
-  public tags: Tag[] = [];
   public type: DataType = 'expression';
-  private user = '61478fb9b2cfde16186509b5';
   private wasFirstSnackShown = false;
 
   constructor(private expressionsService: ExpressionsService,
               private userKanjiService: UserKanjiService,
-              private tagsService: TagsService,
               private snackBar: MatSnackBar,
               private dialog: MatDialog,
               private spinner: SpinnerService,
               private sortingService: SortingService) { }
 
   ngOnInit(): void {
-    this.getTags();
+
   }
 
   openDialog(reviewData: Expression[] | UserKanji[], type: DataType): void {
@@ -49,12 +42,6 @@ export class ReviewComponent implements OnInit {
       height: '80vh',
       data: { reviewData, type }
     });
-  }
-
-  getTags() {
-    this.tagsService.getTagsByUser(this.user).subscribe(
-      res => this.tags = res
-    )
   }
 
   getReviewData(json: FilterExpressionsDto | UserKanjiFilter) {

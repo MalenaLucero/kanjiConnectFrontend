@@ -14,12 +14,14 @@ import { SpinnerService } from 'src/app/shared/components/spinner/spinner.servic
   styleUrls: ['./upload-expression.component.scss']
 })
 export class UploadExpressionComponent implements OnInit {
-  private user = '';
+  private user: string;
 
   constructor(private snackBar: MatSnackBar,
               private expressionsService: ExpressionsService,
               private authService: AuthService,
-              private spinner: SpinnerService) { }
+              private spinner: SpinnerService) {
+                this.user = this.authService.getUserId();
+              }
 
   ngOnInit(): void {
     this.authService.user$.pipe(takeWhile(e => e._id.length === 0, true)).subscribe(
@@ -30,7 +32,7 @@ export class UploadExpressionComponent implements OnInit {
   getFormData(formExpression: FormExpressionDto) {
     const expressionToUpload: CreateExpressionDto = {
       ...formExpression,
-      user: '61478fb9b2cfde16186509b5',
+      user: this.user,
       kanjis: [],
       difficulty: 5,
       created: new Date(),
