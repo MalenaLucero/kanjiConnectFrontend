@@ -20,9 +20,8 @@
   </div>
   <div *ngIf="lesson.sources.length > 0" class="sources-container">
     <h4>Sources:</h4>
-    <ul>
-      <li *ngFor="let source of lesson.sources" class="source-container">
-        <span class="bullet">●</span>
+    <ul class="bullet-list">
+      <li *ngFor="let source of lesson.sources">
         {{source.name}}
         <a href={{source.link}} class="source-link" target="_blank">
           <mat-icon class="source-link-icon">open_in_new</mat-icon>

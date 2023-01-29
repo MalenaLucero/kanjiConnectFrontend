@@ -7,21 +7,27 @@
         {{ cardData.transitivity | firstTitlecase }}
       </p>
     </div>
-    <ul *ngIf="cardData.englishMeaning && cardData.englishMeaning.length > 0" class="card-list">
-      <li class="section-text">Meaning:</li>
-      <li *ngFor="let englishMeaning of cardData.englishMeaning">
-        <span class="bullet">●</span>{{ englishMeaning | firstTitlecase }}
-      </li>
-      <li *ngFor="let japaneseMeaning of cardData.japaneseMeaning">
-        <span class="bullet">●</span>{{ japaneseMeaning}}
-      </li>
-    </ul>
-    <ul *ngIf="cardData.exampleSentences && cardData.exampleSentences.length > 0" class="card-list">
-      <li class="section-text">Example Sentences:</li>
-      <li *ngFor="let sentence of cardData.exampleSentences">
-        <span class="bullet">●</span>{{ sentence }}
-      </li>
-    </ul>
+    <div *ngIf="cardData.englishMeaning && cardData.englishMeaning.length > 0" class="card-list">
+      <p class="section-text">Meaning:</p>
+      <ul class="bullet-list">
+        <li *ngFor="let englishMeaning of cardData.englishMeaning">
+          {{ englishMeaning | firstTitlecase }}
+        </li>
+      </ul>
+      <ul class="bullet-list">
+        <li *ngFor="let japaneseMeaning of cardData.japaneseMeaning">
+          {{ japaneseMeaning}}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="cardData.exampleSentences && cardData.exampleSentences.length > 0" class="card-list">
+      <p class="section-text">Example Sentences:</p>
+      <ul class="bullet-list">
+        <li *ngFor="let sentence of cardData.exampleSentences">
+          {{ sentence }}
+        </li>
+      </ul>
+    </div>
     <div class="kanji-readings">
       <p *ngIf="cardData.kunReadings && cardData.kunReadings.length > 0">
         {{ cardData.kunReadings | arrayToString }}

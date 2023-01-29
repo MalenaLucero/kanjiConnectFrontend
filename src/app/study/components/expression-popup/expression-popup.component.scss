@@ -6,7 +6,8 @@ h4{
 }
 .card-detail{
   .section-text{
-    color: grey
+    color: grey;
+    margin: 0 !important;
   }
   .reading{
     margin: 30px 0 !important;
@@ -21,9 +22,5 @@ h4{
     border-radius: 4px;
     padding: 10px;
     margin: 20px 0;
-  }
-  .bullet{
-    color: var(--main-color);
-    margin-right: 3px;
   }
 }

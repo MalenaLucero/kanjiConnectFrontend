@@ -90,6 +90,15 @@ ul {
   }
 }
 
+.bullet-list{
+  list-style:disc;
+  margin-left: 15px;
+  li::marker {
+    color: var(--main-color);
+    font-size: 16px;
+  }
+}
+
 a {
   text-decoration: none;
   font-weight: 500;

@@ -13,15 +13,19 @@
   </div>
   <div *ngIf="expression.englishMeaning.length > 0" class="details-container">
     <h4 class="subtitle">English Meaning</h4>
-    <p class="text" *ngFor="let englishMeaning of expression.englishMeaning">
-      <span class="bullet">●</span>{{ englishMeaning | firstTitlecase }}
-    </p>
+    <ul class="bullet-list">
+      <li class="text" *ngFor="let englishMeaning of expression.englishMeaning">
+        {{ englishMeaning | firstTitlecase }}
+      </li>
+    </ul>
   </div>
   <div *ngIf="expression.japaneseMeaning.length > 0" class="details-container">
     <h4 class="subtitle">Japanese Meaning</h4>
-    <p class="text" *ngFor="let japaneseMeaning of expression.japaneseMeaning">
-      <span class="bullet">●</span>{{ japaneseMeaning }}
-    </p>
+    <ul class="bullet-list">
+      <li class="text" *ngFor="let japaneseMeaning of expression.japaneseMeaning">
+        {{ japaneseMeaning }}
+      </li>
+    </ul>
   </div>
   <div class="details-container">
     <p class="text" *ngIf="expression.transitivity">

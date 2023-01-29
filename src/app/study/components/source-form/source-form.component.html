@@ -4,9 +4,9 @@
     <app-lessons-select formControlName="lessonId" class="select lesson"></app-lessons-select>
     <div class="lesson-sources-container" *ngIf="currentLesson.topic">
       <p class="lesson-sources-title">Lesson sources:</p>
-      <ul *ngIf="currentLesson.sources.length > 0">
+      <ul *ngIf="currentLesson.sources.length > 0" class="bullet-list">
         <li *ngFor="let source of currentLesson.sources" class="lesson-source">
-          <span class="bullet">●</span>{{ source.name }}
+          {{ source.name }}
         </li>
       </ul>
       <p *ngIf="currentLesson.sources.length === 0">

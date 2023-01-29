@@ -11,19 +11,25 @@
     <span class="section-text">Jlpt: </span>
       {{ expression.jlpt }}
   </p>
-  <ul class="card-list">
-    <li class="section-text">Example Sentences:</li>
-    <li *ngFor="let sentence of expression.exampleSentences">
-      <span class="bullet">●</span>{{ sentence.sentence }}
-    </li>
-  </ul>
-  <ul class="card-list">
-    <li class="section-text">Meaning:</li>
-    <li *ngFor="let englishMeaning of expression.englishMeaning">
-      <span class="bullet">●</span>{{ englishMeaning | firstTitlecase }}
-    </li>
-    <li *ngFor="let japaneseMeaning of expression.japaneseMeaning">
-      <span class="bullet">●</span>{{ japaneseMeaning}}
-    </li>
-  </ul>
+  <div class="card-list" *ngIf="expression.exampleSentences.length > 0">
+    <p class="section-text">Example Sentences:</p>
+    <ul class="bullet-list">
+      <li *ngFor="let sentence of expression.exampleSentences">
+        {{ sentence.sentence }}
+      </li>
+    </ul>
+  </div>
+  <div class="card-list">
+    <p class="section-text">Meaning:</p>
+    <ul class="bullet-list">
+      <li *ngFor="let englishMeaning of expression.englishMeaning">
+        {{ englishMeaning | firstTitlecase }}
+      </li>
+    </ul>
+    <ul class="bullet-list">
+      <li *ngFor="let japaneseMeaning of expression.japaneseMeaning">
+        {{ japaneseMeaning}}
+      </li>
+    </ul>
+  </div>
 </div>

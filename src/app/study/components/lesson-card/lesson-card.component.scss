@@ -17,16 +17,10 @@
       margin: 0 0 8px 0;
       color: grey;
     }
-    .source-container{
-      display: flex;
-      .bullet{
-        color: var(--main-color);
-        padding-right: 5px;
-      }
-      .source-link-icon{
-        transform: scale(0.8);
-        margin-left: 8px;
-      }
+    .source-link-icon{
+      transform: scale(0.8);
+      margin-left: 8px;
+      margin-bottom: -6px;
     }
   }
   .external-links{
