@@ -1,11 +1,10 @@
-import { CreateExpressionDto, FilterExpressionsDto } from '../../models/expression.model';
+import { CreateExpressionDto } from '../../models/expression.model';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { FormExpressionDto } from 'src/app/study/models/expression.model';
 import { ExpressionsService } from 'src/app/study/services/expressions.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { takeWhile } from 'rxjs/operators';
 import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
 
 @Component({
@@ -23,11 +22,7 @@ export class UploadExpressionComponent implements OnInit {
                 this.user = this.authService.getUserId();
               }
 
-  ngOnInit(): void {
-    this.authService.user$.pipe(takeWhile(e => e._id.length === 0, true)).subscribe(
-      res => this.user = res._id
-    )
-  }
+  ngOnInit(): void {}
 
   getFormData(formExpression: FormExpressionDto) {
     const expressionToUpload: CreateExpressionDto = {
@@ -38,6 +33,7 @@ export class UploadExpressionComponent implements OnInit {
       created: new Date(),
       updated: new Date()
     }
+    console.log(expressionToUpload)
     const token = localStorage.getItem('token');
     if (!token) {
       this.snackBar.open(`You're not logged in`, 'Error', { duration: 3000 });
