@@ -70,11 +70,14 @@ export class ManageExpressionsComponent implements OnInit {
         if (this.filteredExpressions.length > 0) {
           this.cardsFilteredExpressions = this.filteredExpressions.slice(0, 10);
           this.tableData = this.manageExpressionsService.generateTableData(this.filteredExpressions);
-          const tagList = this.filteredExpressions.map(expression => expression.tags)
+          const tagList = this.filteredExpressions.map(expression => expression.tags);
           const concatTags: string[] = [];
-          tagList.forEach(list => list.forEach(tag => concatTags.push(tag)))
-          const tagSet = new Set(concatTags)
-          const tagCombinations = this.tagsService.getAllPossibleTagCombinations(Array.from(tagSet));
+          tagList.forEach(list => list.forEach(tag => concatTags.push(tag)));
+          const tagSet = new Set(concatTags);
+          let tagCombinations = this.tagsService.getAllPossibleTagCombinations(Array.from(tagSet));
+          if (tagCombinations.length === 0) {
+            tagCombinations = this.tagsService.getAllPossibleTagCombinations(Array.from(tagSet));
+          }
           const aux = tagCombinations.map(tagCombination => {
             return {
               tagCombination: this.tagsService.filterTagsById(tagCombination),
