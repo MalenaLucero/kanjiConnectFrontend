@@ -10,6 +10,17 @@
     }
     .title-wrapper{
       padding: var(--default-padding) 0;
+      .title-and-icon-container{
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        gap: 5px;
+        .title-icon{
+          font-size: 30px;
+          color: var(--main-color);
+        }
+      }
+      
       .subtitle{
         color: var(--main-color);
       }
