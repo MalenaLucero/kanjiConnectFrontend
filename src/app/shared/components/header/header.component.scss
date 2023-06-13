@@ -20,9 +20,11 @@
           color: var(--main-color);
         }
       }
-      
       .subtitle{
         color: var(--main-color);
+        @media(max-width: 768px){
+          text-align: center;
+        }
       }
     }
   }
