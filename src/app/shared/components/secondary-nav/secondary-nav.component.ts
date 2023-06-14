@@ -16,7 +16,7 @@ export class SecondaryNavComponent implements OnInit {
 
   login() {
     this.dialog.open(LoginComponent, {
-      width: '350px'
+      width: '400px'
     });
   }
 

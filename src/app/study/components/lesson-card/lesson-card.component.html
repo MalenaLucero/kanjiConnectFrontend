@@ -1,40 +1,43 @@
-<mat-card class="container">
-  <button mat-icon-button color="warn" class="delete" (click)="deleteLesson()">
-    <mat-icon>delete</mat-icon>
-  </button>
-  <button mat-icon-button color="primary" class="delete" (click)="editMode = true">
-    <mat-icon>edit</mat-icon>
-  </button>
-  <div *ngIf="!editMode">
-    <h3>{{lesson.topic}}
-      <span class="date">({{lesson.date | date}})</span>
-    </h3>
-    <a href={{lesson.link}} class="lesson-link" target="_blank">Go to lesson</a>
-  </div>
-  <div *ngIf="editMode">
-    <app-lesson-form
-      [formInput]="lesson"
-      (formData)="editLesson($event)"
-      (cancel)="editMode = false">
-    </app-lesson-form>
-  </div>
-  <div *ngIf="lesson.sources.length > 0" class="sources-container">
-    <h4>Sources:</h4>
-    <ul class="bullet-list">
-      <li *ngFor="let source of lesson.sources">
-        {{source.name}}
-        <a href={{source.link}} class="source-link" target="_blank">
-          <mat-icon class="source-link-icon">open_in_new</mat-icon>
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div class="external-links">
-    <a [href]="lessonExpressionsLink" target="_blank">
-      Lesson's expressions
-    </a>
-    <a [href]="lessonUserKanjiLink" target="_blank">
-      Lesson's kanji
-    </a>
-  </div>
+<mat-card appearance="outlined" class="container">
+  <mat-card-content>
+    <button mat-icon-button color="warn" class="delete" (click)="deleteLesson()">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" class="delete" (click)="editMode = true">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <div *ngIf="!editMode">
+      <h3>{{lesson.topic}}
+        <span class="date">({{lesson.date | date}})</span>
+      </h3>
+      <a href={{lesson.link}} class="lesson-link" target="_blank">Go to lesson</a>
+    </div>
+    <div *ngIf="editMode">
+      <app-lesson-form
+        [formInput]="lesson"
+        (formData)="editLesson($event)"
+        (cancel)="editMode = false">
+      </app-lesson-form>
+    </div>
+    <div *ngIf="lesson.sources.length > 0" class="sources-container">
+      <h4>Sources:</h4>
+      <ul class="bullet-list">
+        <li *ngFor="let source of lesson.sources">
+          {{source.name}}
+          <a href={{source.link}} class="source-link" target="_blank">
+            <mat-icon class="source-link-icon">open_in_new</mat-icon>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="external-links">
+      <a [href]="lessonExpressionsLink" target="_blank">
+        Lesson's expressions
+      </a>
+      <a [href]="lessonUserKanjiLink" target="_blank">
+        Lesson's kanji
+      </a>
+    </div>
+  </mat-card-content>
+  
 </mat-card>

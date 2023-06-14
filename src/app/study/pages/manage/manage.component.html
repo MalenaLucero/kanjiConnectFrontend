@@ -1,13 +1,15 @@
 <div class="container page-container">
-  <mat-card class="nav-container">
-    <nav>
-      <ul>
-        <li><a routerLink="expressions" routerLinkActive="active">Expressions</a></li>
-        <li><a routerLink="user-kanji" routerLinkActive="active">Kanji</a></li>
-        <li><a routerLink="lessons" routerLinkActive="active">Lessons</a></li>
-        <li><a routerLink="tags" routerLinkActive="active">Tags</a></li>
-      </ul>
-    </nav>
+  <mat-card appearance="outlined" class="nav-container">
+    <mat-card-content>
+      <nav>
+        <ul>
+          <li><a routerLink="expressions" routerLinkActive="active">Expressions</a></li>
+          <li><a routerLink="user-kanji" routerLinkActive="active">Kanji</a></li>
+          <li><a routerLink="lessons" routerLinkActive="active">Lessons</a></li>
+          <li><a routerLink="tags" routerLinkActive="active">Tags</a></li>
+        </ul>
+      </nav>
+    </mat-card-content>
   </mat-card>
   <div class="router-outlet-container">
     <router-outlet></router-outlet>

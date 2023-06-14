@@ -7,7 +7,6 @@
     .form-section{
       width: 100%;
       display: flex;
-      align-items: center;
       flex-wrap: nowrap;
       box-sizing: border-box;
       mat-form-field{
@@ -49,6 +48,7 @@
       .buttons{
         display: flex;
         flex-wrap: nowrap;
+        padding-bottom: 20px;
       }
     }
     .form-section-full{

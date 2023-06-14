@@ -1,6 +1,8 @@
 <div class="upload-tag-container">
-  <mat-card class="tag-form-container">
-    <h2>Upload new tag</h2>
-    <app-tag-form (formData)="uploadTag($event)"></app-tag-form>
+  <mat-card appearance="outlined" class="tag-form-container">
+    <mat-card-content>
+      <h2>Upload new tag</h2>
+      <app-tag-form (formData)="uploadTag($event)"></app-tag-form>
+    </mat-card-content>
   </mat-card>
 </div>

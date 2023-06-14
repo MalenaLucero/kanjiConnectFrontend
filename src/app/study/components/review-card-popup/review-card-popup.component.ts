@@ -45,7 +45,7 @@ export class ReviewCardPopupComponent implements OnInit {
       this.isReviewCompleted = true;
       setTimeout(() => {
         this.dialogRef.close();
-      }, 1500);
+      }, 3000);
     }
   }
 

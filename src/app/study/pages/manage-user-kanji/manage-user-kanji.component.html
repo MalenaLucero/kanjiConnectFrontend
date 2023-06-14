@@ -30,24 +30,27 @@
     </mat-expansion-panel>
   </div>
   <!--CARDS AND TABLE-->
-  <mat-card *ngIf="userKanjiList.length > 0" class="response-container">
-    <mat-tab-group mat-stretch-tabs="true">
-      <mat-tab label="List">
-        <div class="cards-container">
-          <app-user-kanji-card *ngFor="let data of cardsUserKanjiList" class="card"
-            [cardData]="data" (expressionToOutput)="showExpression($event)"></app-user-kanji-card>
-        </div>
-        <div class="button-container">
-          <button mat-raised-button color="primary" (click)="showMoreCards()"
-                  *ngIf="cardsUserKanjiList.length < userKanjiList.length">
-            Show more
-          </button>
-        </div>
-      </mat-tab>
-      <mat-tab label="Table">
-        <app-table [tableData]="tableData"></app-table>
-      </mat-tab>
-    </mat-tab-group>
+  <mat-card appearance="outlined" *ngIf="userKanjiList.length > 0" class="response-container">
+    <mat-card-content>
+      <mat-tab-group dynamicHeight mat-stretch-tabs="true">
+        <mat-tab label="List">
+          <div class="cards-container">
+            <app-user-kanji-card *ngFor="let data of cardsUserKanjiList" class="card"
+              [cardData]="data" (expressionToOutput)="showExpression($event)"></app-user-kanji-card>
+          </div>
+          <div class="button-container">
+            <button mat-raised-button color="primary" (click)="showMoreCards()"
+                    *ngIf="cardsUserKanjiList.length < userKanjiList.length">
+              Show more
+            </button>
+          </div>
+        </mat-tab>
+        <mat-tab label="Table">
+          <app-table [tableData]="tableData"></app-table>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+    
   </mat-card>
   <p *ngIf="fetchedDataState === 'no data'">
     No kanji found

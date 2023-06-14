@@ -1,12 +1,14 @@
 <div class="container page-container">
-  <mat-card class="nav-container">
-    <nav>
-      <ul>
-        <li><a routerLink="expression" routerLinkActive="active">Expression</a></li>
-        <li><a routerLink="lesson" routerLinkActive="active">Lesson</a></li>
-        <li><a routerLink="tag" routerLinkActive="active">Tag</a></li>
-      </ul>
-    </nav>
+  <mat-card appearance="outlined" class="nav-container">
+    <mat-card-content>
+      <nav>
+        <ul>
+          <li><a routerLink="expression" routerLinkActive="active">Expression</a></li>
+          <li><a routerLink="lesson" routerLinkActive="active">Lesson</a></li>
+          <li><a routerLink="tag" routerLinkActive="active">Tag</a></li>
+        </ul>
+      </nav>
+    </mat-card-content>
   </mat-card>
   <div class="router-outlet-container">
     <router-outlet></router-outlet>

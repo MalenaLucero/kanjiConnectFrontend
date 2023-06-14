@@ -1,4 +1,4 @@
-<mat-card *ngIf="reviewData && fetchedDataState === 'loaded'">
+<mat-card appearance="outlined" *ngIf="reviewData && fetchedDataState === 'loaded'">
   <!--CARD FRONT-->
   <div *ngIf="cardFlipState === 'front'" class="card front">
     <h3>{{ cardData.main }}</h3>

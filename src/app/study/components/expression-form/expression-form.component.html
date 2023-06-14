@@ -1,131 +1,133 @@
-<mat-card class="expression-form-container">
-  <h2>Upload new expression</h2>
-  <form [formGroup]="form">
-    <section class="form-expression-section" (click)="setFormActiveArea('expression')"
-              [ngClass]="{ 'border-main': formActiveArea === 'expression', 'border': formActiveArea !== 'expression' }">
-      <div class="expression-container">
-        <mat-form-field>
-          <mat-label>Expression</mat-label>
-          <input matInput formControlName="word" autofocus>
-        </mat-form-field>
-      </div>
-      <div class="expression-buttons">
-        <button mat-raised-button color="primary" (click)="getRandomWord()">
-          Random word
-        </button>
-        <button mat-raised-button color="accent"
-                (click)="autocomplete()" [disabled]="!form.get('word')?.valid">
-          Autocomplete
-        </button>
-      </div>
-      <div>
-        <mat-form-field>
-          <mat-label>Reading</mat-label>
-          <input matInput formControlName="reading">
-        </mat-form-field>
-      </div>
-    </section>
-    <!--ENGLISH MEANING-->
-    <section formArrayName="englishMeaning" class="border" (click)="setFormActiveArea('englishMeaning')"
-              [ngClass]="{ 'border-main': formActiveArea === 'englishMeaning', 'border': formActiveArea !== 'englishMeaning'}">
-      <ng-container *ngFor="let meaning of englishMeaning.controls; let i = index">
-        <div formGroupName="{{ i }}" class="form-section">
+<mat-card appearance="outlined" class="expression-form-container">
+  <mat-card-content>
+    <h2>Upload new expression</h2>
+    <form [formGroup]="form">
+      <section class="form-expression-section" (click)="setFormActiveArea('expression')"
+                [ngClass]="{ 'border-main': formActiveArea === 'expression', 'border': formActiveArea !== 'expression' }">
+        <div class="expression-container">
           <mat-form-field>
-            <mat-label>English Meaning</mat-label>
-            <input matInput formControlName="meaning" id="{{'name' + i}}" name="meaning">
+            <mat-label>Expression</mat-label>
+            <input matInput formControlName="word" autofocus>
           </mat-form-field>
-          <button mat-icon-button color="primary"
-                  [disabled]="englishMeaning.controls[i].get('meaning')?.value.length === 0 ||
-                              englishMeaning.length !== i + 1"
-                  (click)="addToFormArray('englishMeaning')">
-            <mat-icon>add_circle</mat-icon>
+        </div>
+        <div class="expression-buttons">
+          <button mat-raised-button color="primary" (click)="getRandomWord()">
+            Random word
           </button>
-          <button mat-icon-button [disabled]="englishMeaning.length === 1" color="warn"
-                (click)="deleteFromFormArray('englishMeaning', i)">
-            <mat-icon>delete</mat-icon>
+          <button mat-raised-button color="accent"
+                  (click)="autocomplete()" [disabled]="!form.get('word')?.valid">
+            Autocomplete
           </button>
         </div>
-      </ng-container>
-    </section>
-    <!--JAPANESE MEANING-->
-    <section formArrayName="japaneseMeaning" class="border" (click)="setFormActiveArea('japaneseMeaning')"
-            [ngClass]="{ 'border-main': formActiveArea === 'japaneseMeaning', 'border': formActiveArea !== 'japaneseMeaning' }">
-      <ng-container *ngFor="let meaning of japaneseMeaning.controls; let i = index">
-        <div formGroupName="{{ i }}" class="form-section">
+        <div>
           <mat-form-field>
-            <mat-label>Japanese Meaning</mat-label>
-            <input matInput formControlName="meaning" id="{{'name' + i}}" name="meaning">
+            <mat-label>Reading</mat-label>
+            <input matInput formControlName="reading">
           </mat-form-field>
-          <button mat-icon-button color="primary"
-                  [disabled]="japaneseMeaning.controls[i].get('meaning')?.value.length === 0 ||
-                              japaneseMeaning.length !== i + 1"
-                  (click)="addToFormArray('japaneseMeaning')">
-            <mat-icon>add_circle</mat-icon>
-          </button>
-          <button mat-icon-button [disabled]="japaneseMeaning.length === 1" color="warn"
-                  (click)="deleteFromFormArray('japaneseMeaning', i)">
-            <mat-icon>delete</mat-icon>
-          </button>
         </div>
-      </ng-container>
-    </section>
-    <!--LESSON-->
-    <section class="border" (click)="setFormActiveArea('lesson')"
-              [ngClass]="{ 'border-main': formActiveArea === 'lesson', 'border': formActiveArea !== 'lesson' }">
-      <div class="form-section-full">
-        <app-lessons-select formControlName="lesson"></app-lessons-select>
-      </div>
-    </section>
-    <!--EXAMPLE SENTENCES-->
-    <section formArrayName="exampleSentences">
-      <ng-container *ngFor="let sentence of exampleSentences.controls; let i = index">
-        <div formGroupName="{{ i }}" class="sentence-form-section border" (click)="setFormActiveArea('exampleSentences')"
-              [ngClass]="{ 'border-main': formActiveArea === 'exampleSentences', 'border': formActiveArea !== 'exampleSentences' }">
-          <div class="form-fields">
+      </section>
+      <!--ENGLISH MEANING-->
+      <section formArrayName="englishMeaning" class="border" (click)="setFormActiveArea('englishMeaning')"
+                [ngClass]="{ 'border-main': formActiveArea === 'englishMeaning', 'border': formActiveArea !== 'englishMeaning'}">
+        <ng-container *ngFor="let meaning of englishMeaning.controls; let i = index">
+          <div formGroupName="{{ i }}" class="form-section">
             <mat-form-field>
-              <mat-label>Example Sentence</mat-label>
-              <input matInput formControlName="sentence" id="{{'name' + i}}" name="sentence">
+              <mat-label>English Meaning</mat-label>
+              <input matInput formControlName="meaning" id="{{'name' + i}}" name="meaning">
             </mat-form-field>
-            <div class="source-select">
-              <app-source-select [lessonId]="form.get('lesson')?.value"
-                                formControlName="source" id="{{'name' + i}}" name="source">
-              </app-source-select>
-            </div>
-          </div>
-          <div class="buttons">
             <button mat-icon-button color="primary"
-                    [disabled]="exampleSentences.controls[i].get('sentence')?.value.length === 0 ||
-                    exampleSentences.length !== i + 1"
-                    (click)="addToFormArray('exampleSentences')">
+                    [disabled]="englishMeaning.controls[i].get('meaning')?.value.length === 0 ||
+                                englishMeaning.length !== i + 1"
+                    (click)="addToFormArray('englishMeaning')">
               <mat-icon>add_circle</mat-icon>
             </button>
-            <button mat-icon-button [disabled]="exampleSentences.length === 1" color="warn"
-                    (click)="deleteFromFormArray('exampleSentences', i)">
+            <button mat-icon-button [disabled]="englishMeaning.length === 1" color="warn"
+                  (click)="deleteFromFormArray('englishMeaning', i)">
               <mat-icon>delete</mat-icon>
             </button>
           </div>
+        </ng-container>
+      </section>
+      <!--JAPANESE MEANING-->
+      <section formArrayName="japaneseMeaning" class="border" (click)="setFormActiveArea('japaneseMeaning')"
+              [ngClass]="{ 'border-main': formActiveArea === 'japaneseMeaning', 'border': formActiveArea !== 'japaneseMeaning' }">
+        <ng-container *ngFor="let meaning of japaneseMeaning.controls; let i = index">
+          <div formGroupName="{{ i }}" class="form-section">
+            <mat-form-field>
+              <mat-label>Japanese Meaning</mat-label>
+              <input matInput formControlName="meaning" id="{{'name' + i}}" name="meaning">
+            </mat-form-field>
+            <button mat-icon-button color="primary"
+                    [disabled]="japaneseMeaning.controls[i].get('meaning')?.value.length === 0 ||
+                                japaneseMeaning.length !== i + 1"
+                    (click)="addToFormArray('japaneseMeaning')">
+              <mat-icon>add_circle</mat-icon>
+            </button>
+            <button mat-icon-button [disabled]="japaneseMeaning.length === 1" color="warn"
+                    (click)="deleteFromFormArray('japaneseMeaning', i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </ng-container>
+      </section>
+      <!--LESSON-->
+      <section class="border" (click)="setFormActiveArea('lesson')"
+                [ngClass]="{ 'border-main': formActiveArea === 'lesson', 'border': formActiveArea !== 'lesson' }">
+        <div class="form-section-full">
+          <app-lessons-select formControlName="lesson"></app-lessons-select>
         </div>
-      </ng-container>
-    </section>
-    <section (click)="setFormActiveArea('none')">
-      <div class="form-select-group">
-        <div class="select">
-          <app-jlpt-select formControlName="jlpt"></app-jlpt-select>
+      </section>
+      <!--EXAMPLE SENTENCES-->
+      <section formArrayName="exampleSentences">
+        <ng-container *ngFor="let sentence of exampleSentences.controls; let i = index">
+          <div formGroupName="{{ i }}" class="sentence-form-section border" (click)="setFormActiveArea('exampleSentences')"
+                [ngClass]="{ 'border-main': formActiveArea === 'exampleSentences', 'border': formActiveArea !== 'exampleSentences' }">
+            <div class="form-fields">
+              <mat-form-field>
+                <mat-label>Example Sentence</mat-label>
+                <input matInput formControlName="sentence" id="{{'name' + i}}" name="sentence">
+              </mat-form-field>
+              <div class="source-select">
+                <app-source-select [lessonId]="form.get('lesson')?.value"
+                                  formControlName="source" id="{{'name' + i}}" name="source">
+                </app-source-select>
+              </div>
+            </div>
+            <div class="buttons">
+              <button mat-icon-button color="primary"
+                      [disabled]="exampleSentences.controls[i].get('sentence')?.value.length === 0 ||
+                      exampleSentences.length !== i + 1"
+                      (click)="addToFormArray('exampleSentences')">
+                <mat-icon>add_circle</mat-icon>
+              </button>
+              <button mat-icon-button [disabled]="exampleSentences.length === 1" color="warn"
+                      (click)="deleteFromFormArray('exampleSentences', i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </section>
+      <section (click)="setFormActiveArea('none')">
+        <div class="form-select-group">
+          <div class="select">
+            <app-jlpt-select formControlName="jlpt"></app-jlpt-select>
+          </div>
+          <div class="select">
+            <app-transitivity-select formControlName="transitivity"></app-transitivity-select>
+          </div>
         </div>
-        <div class="select">
-          <app-transitivity-select formControlName="transitivity"></app-transitivity-select>
+        <app-tags-select formControlName="tags"></app-tags-select>
+        <div class="form-buttons-container">
+          <button mat-stroked-button color="primary" (click)="cleanForm()">
+            Clean
+          </button>
+          <button mat-raised-button color="primary"
+                (click)="sendData()" [disabled]="form.invalid">
+            Add expression
+          </button>
         </div>
-      </div>
-      <app-tags-select formControlName="tags"></app-tags-select>
-      <div class="m-s-td form-buttons-container">
-        <button mat-stroked-button color="primary" (click)="cleanForm()">
-          Clean
-        </button>
-        <button mat-raised-button color="primary"
-              (click)="sendData()" [disabled]="form.invalid">
-          Add expression
-        </button>
-      </div>
-    </section>
-  </form>
+      </section>
+    </form>
+  </mat-card-content>
 </mat-card>

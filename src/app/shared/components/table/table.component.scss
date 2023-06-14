@@ -1,4 +1,4 @@
-.mat-table{
+.mat-mdc-table{
   border-radius: 4px;
   overflow: hidden !important;
 }
@@ -6,16 +6,17 @@
 .table{
   width: 100%;
   border-radius: 4px;
+  border: 1px solid rgb(217, 217, 217);
 }
 
-.mat-header-cell{
+.mat-mdc-header-cell{
   font-size: 16px;
   padding: 0 10px;
   white-space: nowrap;
-  background-color: rgb(242, 242, 242);
+  background-color: rgb(242, 242, 242) !important;
 }
 
-.mat-cell{
+.mat-mdc-cell{
   font-size: 20px;
   padding: 0 10px;
 }
