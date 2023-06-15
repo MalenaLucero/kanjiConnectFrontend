@@ -1,0 +1,15 @@
+<div class="page-container changelog">
+    <h2>Changelog</h2>
+    <div class="changelog-content">
+        <div *ngFor="let item of data" class="changelog-item">
+            <p class="date">{{item.date | date}}</p>
+            <div class="item-title-container">
+                <span class="item-type">{{item.type}}</span>
+                <p class="item-title">{{item.title}}</p>
+            </div>
+            <p>{{item.description}}</p>
+            <a href={{item.trelloTaskLink}} target="_blank" class="item-link">Trello task</a>
+            <a href={{item.githubCommitLink}} target="_blank" class="item-link">Github commit</a>
+        </div>
+    </div>
+</div>

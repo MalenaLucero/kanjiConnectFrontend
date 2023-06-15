@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudyModule } from './study/study.module';
 import { SharedModule } from './shared/shared.module';
+import { InfoModule } from './info-module/info.module';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
@@ -37,6 +38,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MatDialogModule,
     StudyModule,
     SharedModule,
+    InfoModule,
     MatTableModule
   ],
   providers: [{
