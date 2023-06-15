@@ -1,0 +1,21 @@
+.title-wrapper{
+    padding: var(--big-padding) 0;
+    text-align: center;
+    @media(max-width: 440px) {
+        padding: 60px 0;
+    }
+    .title-and-icon-container{
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        gap: 5px;
+        justify-content: center;
+        .title-icon{
+            font-size: 30px;
+            color: var(--main-color);
+        }
+    }
+    .subtitle{
+      color: var(--main-color);
+    }
+}

@@ -166,7 +166,6 @@ a {
 }
 
 @mixin border(){
-
   border-radius: 4px;
   padding: 2em 1em 1em 1em;
   margin: 1em 0;
@@ -191,3 +190,11 @@ a {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.redirect-anchor{
+  color: var(--main-color);
+  text-decoration: underline;
+  &:hover{
+    color: var(--accent-color);
+  }
+}

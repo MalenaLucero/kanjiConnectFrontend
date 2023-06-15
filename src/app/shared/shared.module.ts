@@ -11,10 +11,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-import { MainNavComponent } from './components/main-nav/main-nav.component';
+import { MainNavComponent } from './components/header/main-nav/main-nav.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
-import { SecondaryNavComponent } from './components/secondary-nav/secondary-nav.component';
+import { AuthNavComponent } from './components/header/auth-nav/auth-nav.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoginComponent } from './components/login/login.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
@@ -35,13 +35,15 @@ import { HeaderComponent } from './components/header/header.component';
 import { ArrayToStringPipe } from './pipes/array-to-string.pipe';
 import { DeleteConfirmComponent } from './components/delete-confirm/delete-confirm.component';
 import { BoldWordInStringPipe } from './pipes/bold-word-in-string.pipe';
+import { InfoNavComponent } from './components/header/info-nav/info-nav.component';
+import { PageTitleComponent } from './components/header/page-title/page-title.component';
 
 
 @NgModule({
   declarations: [
     MainNavComponent,
     FooterComponent,
-    SecondaryNavComponent,
+    AuthNavComponent,
     LoadingComponent,
     LoginComponent,
     SpinnerComponent,
@@ -62,6 +64,8 @@ import { BoldWordInStringPipe } from './pipes/bold-word-in-string.pipe';
     ArrayToStringPipe,
     DeleteConfirmComponent,
     BoldWordInStringPipe,
+    InfoNavComponent,
+    PageTitleComponent,
   ],
   imports: [
     CommonModule,

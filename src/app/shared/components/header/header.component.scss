@@ -1,31 +1,7 @@
 .container{
-  padding: var(--default-padding) var(--big-padding);
-  .title-nav-container{
-    align-items:flex-end;
+  padding: var(--default-padding);
+  .upper-nav-container{
     display: flex;
     justify-content: space-between;
-    @media(max-width: 768px){
-      flex-direction: column;
-      align-items: center;
-    }
-    .title-wrapper{
-      padding: var(--default-padding) 0;
-      .title-and-icon-container{
-        display: flex;
-        align-items: center;
-        margin-bottom: 8px;
-        gap: 5px;
-        .title-icon{
-          font-size: 30px;
-          color: var(--main-color);
-        }
-      }
-      .subtitle{
-        color: var(--main-color);
-        @media(max-width: 768px){
-          text-align: center;
-        }
-      }
-    }
   }
 }
