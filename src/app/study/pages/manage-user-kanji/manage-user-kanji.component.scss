@@ -5,9 +5,11 @@
   }
   .header{
     padding-bottom: var(--default-padding);
-    h2{
-      font-size: var(--font-medium-big);
-      text-align: center;
+    .title{
+      text-align: left !important;
+      @media(max-width: 950px) {
+        text-align: center !important;
+      }
     }
     .form-card{
       margin: var(--default-margin) 0;

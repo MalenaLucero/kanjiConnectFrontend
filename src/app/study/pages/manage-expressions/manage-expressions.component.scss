@@ -1,3 +1,10 @@
+.title{
+  text-align: left !important;
+  @media(max-width: 950px) {
+    text-align: center !important;
+  }
+}
+
 .form-selects-container{
   display: flex;
   flex-direction: row;

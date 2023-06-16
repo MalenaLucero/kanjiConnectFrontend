@@ -1,6 +1,9 @@
 .container{
-  h2{
-    text-align: center;
+  .title{
+    text-align: left !important;
+    @media(max-width: 950px) {
+      text-align: center !important;
+    }
   }
   .tags-container{
     width: 100%;
