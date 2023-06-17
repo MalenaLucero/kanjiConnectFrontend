@@ -1,4 +1,34 @@
 <div class="page-container about">
-    <h2>About</h2>
-    <p>This is an application I made with Angular, Nest.js, Next.js and Mongo to store the Japanese vacabulary I'm learning and then review it.</p>
+    <div class="about-content">
+        <h2>About</h2>
+        <p>Hello. My name is Malena, I'm a front-end developer and I've been studying Japanese since 2016. I created this application to review Japanese vocabulary because I was never happy with the spaced repetition apps I was using. I wanted to have more control over the data and the way it was presented for review. Here I'll give a small tour of the application to explain how it works. For doubts or queries, please contact kanjiconnect@gmail.com</p>
+        <h3>Repositories and database</h3>
+        <h4>Front-end</h4>
+        <p>Angular application with Angular Material. I'm currently using Rxjs to manage the state and I try to keep it updated with the lastest Angular release.</p>
+        <h4>Back-end</h4> 
+        <p>Nest.js application that I run locally for the auth, POST, UPDATE and DELETE endpoints. It used to be hosted on Heroku.</p>
+        <p>Next.js application currently hosted on Vercel for the public GET enpoints.</p>
+        <h4>Database</h4>
+        <p>Mongo Atlas</p>
+        <h3>Entities</h3>
+        <h4>Expressions</h4>
+        <p>Words or phrases that are uploaded to be <strong>stored</strong> and <strong>reviewed</strong>. Expressions are uploaded through <a href="https://kanji-connect.vercel.app/study/upload/expression">https://kanji-connect.vercel.app/study/upload/expression</a> and uploaded expressions can be filtered through <a href="https://kanji-connect.vercel.app/study/manage/expressions">https://kanji-connect.vercel.app/study/manage/expressions</a>.</p> 
+        <p>When an expression is written in the input field of the Upload section, the Autocomplete button gets the reading, English meaning, JLPT level and transitivity from Jisho.org.</p>
+        <p>Expressions can also be associated with a Lesson, a Source and given an example sentence. Expressions can also have Tags.</p>
+        <img src="assets/expression-card.png" width="500">
+        <p>Once an expression is uploaded, the kanji of that expression are mapped and those kanji are stored as user-kanji.</p>
+        <h4>User-kanji</h4>
+        <p>User-kanji are kanji uploaded indirectly by the user. In the front-end, they appear as 'kanji' and can be filtered though <a href="https://kanji-connect.vercel.app/study/manage/user-kanji">https://kanji-connect.vercel.app/study/manage/user-kanji</a>.</p>
+        <p>When a user uploads an expression, the kanji of that expression are stored as user-kanji, meaning kanji that they 'belong' to that user. In this way, when the user looks up a specific kanji in the application, they'll also get all the words that they've uploaded with that kanji.</p>
+        <img src="assets/user-kanji-card.png" width="500">
+        <h3>Lesson and Souce</h3>
+        <p>A Lesson is an entity made up of Sources. Every example sentence has a Source. Lessons are a way to group Expressions based on when they were studied for the first time. I have classes once every two weeks, so for me Lessons group everything that I do during that time. The Sources are the specific materials I use, for example, a chapter of a book, an anime episode, a podcast.</p>
+        <img src="assets/lesson-card.png" width="600">
+        <h3>Review</h3>
+        <p>Once an expression is uploaded it can be reviewed through <a href="https://kanji-connect.vercel.app/study/review">https://kanji-connect.vercel.app/study/review</a>. 'Show a hint' shows the example sentence. If the user presses Hard, the difficulty of the expression increases. If the user clicks on Easy, the difficulty decreases.</p>
+        <p>Both expressions and kanji can be reviewed.</p>
+        <img src="assets/review-front.png" width="500">
+        <p></p>
+        <img src="assets/review-back.png" width="500">
+    </div>
 </div>

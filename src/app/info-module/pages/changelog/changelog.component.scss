@@ -1,5 +1,12 @@
 .changelog{
     background-color: var(--background-one);
+    .changelog-content{
+        margin: 0 auto;
+        width: 70vw;
+        @media(max-width:  768px) {
+            width: 100%;
+        }
+    }
     .changelog-item{
         margin-top: 20px;
         line-height: 25px;

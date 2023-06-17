@@ -1,3 +1,19 @@
 .about{
     background-color: var(--background-one);
+    .about-content{
+        margin: 0 auto;
+        width: 70vw;
+        @media(max-width:  768px) {
+            width: 100%;
+        }
+    }
+}
+
+h3{
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+h4{
+    margin: 20px 0 0 0 !important;
 }
