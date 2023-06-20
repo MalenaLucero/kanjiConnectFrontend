@@ -1,4 +1,41 @@
 <div class="page-container about">
-    <h2>About</h2>
-    <p>This is an application I made with Angular, Nest.js, Next.js and Mongo to store the Japanese vacabulary I'm learning and then review it.</p>
+    <div class="about-content">
+        <h2>About</h2>
+        <p>Hello. My name is Malena, I'm a frontend developer and I've been studying Japanese since 2016. I created this application to review Japanese vocabulary because I was never happy with the spaced repetition apps I was using. I wanted to have more control over the data and the way it was presented for review. Here there's a small description of the application. For doubts or queries, please contact <a href="mailto:kanjiconnect@gmail.com">kanjiconnect@gmail.com</a>.</p>
+        <h3>Repositories and database</h3>
+        <p>The <strong>frontend</strong> is an Angular application with Angular Material. I'm currently using Rxjs to manage the state and I try to keep it updated with the lastest Angular release.</p>
+        <p>The <strong>backend</strong> is divided in two applications. A Nest.js application that I run locally for the auth, POST, UPDATE and DELETE endpoints, and a Next.js application currently hosted on Vercel for the public GET enpoints.</p>
+        <p>The <strong>database</strong> is a Mongo Atlas database.</p>
+        <h3>Entities</h3>
+        <h4>Expressions</h4>
+        <p>Expressions are words or phrases that are uploaded to be <strong>stored</strong> and <strong>reviewed</strong>. They are uploaded through <a href="https://kanji-connect.vercel.app/study/upload/expression">https://kanji-connect.vercel.app/study/upload/expression</a> and uploaded expressions can be filtered through <a href="https://kanji-connect.vercel.app/study/manage/expressions">https://kanji-connect.vercel.app/study/manage/expressions</a>. When an expression is written in the input field of the upload section, the Autocomplete button gets the reading, English meaning, JLPT level and transitivity from Jisho.org. Expressions can also be associated with a Lesson, a Source and given an example sentence. Expressions can also have Tags. Once an expression is uploaded, the kanji of that expression are mapped and those kanji are stored as user-kanji.</p>
+        <div class="img-container">
+            <img src="assets/expression-card.png" alt="expression card">  
+            <p>Expression card of the word 義理</p>
+        </div>
+        <h4>User-kanji</h4>
+        <p>User-kanji are kanji uploaded indirectly by the user. In the frontend, they appear as 'kanji' and can be filtered though <a href="https://kanji-connect.vercel.app/study/manage/user-kanji">https://kanji-connect.vercel.app/study/manage/user-kanji</a>. When a user uploads an expression, the kanji of that expression are stored as user-kanji, meaning that they 'belong' to the user. In this way, when the user looks up a specific kanji in the application, they'll also get all the words that they've uploaded with that kanji.</p>
+        <div class="img-container">
+           <img src="assets/user-kanji-card.png" alt="kanji card"> 
+           <p>Card of the kanji 義 with the expressions previously uploaded by the user</p>
+        </div>
+        <h4>Lesson and Source</h4>
+        <p>A Lesson is an entity made up of Sources. Every example sentence has a Source. Lessons are a way to group Expressions based on when they were studied for the first time. I have classes once every two weeks, so for me Lessons group everything that I do during that period of time. The Sources are the specific materials I use, a chapter of a book, an anime episode, a podcast, etc.</p>
+        <div class="img-container">
+            <img src="assets/lesson-card.png" alt="lesson card">   
+            <p>Lesson card with its Sources</p>
+        </div>
+        <h3>Review</h3>
+        <p>Once an expression is uploaded it can be reviewed through <a href="https://kanji-connect.vercel.app/study/review">https://kanji-connect.vercel.app/study/review</a>. 'Show a hint' shows the example sentence. If the user presses Hard, the difficulty of the expression increases. If the user clicks on Easy, the difficulty decreases. Both expressions and kanji can be reviewed.</p>
+        <div class="review-img-container">
+            <div>
+                <img src="assets/review-front.png">
+                <p>Front of an expression review card</p>  
+            </div>
+            <div>
+                <img src="assets/review-back.png">
+                <p>Back of an expression review card</p> 
+            </div>
+        </div>
+    </div>
 </div>
