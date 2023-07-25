@@ -1,35 +1,38 @@
-<h4>{{ expression.word }}</h4>
-<div class="card-detail">
-  <p class="reading">
-    {{ expression.reading }}
-  </p>
-  <p *ngIf="expression.transitivity">
-    <span class="section-text">Transitivity: </span>
-      {{ expression.transitivity | firstTitlecase }}
-  </p>
-  <p *ngIf="expression.jlpt">
-    <span class="section-text">Jlpt: </span>
-      {{ expression.jlpt }}
-  </p>
-  <div class="card-list" *ngIf="expression.exampleSentences.length > 0">
-    <p class="section-text">Example Sentences:</p>
-    <ul class="bullet-list">
-      <li *ngFor="let sentence of expression.exampleSentences">
-        {{ sentence.sentence }}
-      </li>
-    </ul>
-  </div>
-  <div class="card-list">
-    <p class="section-text">Meaning:</p>
-    <ul class="bullet-list">
-      <li *ngFor="let englishMeaning of expression.englishMeaning">
-        {{ englishMeaning | firstTitlecase }}
-      </li>
-    </ul>
-    <ul class="bullet-list">
-      <li *ngFor="let japaneseMeaning of expression.japaneseMeaning">
-        {{ japaneseMeaning}}
-      </li>
-    </ul>
+<div class="expression-popup-wrapper">
+  <h4>{{ expression.word }}</h4>
+  <div class="card-detail">
+    <p class="reading">
+      {{ expression.reading }}
+    </p>
+    <p *ngIf="expression.transitivity">
+      <span class="section-text">Transitivity: </span>
+        {{ expression.transitivity | firstTitlecase }}
+    </p>
+    <p *ngIf="expression.jlpt">
+      <span class="section-text">Jlpt: </span>
+        {{ expression.jlpt }}
+    </p>
+    <div class="card-list" *ngIf="expression.exampleSentences.length > 0">
+      <p class="section-text">Example Sentences:</p>
+      <ul class="bullet-list">
+        <li *ngFor="let sentence of expression.exampleSentences">
+          {{ sentence.sentence }}
+        </li>
+      </ul>
+    </div>
+    <div class="card-list">
+      <p class="section-text">Meaning:</p>
+      <ul class="bullet-list">
+        <li *ngFor="let englishMeaning of expression.englishMeaning">
+          {{ englishMeaning | firstTitlecase }}
+        </li>
+      </ul>
+      <ul class="bullet-list">
+        <li *ngFor="let japaneseMeaning of expression.japaneseMeaning">
+          {{ japaneseMeaning}}
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
+
