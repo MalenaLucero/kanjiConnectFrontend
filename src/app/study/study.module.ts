@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTabsModule } from '@angular/material/tabs';
+import { TooltipPosition, MatTooltipModule } from '@angular/material/tooltip';
 
 import { ReviewComponent } from './pages/review/review.component';
 import { UploadExpressionComponent } from './pages/upload-expression/upload-expression.component';
@@ -143,6 +144,7 @@ const routes: Routes = [
     MatNativeDateModule,
     MatTabsModule,
     MatButtonToggleModule,
+    MatTooltipModule,
     RouterModule.forChild(routes),
   ],
   exports: [

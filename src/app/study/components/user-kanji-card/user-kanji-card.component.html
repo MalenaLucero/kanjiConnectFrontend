@@ -20,7 +20,7 @@
       <h5 class="subtitle">Expressions with this kanji:</h5>
       <ul>
         <li *ngFor="let expression of cardData.expressions">
-          <a (click)="outputExpression(expression)">
+          <a (click)="outputExpression(expression)" matTooltip={{expression.reading}}>
             {{expression.word}}
           </a>
         </li>

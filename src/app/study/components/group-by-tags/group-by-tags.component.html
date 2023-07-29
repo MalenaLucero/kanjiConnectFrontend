@@ -11,7 +11,7 @@
         <p class="subtitle">Expressions:</p>
         <ul class="expressions-container">
           <li *ngFor="let expression of element.expressions">
-            <a (click)="showExpression(expression)">{{ expression.word }}</a>
+            <a (click)="showExpression(expression)" matTooltip={{expression.reading}}>{{ expression.word }}</a>
           </li>
         </ul>
       </div>
