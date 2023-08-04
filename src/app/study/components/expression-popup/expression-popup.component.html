@@ -16,7 +16,8 @@
       <p class="section-text">Example Sentences:</p>
       <ul class="bullet-list">
         <li *ngFor="let sentence of expression.exampleSentences">
-          {{ sentence.sentence }}
+          <p>{{ sentence.sentence }}</p>
+          <p class="source">Source: {{ sentence.source }}</p>
         </li>
       </ul>
     </div>
