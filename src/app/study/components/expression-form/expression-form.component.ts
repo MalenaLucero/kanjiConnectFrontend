@@ -31,14 +31,17 @@ export class ExpressionFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form.controls.word.valueChanges.subscribe(value => {
-      this.expressionsService.filterExpressions({ searchList: [value]})
-        .subscribe(res => {
-          if (res.length !== 0) {
-            window.open(this.url + res[0].word, "_blank");
-          }
-        })
-    })
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.form.controls.word.valueChanges.subscribe(value => {
+        this.expressionsService.filterExpressions({ searchList: [value]})
+          .subscribe(res => {
+            if (res.length !== 0) {
+              window.open(this.url + res[0].word, "_blank");
+            }
+          })
+      })
+    }
   }
 
   setFormActiveArea(area: 'expression' | 'englishMeaning' | 'japaneseMeaning' | 'exampleSentences' | 'lesson' | 'none') {
