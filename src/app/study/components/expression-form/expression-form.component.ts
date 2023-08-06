@@ -1,4 +1,4 @@
-import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl, UntypedFormArray, FormGroupDirective } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl, UntypedFormArray } from '@angular/forms';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -18,6 +18,7 @@ export class ExpressionFormComponent implements OnInit {
   public externalExpressions: ExternalExpression[] = [];
   public currentExternalExpression: ExternalExpression = new ExternalExpressionInitializer();
   public formActiveArea: 'expression' | 'englishMeaning' | 'japaneseMeaning' | 'exampleSentences' | 'lesson' | 'none' = 'expression';
+  private url = 'https://kanji-connect.vercel.app/study/manage/expressions?search=';
 
   @Output() formData = new EventEmitter();
 
@@ -30,6 +31,14 @@ export class ExpressionFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.form.controls.word.valueChanges.subscribe(value => {
+      this.expressionsService.filterExpressions({ searchList: [value]})
+        .subscribe(res => {
+          if (res.length !== 0) {
+            window.open(this.url + res[0].word, "_blank");
+          }
+        })
+    })
   }
 
   setFormActiveArea(area: 'expression' | 'englishMeaning' | 'japaneseMeaning' | 'exampleSentences' | 'lesson' | 'none') {

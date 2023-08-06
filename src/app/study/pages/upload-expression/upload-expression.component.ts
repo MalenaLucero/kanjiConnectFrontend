@@ -33,7 +33,6 @@ export class UploadExpressionComponent implements OnInit {
       created: new Date(),
       updated: new Date()
     }
-    console.log(expressionToUpload)
     const token = localStorage.getItem('token');
     if (!token) {
       this.snackBar.open(`You're not logged in`, 'Error', { duration: 3000 });
