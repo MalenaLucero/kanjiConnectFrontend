@@ -35,11 +35,11 @@
       <mat-tab-group dynamicHeight mat-stretch-tabs="true" mat-align-tabs="start">
         <mat-tab label="List">
           <div class="cards-container">
-            <app-expression-card
+            <app-expression-card-editable
               *ngFor="let expression of cardsFilteredExpressions"
               [expression]="expression"
               class="card">
-            </app-expression-card>
+            </app-expression-card-editable>
           </div>
           <div class="button-container">
             <button mat-raised-button color="primary" (click)="showMoreCards()"

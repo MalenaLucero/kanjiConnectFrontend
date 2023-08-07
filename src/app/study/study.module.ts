@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTabsModule } from '@angular/material/tabs';
-import { TooltipPosition, MatTooltipModule } from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { ReviewComponent } from './pages/review/review.component';
 import { UploadExpressionComponent } from './pages/upload-expression/upload-expression.component';
@@ -19,10 +19,9 @@ import { DifficultyButtonsComponent } from './components/difficulty-buttons/diff
 import { ExpressionFormComponent } from './components/expression-form/expression-form.component';
 import { ReviewCardPopupComponent } from './components/review-card-popup/review-card-popup.component';
 import { ReviewCounterComponent } from './components/review-counter/review-counter.component';
-import { ReviewCardComponent } from './components/review-card/review-card.component';
 import { DifficultyPipe } from './pipes/difficulty.pipe';
 import { ManageUserKanjiComponent } from './pages/manage-user-kanji/manage-user-kanji.component';
-import { UserKanjiCardComponent } from './components/user-kanji-card/user-kanji-card.component';
+import { UserKanjiCardEditableComponent } from './components/user-kanji-card-editable/user-kanji-card-editable.component';
 import { ExpressionPopupComponent } from './components/expression-popup/expression-popup.component';
 import { UploadLessonComponent } from './pages/upload-lesson/upload-lesson.component';
 import { UploadTagComponent } from './pages/upload-tag/upload-tag.component';
@@ -31,7 +30,7 @@ import { ManageComponent } from './pages/manage/manage.component';
 import { ManageLessonsComponent } from './pages/manage-lessons/manage-lessons.component';
 import { ManageTagsComponent } from './pages/manage-tags/manage-tags.component';
 import { UploadComponent } from './pages/upload/upload.component';
-import { ExpressionCardComponent } from './components/expression-card/expression-card.component';
+import { ExpressionCardEditableComponent } from './components/expression-card-editable/expression-card-editable.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LessonFormComponent } from './components/lesson-form/lesson-form.component';
 import { SourceFormComponent } from './components/source-form/source-form.component';
@@ -43,6 +42,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ReviewCardFrontComponent } from './components/review-card-front/review-card-front.component';
 import { ReviewCardBackComponent } from './components/review-card-back/review-card-back.component';
 import { ReviewCardCompleteComponent } from './components/review-card-complete/review-card-complete.component';
+import { ExpressionCardReadonlyComponent } from './components/expression-card-readonly/expression-card-readonly.component';
+import { UserKanjiCardReadonlyComponent } from './components/user-kanji-card-readonly/user-kanji-card-readonly.component';
 
 const routes: Routes = [
   {
@@ -106,12 +107,11 @@ const routes: Routes = [
     ExpressionFormComponent,
     ReviewCardPopupComponent,
     ReviewCounterComponent,
-    ReviewCardComponent,
     DifficultyPipe,
     ReviewComponent,
     UploadExpressionComponent,
     ManageUserKanjiComponent,
-    UserKanjiCardComponent,
+    UserKanjiCardEditableComponent,
     ExpressionPopupComponent,
     UploadLessonComponent,
     UploadTagComponent,
@@ -120,7 +120,7 @@ const routes: Routes = [
     ManageLessonsComponent,
     ManageTagsComponent,
     UploadComponent,
-    ExpressionCardComponent,
+    ExpressionCardEditableComponent,
     LessonFormComponent,
     SourceFormComponent,
     LessonCardComponent,
@@ -130,6 +130,8 @@ const routes: Routes = [
     ReviewCardFrontComponent,
     ReviewCardBackComponent,
     ReviewCardCompleteComponent,
+    ExpressionCardReadonlyComponent,
+    UserKanjiCardReadonlyComponent,
   ],
   imports: [
     CommonModule,

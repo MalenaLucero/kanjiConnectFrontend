@@ -1,0 +1,29 @@
+<div class="userkanji-popup-wrapper">
+    <h4>{{ userKanji.kanji.kanji }}</h4>
+    <div class="card-detail">
+        <div class="readings">
+            <p>
+                {{ userKanji.kanji.kun_readings | arrayToString }}
+            </p>
+            <p>
+                {{ userKanji.kanji.on_readings | arrayToString }}
+            </p>
+        </div>
+        <p *ngIf="userKanji.kanji.jlpt">
+        <span class="section-text">Jlpt: </span>
+            {{ userKanji.kanji.jlpt }}
+        </p>
+        <p class="reading">
+            <span class="section-text">Meaning: </span>
+            {{ userKanji.kanji.meanings | arrayToString }}
+        </p>
+        <div class="card-list">
+        <p class="section-text">Expressions with this kanji:</p>
+        <ul class="bullet-list expressions">
+            <li *ngFor="let expression of userKanji.expressions">
+            {{ expression.word }} ({{expression.reading}})
+            </li>
+        </ul>
+        </div>
+    </div>
+</div>

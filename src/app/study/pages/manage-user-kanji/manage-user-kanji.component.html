@@ -35,8 +35,8 @@
       <mat-tab-group dynamicHeight mat-stretch-tabs="true">
         <mat-tab label="List">
           <div class="cards-container">
-            <app-user-kanji-card *ngFor="let data of cardsUserKanjiList" class="card"
-              [cardData]="data" (expressionToOutput)="showExpression($event)"></app-user-kanji-card>
+            <app-user-kanji-card-editable *ngFor="let data of cardsUserKanjiList" class="card"
+              [cardData]="data" (expressionToOutput)="showExpression($event)"></app-user-kanji-card-editable>
           </div>
           <div class="button-container">
             <button mat-raised-button color="primary" (click)="showMoreCards()"

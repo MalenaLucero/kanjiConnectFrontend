@@ -1,7 +1,7 @@
-import { emptyCard } from './../../models/card.model';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Card } from '../../models/card.model';
-import { Difficulty } from 'src/app/shared/models/custom-types.model';
+import { DataType, Difficulty } from 'src/app/shared/models/custom-types.model';
+import { UserKanji, emptyUserKanji } from '../../models/user-kanji.model';
+import { Expression, emptyExpression } from '../../models/expression.model';
 
 @Component({
   selector: 'app-review-card-back',
@@ -9,12 +9,22 @@ import { Difficulty } from 'src/app/shared/models/custom-types.model';
   styleUrls: ['./review-card-back.component.scss']
 })
 export class ReviewCardBackComponent implements OnInit {
-  @Input() cardData: Card = emptyCard;
+  public expressionData: Expression = emptyExpression;
+  public kanjiData: UserKanji = emptyUserKanji;
+
+  @Input() cardData: Expression | UserKanji = emptyExpression;
+  @Input() type: DataType = 'expression';
   @Output() sendDifficulty = new EventEmitter()
 
   constructor() { }
 
   ngOnInit(): void {
+    if (this.type === 'expression') {
+      this.expressionData = this.cardData as Expression;
+    } else {
+      this.kanjiData = this.cardData as UserKanji;
+      console.log(this.kanjiData)
+    }
   }
 
   updateDifficulty(newDifficulty: Difficulty) {

@@ -1,9 +1,8 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CardFlipState, DataType, Difficulty } from '../../../shared/models/custom-types.model';
 import { Component, OnInit, Inject } from '@angular/core';
-import { Expression, UpdateExpressionDto } from 'src/app/study/models/expression.model';
+import { Expression, UpdateExpressionDto, emptyExpression } from 'src/app/study/models/expression.model';
 import { UserKanji } from 'src/app/study/models/user-kanji.model';
-import { ExpressionCardService } from '../review-card/review-card.service';
 import { emptyCard, Card } from 'src/app/study/models/card.model';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ExpressionsService } from 'src/app/study/services/expressions.service';
@@ -16,15 +15,14 @@ import { ExpressionsService } from 'src/app/study/services/expressions.service';
 export class ReviewCardPopupComponent implements OnInit {
   public cardFlipState: CardFlipState = 'back';
   public showHint: boolean = false;
-  public cardData: Card = emptyCard;
+  public cardData: Expression | UserKanji = emptyExpression;
   public currentIndex: number = 0;
   public total: number = 0;
   public type: DataType = 'expression';
   public isReviewCompleted: boolean = false;
   private wasFirstSnackShown = false;
 
-  constructor(private expressionCardService: ExpressionCardService,
-              private dialogRef: MatDialogRef<ReviewCardPopupComponent>,
+  constructor(private dialogRef: MatDialogRef<ReviewCardPopupComponent>,
               private expressionsService: ExpressionsService,
               private snackBar: MatSnackBar,
               @Inject(MAT_DIALOG_DATA) public data: { reviewData: Expression[] | UserKanji[], type: DataType }) { }
@@ -38,7 +36,7 @@ export class ReviewCardPopupComponent implements OnInit {
   showCardFront() {
     if (this.currentIndex < this.total) {
       const currentReviewData = this.data.reviewData[this.currentIndex];
-      this.cardData = this.expressionCardService.generateCardData(this.type, currentReviewData);
+      this.cardData = currentReviewData;
       this.cardFlipState = 'front';
       this.showHint = false;
     } else {

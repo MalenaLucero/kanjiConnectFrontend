@@ -3,11 +3,11 @@ import { UserKanji, emptyUserKanji } from 'src/app/study/models/user-kanji.model
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-user-kanji-card',
-  templateUrl: './user-kanji-card.component.html',
-  styleUrls: ['./user-kanji-card.component.scss']
+  selector: 'app-user-kanji-card-editable',
+  templateUrl: './user-kanji-card-editable.component.html',
+  styleUrls: ['./user-kanji-card-editable.component.scss']
 })
-export class UserKanjiCardComponent implements OnInit {
+export class UserKanjiCardEditableComponent implements OnInit {
   @Input() cardData: UserKanji = emptyUserKanji;
   @Output() expressionToOutput = new EventEmitter<Expression>();
   public kanjiDetailsLink: string = '';

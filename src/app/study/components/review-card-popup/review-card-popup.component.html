@@ -1,6 +1,7 @@
 <app-review-card-front
   *ngIf="cardFlipState === 'front' && !isReviewCompleted"
   [cardData]="cardData"
+  [type]="type"
   [total]="total"
   [currentIndex]="currentIndex"
   (showReverse)="showReverse()">
@@ -8,6 +9,7 @@
 <app-review-card-back
   *ngIf="cardFlipState === 'back' && !isReviewCompleted"
   [cardData]="cardData"
+  [type]="type"
   (sendDifficulty)="updateDifficulty($event)">
 </app-review-card-back>
 <app-review-card-complete *ngIf="isReviewCompleted"></app-review-card-complete>

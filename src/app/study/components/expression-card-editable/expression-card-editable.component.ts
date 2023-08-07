@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { emptyExpression, Expression } from '../../models/expression.model';
 
 @Component({
-  selector: 'app-expression-card',
-  templateUrl: './expression-card.component.html',
-  styleUrls: ['./expression-card.component.scss']
+  selector: 'app-expression-card-editable',
+  templateUrl: './expression-card-editable.component.html',
+  styleUrls: ['./expression-card-editable.component.scss']
 })
-export class ExpressionCardComponent implements OnInit {
+export class ExpressionCardEditableComponent implements OnInit {
   @Input() expression: Expression = emptyExpression;
   public englishDefinitionLink: string = '';
   public japaneseDefinitionLink: string = '';
