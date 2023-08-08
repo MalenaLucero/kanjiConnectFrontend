@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { emptyExpression, Expression } from '../../models/expression.model';
+import { ExternalLinksService } from '../../services/external-links.service';
 
 @Component({
   selector: 'app-expression-card-editable',
@@ -12,13 +13,12 @@ export class ExpressionCardEditableComponent implements OnInit {
   public japaneseDefinitionLink: string = '';
   public exampleSentencesLink: string = '';
 
-  constructor() { }
+  constructor(private externalLinksService: ExternalLinksService) { }
 
   ngOnInit(): void {
-    const word = this.expression.word;
-    this.englishDefinitionLink = `https://jisho.org/search/${word}`;
-    this.japaneseDefinitionLink = `https://dictionary.goo.ne.jp/srch/all/${word}/m0u/`;
-    this.exampleSentencesLink = `https://jisho.org/search/${word}%20%23sentences`;
+    this.englishDefinitionLink = this.externalLinksService.expressionEnglishDefinition(this.expression.word);
+    this.japaneseDefinitionLink = this.externalLinksService.expressionJapaneseDefinition(this.expression.word);
+    this.exampleSentencesLink = this.externalLinksService.expressionExampleSentences(this.expression.word);
   }
 
 }

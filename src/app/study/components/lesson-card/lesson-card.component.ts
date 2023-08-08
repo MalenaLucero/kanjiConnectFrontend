@@ -1,6 +1,7 @@
 import { FormLesson } from './../../models/lesson.model';
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { emptyLesson, Lesson } from '../../models/lesson.model';
+import { LinksService } from '../../services/links.service';
 
 @Component({
   selector: 'app-lesson-card',
@@ -13,16 +14,15 @@ export class LessonCardComponent implements OnInit {
   @Output() lessonToEdit = new EventEmitter<Lesson>();
 
   public editMode = false;
-  private url = 'https://kanji-connect.vercel.app/study/manage';
   public lessonExpressionsLink: string = '';
   public lessonUserKanjiLink: string = '';
 
 
-  constructor() { }
+  constructor(private linksService: LinksService) { }
 
   ngOnInit(): void {
-    this.lessonExpressionsLink = this.url + '/expressions?filter=lesson:' + this.lesson._id;
-    this.lessonUserKanjiLink = this.url + '/user-kanji?filter=lesson:' + this.lesson._id;
+    this.lessonExpressionsLink = this.linksService.filterExpressionsByLesson(this.lesson._id);
+    this.lessonUserKanjiLink = this.linksService.filterUserKanjiByLesson(this.lesson._id);
   }
 
   deleteLesson() {

@@ -7,6 +7,7 @@ import { ExpressionsService } from 'src/app/study/services/expressions.service';
 import { ExternalExpression } from 'src/app/study/models/expression.model';
 import { TagsService } from 'src/app/study/services/tags.service';
 import { SpinnerService } from '../../../shared/components/spinner/spinner.service';
+import { LinksService } from '../../services/links.service';
 
 @Component({
   selector: 'app-expression-form',
@@ -18,7 +19,6 @@ export class ExpressionFormComponent implements OnInit {
   public externalExpressions: ExternalExpression[] = [];
   public currentExternalExpression: ExternalExpression = new ExternalExpressionInitializer();
   public formActiveArea: 'expression' | 'englishMeaning' | 'japaneseMeaning' | 'exampleSentences' | 'lesson' | 'none' = 'expression';
-  private url = 'https://kanji-connect.vercel.app/study/manage/expressions?search=';
 
   @Output() formData = new EventEmitter();
 
@@ -26,7 +26,8 @@ export class ExpressionFormComponent implements OnInit {
               private expressionsService: ExpressionsService,
               private tagsService: TagsService,
               private spinner: SpinnerService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private linksService: LinksService) {
     this.createForm();
   }
 
@@ -37,7 +38,8 @@ export class ExpressionFormComponent implements OnInit {
         this.expressionsService.filterExpressions({ searchList: [value]})
           .subscribe(res => {
             if (res.length !== 0) {
-              window.open(this.url + res[0].word, "_blank");
+              const url = this.linksService.searchExpression(res[0].word);
+              window.open(url, "_blank");
             }
           })
       })

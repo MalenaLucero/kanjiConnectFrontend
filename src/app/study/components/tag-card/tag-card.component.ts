@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { emptyTag, FormTag, Tag } from '../../models/tag.model';
+import { LinksService } from '../../services/links.service';
 
 @Component({
   selector: 'app-tag-card',
@@ -8,7 +9,6 @@ import { emptyTag, FormTag, Tag } from '../../models/tag.model';
 })
 export class TagCardComponent implements OnInit {
   public editMode = false;
-  private url = 'https://kanji-connect.vercel.app/study/manage';
   public tagExpressionsLink: string = '';
   public tagUserKanjiLink: string = '';
 
@@ -16,11 +16,11 @@ export class TagCardComponent implements OnInit {
   @Output() tagToDelete = new EventEmitter<Tag>();
   @Output() tagToEdit = new EventEmitter<Tag>();
 
-  constructor() { }
+  constructor(private linksService: LinksService) { }
 
   ngOnInit(): void {
-    this.tagExpressionsLink = this.url + '/expressions?filter=tags:' + this.tag._id;
-    this.tagUserKanjiLink = this.url + '/user-kanji?filter=tags:' + this.tag._id;
+    this.tagExpressionsLink = this.linksService.filterExpressionsByTag(this.tag._id);
+    this.tagUserKanjiLink = this.linksService.filterUserKanjiByTag(this.tag._id);
   }
 
   deleteTag() {
