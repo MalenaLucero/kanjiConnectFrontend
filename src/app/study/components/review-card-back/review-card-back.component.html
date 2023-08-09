@@ -1,6 +1,8 @@
 <div class="card back">
-  <app-expression-card-readonly *ngIf="type === 'expression'" [expression]="expressionData"></app-expression-card-readonly>
-  <app-user-kanji-card-readonly *ngIf="type === 'user-kanji'" [userKanji]="kanjiData"></app-user-kanji-card-readonly>
+  <div class="content-section">
+    <app-expression-card-readonly *ngIf="type === 'expression'" [expression]="expressionData"></app-expression-card-readonly>
+    <app-user-kanji-card-readonly *ngIf="type === 'user-kanji'" [userKanji]="kanjiData"></app-user-kanji-card-readonly>
+  </div>
   <!-- DIFFICULTY -->
   <div class="difficulty-section">
     <div class="difficulty-details">

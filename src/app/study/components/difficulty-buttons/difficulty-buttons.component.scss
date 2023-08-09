@@ -1,5 +1,7 @@
 .buttons-container{
   display: flex;
+  justify-content: center;
+  width: 100%;
   .easy-button{
     background-color: rgb(7, 169, 7) !important;
     color: white;

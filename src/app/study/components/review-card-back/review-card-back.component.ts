@@ -23,7 +23,6 @@ export class ReviewCardBackComponent implements OnInit {
       this.expressionData = this.cardData as Expression;
     } else {
       this.kanjiData = this.cardData as UserKanji;
-      console.log(this.kanjiData)
     }
   }
 

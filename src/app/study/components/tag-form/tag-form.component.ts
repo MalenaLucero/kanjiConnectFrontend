@@ -40,7 +40,6 @@ export class TagFormComponent implements OnInit {
 
   submit() {
     const data = { ...this.tagForm.value, color: this.color };
-    console.log(data);
     this.formData.emit(data);
     this.tagForm.reset();
   }

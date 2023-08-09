@@ -26,7 +26,6 @@ export class UploadTagComponent implements OnInit {
   uploadTag(event: FormTag){
     this.spinner.open();
     const data: UploadTag = {...event, user: this.user};
-    console.log(data)
     this.tagsService.uploadTag(data).subscribe({
       next: res => {
         this.snackBar.open('Tag created', 'OK', { duration: 3000 });

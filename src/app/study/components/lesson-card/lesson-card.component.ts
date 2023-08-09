@@ -17,7 +17,6 @@ export class LessonCardComponent implements OnInit {
   public lessonExpressionsLink: string = '';
   public lessonUserKanjiLink: string = '';
 
-
   constructor(private linksService: LinksService) { }
 
   ngOnInit(): void {
@@ -34,5 +33,4 @@ export class LessonCardComponent implements OnInit {
     const editedLesson = { ...this.lesson, ...event };
     this.lessonToEdit.emit(editedLesson);
   }
-
 }
