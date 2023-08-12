@@ -2,6 +2,14 @@ import { ChangelogItem } from "../../models/changelog-item.model";
 
 export const changelogData: ChangelogItem[] = [
     {
+        date: new Date('08/12/2023'),
+        type: 'added',
+        title: 'Difficulty filter added',
+        description: 'Difficulty filter added for Expressions and Kanji on Manage and Review',
+        githubCommitLink: 'https://github.com/MalenaLucero/kanjiConnectFrontend/commit/b537e13dede15894a58f39179c5e184dc5f29fe6',
+        trelloTaskLink: 'https://trello.com/c/79aJQE0s/16-add-dificulty-to-manage-filter',
+    },
+    {
         date: new Date('06/15/2023'),
         type: 'added',
         title: 'Info module created for About and Changelog sections',
