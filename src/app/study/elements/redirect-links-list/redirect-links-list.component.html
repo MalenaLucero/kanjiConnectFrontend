@@ -1,0 +1,5 @@
+<div class="links-container" *ngIf="links.length > 0">
+    <a href={{link.link}} target="_blank" *ngFor="let link of links">
+        {{ link.title }}
+    </a>
+</div>

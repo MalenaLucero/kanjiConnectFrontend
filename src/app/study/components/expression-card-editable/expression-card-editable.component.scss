@@ -33,22 +33,4 @@
     align-items: center;
     gap: 6px;
   }
-  .external-links{
-    margin-top: 15px;
-    .definition-links{
-      display: flex;
-      gap: 16px;
-      a{
-        background-color: white;
-        border-radius: 4px;
-        border: 1px solid rgb(213, 213, 213);
-        display: block;
-        flex-grow: 1;
-        font-size: 12px;
-        font-weight: 500;
-        padding: 10px;
-        text-align: center;
-      }
-    }
-  }
 }

@@ -39,20 +39,11 @@
           {{ expression.jlpt }}
       </p>
     </div>
-    <div class="details-container-tags" *ngIf="expression.populatedTags.length > 0">
+    <div class="details-container details-container-tags" *ngIf="expression.populatedTags.length > 0">
       <span class="subtitle">Tags:</span>
       <app-tags-list [tags]="expression.populatedTags"></app-tags-list>
     </div>
-    <div class="external-links">
-      <div class="definition-links">
-        <a href={{englishDefinitionLink}} target="_blank">
-          Jisho.org definition</a>
-        <a href={{japaneseDefinitionLink}} target="_blank">
-        Japanese definition</a>
-        <a href={{exampleSentencesLink}} target="_blank">
-          More example sentences</a>
-      </div>
-    </div>
+    <app-redirect-links-list [links]="externalLinks"></app-redirect-links-list>
   </mat-card-content>
   
 </mat-card>

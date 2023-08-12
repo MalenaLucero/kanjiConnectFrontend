@@ -11,14 +11,20 @@ import { ExternalLinksService } from '../../services/external-links.service';
 export class UserKanjiCardEditableComponent implements OnInit {
   @Input() cardData: UserKanji = emptyUserKanji;
   @Output() expressionToOutput = new EventEmitter<Expression>();
-  public kanjiDetailsLink: string = '';
-  public wordsContainingKanjiLink: string = '';
+  public externalLinks: { title: string, link: string}[] = []
 
   constructor(private externalLinksService: ExternalLinksService) { }
 
   ngOnInit(): void {
-    this.kanjiDetailsLink = this.externalLinksService.kanjiDetails(this.cardData.kanji.kanji);
-    this.wordsContainingKanjiLink = this.externalLinksService.expressionsContainingKanji(this.cardData.kanji.kanji);
+    this.externalLinks = [
+      {
+        title: 'More kanji details',
+        link: this.externalLinksService.kanjiDetails(this.cardData.kanji.kanji),
+      }, {
+        title: 'Words containing this kanji',
+        link: this.externalLinksService.expressionsContainingKanji(this.cardData.kanji.kanji),
+      },
+    ]
   }
 
   outputExpression(expression: Expression) {

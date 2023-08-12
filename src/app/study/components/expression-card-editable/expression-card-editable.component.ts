@@ -9,16 +9,23 @@ import { ExternalLinksService } from '../../services/external-links.service';
 })
 export class ExpressionCardEditableComponent implements OnInit {
   @Input() expression: Expression = emptyExpression;
-  public englishDefinitionLink: string = '';
-  public japaneseDefinitionLink: string = '';
-  public exampleSentencesLink: string = '';
+  public externalLinks: { title: string, link: string }[] = [];
 
   constructor(private externalLinksService: ExternalLinksService) { }
 
   ngOnInit(): void {
-    this.englishDefinitionLink = this.externalLinksService.expressionEnglishDefinition(this.expression.word);
-    this.japaneseDefinitionLink = this.externalLinksService.expressionJapaneseDefinition(this.expression.word);
-    this.exampleSentencesLink = this.externalLinksService.expressionExampleSentences(this.expression.word);
+    this.externalLinks = [
+      {
+        title: 'Jisho.org definition',
+        link: this.externalLinksService.expressionEnglishDefinition(this.expression.word),
+      }, {
+        title: 'Japanese definition',
+        link: this.externalLinksService.expressionJapaneseDefinition(this.expression.word),
+      }, {
+        title: 'More example sentences',
+        link: this.externalLinksService.expressionExampleSentences(this.expression.word),
+      }
+    ]
   }
 
 }

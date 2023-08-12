@@ -45,6 +45,7 @@ import { ReviewCardCompleteComponent } from './components/review-card-complete/r
 import { ExpressionCardReadonlyComponent } from './components/expression-card-readonly/expression-card-readonly.component';
 import { UserKanjiCardReadonlyComponent } from './components/user-kanji-card-readonly/user-kanji-card-readonly.component';
 import { TagsListComponent } from './elements/tags-list/tags-list.component';
+import { RedirectLinksListComponent } from './elements/redirect-links-list/redirect-links-list.component';
 
 const routes: Routes = [
   {
@@ -134,6 +135,7 @@ const routes: Routes = [
     ExpressionCardReadonlyComponent,
     UserKanjiCardReadonlyComponent,
     TagsListComponent,
+    RedirectLinksListComponent,
   ],
   imports: [
     CommonModule,

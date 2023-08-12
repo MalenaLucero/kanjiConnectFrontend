@@ -25,13 +25,8 @@
           </a>
         </li>
       </ul>
-      <div class="external-links">
-        <a href={{kanjiDetailsLink}} target="_blank">
-          More kanji details</a>
-        <a href={{wordsContainingKanjiLink}} target="_blank">
-          Words containing this kanji</a>
-      </div>
     </div>
+    <app-redirect-links-list [links]="externalLinks"></app-redirect-links-list>
   </mat-card-content>
   
 </mat-card>
