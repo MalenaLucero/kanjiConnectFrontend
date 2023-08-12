@@ -9,8 +9,7 @@ import { LinksService } from '../../services/links.service';
 })
 export class TagCardComponent implements OnInit {
   public editMode = false;
-  public tagExpressionsLink: string = '';
-  public tagUserKanjiLink: string = '';
+  public links: { title: string, link: string}[] = [];
 
   @Input() tag: Tag = emptyTag;
   @Output() tagToDelete = new EventEmitter<Tag>();
@@ -19,8 +18,15 @@ export class TagCardComponent implements OnInit {
   constructor(private linksService: LinksService) { }
 
   ngOnInit(): void {
-    this.tagExpressionsLink = this.linksService.filterExpressionsByTag(this.tag._id);
-    this.tagUserKanjiLink = this.linksService.filterUserKanjiByTag(this.tag._id);
+    this.links = [
+      {
+        title: `Tag's expressions`,
+        link: this.linksService.filterExpressionsByTag(this.tag._id),
+      }, {
+        title: `Tag's kanji`,
+        link: this.linksService.filterUserKanjiByTag(this.tag._id),
+      }
+    ]
   }
 
   deleteTag() {

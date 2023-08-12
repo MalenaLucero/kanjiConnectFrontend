@@ -30,14 +30,8 @@
         </li>
       </ul>
     </div>
-    <div class="external-links">
-      <a [href]="lessonExpressionsLink" target="_blank">
-        Lesson's expressions
-      </a>
-      <a [href]="lessonUserKanjiLink" target="_blank">
-        Lesson's kanji
-      </a>
+    <div class="sources-container">
+      <app-redirect-links-list [links]="links" [color]="'dark'"></app-redirect-links-list>
     </div>
   </mat-card-content>
-  
 </mat-card>

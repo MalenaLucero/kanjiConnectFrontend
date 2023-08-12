@@ -14,14 +14,20 @@ export class LessonCardComponent implements OnInit {
   @Output() lessonToEdit = new EventEmitter<Lesson>();
 
   public editMode = false;
-  public lessonExpressionsLink: string = '';
-  public lessonUserKanjiLink: string = '';
+  public links: { title: string, link: string}[] = []
 
   constructor(private linksService: LinksService) { }
 
   ngOnInit(): void {
-    this.lessonExpressionsLink = this.linksService.filterExpressionsByLesson(this.lesson._id);
-    this.lessonUserKanjiLink = this.linksService.filterUserKanjiByLesson(this.lesson._id);
+    this.links = [
+      {
+        title: `Lesson's expressions`,
+        link: this.linksService.filterExpressionsByLesson(this.lesson._id)
+      }, {
+        title: `Lesson's kanji`,
+        link: this.linksService.filterUserKanjiByLesson(this.lesson._id)
+      }
+    ]
   }
 
   deleteLesson() {
