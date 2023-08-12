@@ -36,7 +36,7 @@ export class DifficultySelectComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
-    this.form.get('jlpt')?.setValue(obj);
+    this.form.get('difficulty')?.setValue(obj);
   }
 
   registerOnChange(fn: any): void {

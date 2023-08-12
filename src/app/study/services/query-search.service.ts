@@ -8,7 +8,8 @@ interface FormData {
   searchList?: string,
   jlpt?: number,
   lesson?: string,
-  tags?: string[]
+  tags?: string[],
+  difficulty?: number[],
 }
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class QuerySearchService {
               }
 
   generateUrlfromFilter(formData: FormData): { key: string, url: string } {
+    console.log(formData)
     let key: 'search' | 'filter' | null = null;
     let filterString = '';
     if (formData.searchList && formData.searchList.length > 0) {
@@ -35,6 +37,9 @@ export class QuerySearchService {
       }
       if (formData.lesson && formData.lesson.length > 0) {
         filterString = filterString + 'lesson:' + formData.lesson + '|';
+      }
+      if (formData.difficulty && formData.difficulty.length > 0) {
+        filterString = filterString + 'difficulty:' + formData.difficulty.toString() + '|';;
       }
       if (formData.tags) {
         const tagNames = Object.entries(formData.tags)
@@ -67,7 +72,7 @@ export class QuerySearchService {
           rawObjectFromParams[key] = value;
         })
       const formData: GenericFilter = {};
-      const filterKeys = ['jlpt', 'lesson', 'tags'];
+      const filterKeys = ['jlpt', 'lesson', 'tags', 'difficulty'];
 
       Object.keys(rawObjectFromParams).forEach(key => {
         if (filterKeys.includes(key)) {
@@ -82,6 +87,12 @@ export class QuerySearchService {
             case 'lesson':
               if (this.validationService.isMongoIdValid(value)) {
                 formData.lesson = value;
+              }
+              break;
+            case 'difficulty': 
+              const difficultyArray = value.split(',').map((e: string) => parseInt(e, 10));
+              if (this.validationService.isDifficultyArrayValid(difficultyArray)) {
+                formData.difficulty = difficultyArray;
               }
               break;
             case 'tags':

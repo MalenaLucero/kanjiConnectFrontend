@@ -43,9 +43,9 @@ export class CardFilterService {
     if (formValues.type === 'expression' && formValues.transitivity) {
       cardFilter.transitivity = formValues.transitivity;
     }
-    /*if (formValues.difficulty) {
+    if (formValues.difficulty) {
       cardFilter.difficulty = formValues.difficulty;
-    }*/
+    }
     return cardFilter;
   }
 }

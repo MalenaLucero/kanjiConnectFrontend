@@ -43,7 +43,8 @@ export class ManageUserKanjiComponent implements OnInit {
                   kanjiList: [''],
                   jlpt: null,
                   lesson: [''],
-                  tags: ['']
+                  tags: [''],
+                  difficulty: ['']
                 })
               }
 

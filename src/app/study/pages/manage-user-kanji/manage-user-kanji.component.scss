@@ -15,30 +15,39 @@
       margin: var(--default-margin) 0;
       .form-container{
         .input-selects-container{
-          display: flex;
-          flex-direction: row;
-          @media(max-width: 950px) {
-            flex-direction: column;
+          .kanji-input{
+            width: calc(60% - var(--default-margin)) !important;
+            @media(max-width: 950px) {
+              width: 100% !important;
+            }
           }
           .selects-container{
-            width: 50%;
             display: flex;
             gap: var(--default-margin);
-            @media(max-width: 950px) {
-              width: 100%;
+            .small-selects-container{
+              width: 40%;
+              display: flex;
+              gap: var(--default-margin);
+              @media(max-width: 950px) {
+                width: 100%;
+              }
             }
             .select{
               width: 100%;
-              &.jlpt{
-                width: 100px;
+              &.lesson{
+                width: 60% !important;
+                @media(max-width: 950px) {
+                  width: 100% !important;
+                }
+              }
+              &.jlpt, &.difficulty{
+                width: 50px;
+                flex-grow: 1;
               }
             }
-          }
-        }
-        mat-form-field{
-          width: 50%;
-          @media(max-width: 950px) {
-            width: 100%;
+            @media(max-width: 950px) {
+              flex-direction: column;
+            }
           }
         }
         .form-button-container{

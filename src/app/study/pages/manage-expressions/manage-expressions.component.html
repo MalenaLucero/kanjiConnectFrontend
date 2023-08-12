@@ -12,14 +12,17 @@
       </mat-expansion-panel-header>
       <!--FORM-->
       <form class="form-container" [formGroup]="searchForm" (submit)="search()">
-        <div class="form-selects-container">
-          <mat-form-field appearance="outline">
+        <div class="input-selects-container">
+          <mat-form-field appearance="outline" class="expression-input">
             <mat-label>Input one or more expressions separated by commas</mat-label>
             <input formControlName="searchList" matInput name="searchList" autofocus>
           </mat-form-field>
           <div class="selects-container">
-            <app-jlpt-select formControlName="jlpt" class="select jlpt"></app-jlpt-select>
             <app-lessons-select formControlName="lesson" class="select lesson"></app-lessons-select>
+            <div class="small-selects-container">
+              <app-jlpt-select formControlName="jlpt" class="select jlpt"></app-jlpt-select>
+              <app-difficulty-select formControlName="difficulty" class="select difficulty"></app-difficulty-select>
+            </div>
           </div>
         </div>
         <app-tags-select formControlName="tags"></app-tags-select>

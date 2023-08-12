@@ -6,6 +6,7 @@ export interface GenericFilter {
   jlpt?: Jlpt,
   lesson?: string,
   tags?: [],
+  difficulty?: number[],
 }
 
 export interface SearchParams {

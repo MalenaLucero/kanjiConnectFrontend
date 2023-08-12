@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { maxJlpt, minJlpt } from '../models/custom-types.model';
+import { jlptLevels, difficultyLevels } from '../models/custom-types.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +12,17 @@ export class ValidationService {
     if (jlptLevel === null) {
       return false;
     }
-    if (jlptLevel >= minJlpt && jlptLevel <= maxJlpt) {
+    if (jlptLevels.includes(jlptLevel)) {
       return true;
     }
     return false;
+  }
+
+  isDifficultyArrayValid(difficultyArray: number[]): boolean {
+    if (difficultyArray.some(e => !difficultyLevels.includes(e))) {
+      return false;
+    }
+    return true;
   }
 
   isMongoIdValid(mongoId: string): boolean {

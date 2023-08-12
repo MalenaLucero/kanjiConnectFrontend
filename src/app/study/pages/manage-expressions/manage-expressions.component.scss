@@ -5,25 +5,39 @@
   }
 }
 
-.form-selects-container{
-  display: flex;
-  flex-direction: row;
+.expression-input{
+  width: calc(60% - var(--default-margin)) !important;
   @media(max-width: 950px) {
-    flex-direction: column;
+    width: 100% !important;
   }
-  .selects-container{
-    width: 50%;
+}
+
+.selects-container{
+  display: flex;
+  gap: var(--default-margin);
+  .small-selects-container{
+    width: 40%;
     display: flex;
     gap: var(--default-margin);
     @media(max-width: 950px) {
       width: 100%;
     }
-    .select{
-      width: 100%;
-      &.jlpt{
-        width: 100px;
+  }
+  .select{
+    width: 100%;
+    &.lesson{
+      width: 60% !important;
+      @media(max-width: 950px) {
+        width: 100% !important;
       }
     }
+    &.jlpt, &.difficulty{
+      width: 50px;
+      flex-grow: 1;
+    }
+  }
+  @media(max-width: 950px) {
+    flex-direction: column;
   }
 }
 

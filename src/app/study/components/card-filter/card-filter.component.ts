@@ -26,7 +26,7 @@ export class CardFilterComponent implements OnInit {
       source: [''],
       jlpt: null,
       transitivity: null,
-      difficulty: null,
+      difficulty: [''],
       tags: ['']
     })
   }

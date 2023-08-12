@@ -39,6 +39,7 @@ export class ManageExpressionsComponent implements OnInit {
       searchList: [''],
       jlpt: null,
       lesson: [''],
+      difficulty: [],
       tags: ['']
     })
   }
