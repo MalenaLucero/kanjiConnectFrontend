@@ -44,6 +44,7 @@ import { ReviewCardBackComponent } from './components/review-card-back/review-ca
 import { ReviewCardCompleteComponent } from './components/review-card-complete/review-card-complete.component';
 import { ExpressionCardReadonlyComponent } from './components/expression-card-readonly/expression-card-readonly.component';
 import { UserKanjiCardReadonlyComponent } from './components/user-kanji-card-readonly/user-kanji-card-readonly.component';
+import { TagsListComponent } from './elements/tags-list/tags-list.component';
 
 const routes: Routes = [
   {
@@ -132,6 +133,7 @@ const routes: Routes = [
     ReviewCardCompleteComponent,
     ExpressionCardReadonlyComponent,
     UserKanjiCardReadonlyComponent,
+    TagsListComponent,
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,7 @@
 import { Card } from './card.model';
 import { Difficulty, Jlpt, Transitivity } from '../../shared/models/custom-types.model';
 import { ExampleSentence } from "./example-sentence.model";
+import { Tag } from './tag.model';
 
 export interface Expression {
   word: string;
@@ -9,6 +10,7 @@ export interface Expression {
   japaneseMeaning: string[];
   exampleSentences: ExampleSentence[];
   tags: string[];
+  populatedTags: Tag[],
   lesson: string;
   user: string;
   kanjis: string[];
@@ -64,6 +66,7 @@ export const emptyExpression: Expression = {
     _id: ''
   }],
   tags: [''],
+  populatedTags: [],
   lesson: '',
   user: '',
   kanjis: [''],

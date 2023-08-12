@@ -1,0 +1,6 @@
+<ul class="tags-list-container">
+    <li *ngFor="let tag of tags"
+        [ngClass]="'tag ' + 'color' + tag.color">
+      {{ tag.name }}
+    </li>
+</ul>

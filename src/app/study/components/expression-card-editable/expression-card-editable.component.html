@@ -39,6 +39,10 @@
           {{ expression.jlpt }}
       </p>
     </div>
+    <div class="details-container-tags" *ngIf="expression.populatedTags.length > 0">
+      <span class="subtitle">Tags:</span>
+      <app-tags-list [tags]="expression.populatedTags"></app-tags-list>
+    </div>
     <div class="external-links">
       <div class="definition-links">
         <a href={{englishDefinitionLink}} target="_blank">

@@ -1,12 +1,7 @@
 <div class="container">
   <mat-card appearance="outlined" *ngFor="let element of inputData">
     <mat-card-content>
-      <ul class="tags-container">
-        <li *ngFor="let tag of element.tagCombination"
-            [ngClass]="'tag ' + 'color' + tag.color">
-          {{ tag.name }}
-        </li>
-      </ul>
+      <app-tags-list [tags]="element.tagCombination"></app-tags-list>
       <div class="expressions-wrapper">
         <p class="subtitle">Expressions:</p>
         <ul class="expressions-container">

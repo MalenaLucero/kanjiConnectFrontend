@@ -28,6 +28,11 @@
   .details-container{
     margin-bottom: 10px;
   }
+  .details-container-tags{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
   .external-links{
     margin-top: 15px;
     .definition-links{
