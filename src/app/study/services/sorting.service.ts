@@ -53,4 +53,40 @@ export class SortingService {
     return arrWithoutNull.concat(nullArrElements);
   }
 
+  sortByTagCombination(arr: Expression[]): { tagCombination: Tag[], expressions: Expression[] }[] {
+    const tagList = arr.map(expression => expression.tags);
+    const maxNumberOfTagsPerExpression = Math.max(...tagList.map(e => e.length));
+    const concatTags: string[] = [];
+    tagList.forEach(list => list.forEach(tag => concatTags.push(tag)));
+    const tagsWithNoRepetitions = Array.from(new Set(concatTags));
+    let allPossibleTagCombinations: any = [...tagsWithNoRepetitions].map(e => [e]);
+
+    for(let i = 0; i < maxNumberOfTagsPerExpression; i++) {
+      if (i === 1) {
+        for (let j = 0; j < tagsWithNoRepetitions.length; j++) {
+          for(let k = j + 1; k < tagsWithNoRepetitions.length; k++) {
+            const newArray = [tagsWithNoRepetitions[j], tagsWithNoRepetitions[k]]
+            allPossibleTagCombinations.push(newArray)
+          }
+        }
+      }
+      //TO DO seguir con las demas combinaciones posibles
+    }
+    
+    const aux = allPossibleTagCombinations.map((tagCombination: string[]) => {
+      const expressionsWithTagCombination = arr.filter(expression =>
+        expression.tags.length === tagCombination.length &&
+        expression.tags.every(tag => tagCombination.includes(tag))
+      )
+      const tagsData = expressionsWithTagCombination[0]?.populatedTags;
+      return {
+        tagCombination: tagsData,
+        expressions: expressionsWithTagCombination,
+      }
+    }).filter((e: any) => e.expressions.length > 0);
+    allPossibleTagCombinations = this.sortByNumberOfTags(aux)
+    
+    return allPossibleTagCombinations;
+  }
+
 }

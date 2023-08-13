@@ -72,26 +72,7 @@ export class ManageExpressionsComponent implements OnInit {
         if (this.filteredExpressions.length > 0) {
           this.cardsFilteredExpressions = this.filteredExpressions.slice(0, 10);
           this.tableData = this.manageExpressionsService.generateTableData(this.filteredExpressions);
-          const tagList = this.filteredExpressions.map(expression => expression.tags);
-          const concatTags: string[] = [];
-          tagList.forEach(list => list.forEach(tag => concatTags.push(tag)));
-          const tagSet = new Set(concatTags);
-          if (tagSet.size < 20) {
-            let tagCombinations = this.tagsService.getAllPossibleTagCombinations(Array.from(tagSet));
-            if (tagCombinations.length === 0) {
-              tagCombinations = this.tagsService.getAllPossibleTagCombinations(Array.from(tagSet));
-            }
-            const aux = tagCombinations.map(tagCombination => {
-              return {
-                tagCombination: this.tagsService.filterTagsById(tagCombination),
-                expressions: this.filteredExpressions.filter(expression =>
-                  expression.tags.length === tagCombination.length &&
-                  expression.tags.every(tag => tagCombination.includes(tag))
-                )
-              }
-            }).filter(e => e.expressions.length > 0);
-            this.tagCombinations = this.sortingService.sortByNumberOfTags(aux)
-          }
+          this.tagCombinations = this.sortingService.sortByTagCombination(this.filteredExpressions);
           this.expressionsByDifficulty = this.sortingService.sortByDifficultyText(this.filteredExpressions)
             .filter(e => e.list.length > 0);
         } else {
