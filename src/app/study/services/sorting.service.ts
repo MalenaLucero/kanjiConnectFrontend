@@ -59,18 +59,27 @@ export class SortingService {
     const concatTags: string[] = [];
     tagList.forEach(list => list.forEach(tag => concatTags.push(tag)));
     const tagsWithNoRepetitions = Array.from(new Set(concatTags));
-    let allPossibleTagCombinations: any = [...tagsWithNoRepetitions].map(e => [e]);
+    let twoTagsCombinations = [];
+    let threeTagsCombinations = [];
+    let fourTagsCombinations = [];
+    let allPossibleTagCombinations: any = [];
 
-    for(let i = 0; i < maxNumberOfTagsPerExpression; i++) {
-      if (i === 1) {
-        for (let j = 0; j < tagsWithNoRepetitions.length; j++) {
-          for(let k = j + 1; k < tagsWithNoRepetitions.length; k++) {
-            const newArray = [tagsWithNoRepetitions[j], tagsWithNoRepetitions[k]]
-            allPossibleTagCombinations.push(newArray)
-          }
+    if (maxNumberOfTagsPerExpression > 0) {
+      allPossibleTagCombinations = [...tagsWithNoRepetitions].map(e => [e]);
+    }
+
+    if (maxNumberOfTagsPerExpression > 1) {
+      for (let j = 0; j < tagsWithNoRepetitions.length; j++) {
+        const combinations = [];
+        for(let k = j + 1; k < tagsWithNoRepetitions.length; k++) {
+          const newArray = [tagsWithNoRepetitions[j], tagsWithNoRepetitions[k]]
+          combinations.push(newArray)
+        }
+        allPossibleTagCombinations = allPossibleTagCombinations.concat(combinations);
+        if (combinations.length > 0) {
+          twoTagsCombinations.push(combinations)
         }
       }
-      //TO DO seguir con las demas combinaciones posibles
     }
     
     const aux = allPossibleTagCombinations.map((tagCombination: string[]) => {
