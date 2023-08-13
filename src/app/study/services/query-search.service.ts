@@ -24,7 +24,6 @@ export class QuerySearchService {
               }
 
   generateUrlfromFilter(formData: FormData): { key: string, url: string } {
-    console.log(formData)
     let key: 'search' | 'filter' | null = null;
     let filterString = '';
     if (formData.searchList && formData.searchList.length > 0) {

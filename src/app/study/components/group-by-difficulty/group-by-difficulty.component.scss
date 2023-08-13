@@ -1,0 +1,32 @@
+.container{
+    margin-top: 10px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    /* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
+    mat-card{
+      background-color: rgb(243, 243, 243);
+      width: 45%;
+      flex-grow: 1;
+      @media(max-width:  768px) {
+        width: 100%;
+      }
+      .expressions-wrapper{
+        margin-top: 15px;
+        .expressions-container{
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 5px;
+          margin-top: 10px;
+          a {
+            font-size: 18px;
+            color: var(--main-color);
+            font-weight: 500;
+            &:hover{
+              color: var(--medium-main-color);
+            }
+          }
+        }
+      }
+    }
+  }

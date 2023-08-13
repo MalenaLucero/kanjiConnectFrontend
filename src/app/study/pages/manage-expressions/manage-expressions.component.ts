@@ -23,6 +23,7 @@ export class ManageExpressionsComponent implements OnInit {
   public filteredExpressions: Expression[] = [];
   public tableData: TableData = emptyTableData;
   public tagCombinations: any = [];
+  public expressionsByDifficulty: any = [];
   public fetchedDataState: FetchedDataState = 'init';
   public cardsFilteredExpressions: Expression[] = [];
 
@@ -75,20 +76,24 @@ export class ManageExpressionsComponent implements OnInit {
           const concatTags: string[] = [];
           tagList.forEach(list => list.forEach(tag => concatTags.push(tag)));
           const tagSet = new Set(concatTags);
-          let tagCombinations = this.tagsService.getAllPossibleTagCombinations(Array.from(tagSet));
-          if (tagCombinations.length === 0) {
-            tagCombinations = this.tagsService.getAllPossibleTagCombinations(Array.from(tagSet));
-          }
-          const aux = tagCombinations.map(tagCombination => {
-            return {
-              tagCombination: this.tagsService.filterTagsById(tagCombination),
-              expressions: this.filteredExpressions.filter(expression =>
-                expression.tags.length === tagCombination.length &&
-                expression.tags.every(tag => tagCombination.includes(tag))
-              )
+          if (tagSet.size < 20) {
+            let tagCombinations = this.tagsService.getAllPossibleTagCombinations(Array.from(tagSet));
+            if (tagCombinations.length === 0) {
+              tagCombinations = this.tagsService.getAllPossibleTagCombinations(Array.from(tagSet));
             }
-          }).filter(e => e.expressions.length > 0);
-          this.tagCombinations = this.sortingService.sortByNumberOfTags(aux)
+            const aux = tagCombinations.map(tagCombination => {
+              return {
+                tagCombination: this.tagsService.filterTagsById(tagCombination),
+                expressions: this.filteredExpressions.filter(expression =>
+                  expression.tags.length === tagCombination.length &&
+                  expression.tags.every(tag => tagCombination.includes(tag))
+                )
+              }
+            }).filter(e => e.expressions.length > 0);
+            this.tagCombinations = this.sortingService.sortByNumberOfTags(aux)
+          }
+          this.expressionsByDifficulty = this.sortingService.sortByDifficultyText(this.filteredExpressions)
+            .filter(e => e.list.length > 0);
         } else {
           this.fetchedDataState = 'no data';
         }

@@ -1,0 +1,15 @@
+<div class="container">
+    <mat-card appearance="outlined" *ngFor="let element of data">
+        <mat-card-content>
+            <h3>{{ element.difficultyText }}</h3>
+            <div class="expressions-wrapper">
+            <p class="subtitle">Expressions:</p>
+            <ul class="expressions-container">
+                <li *ngFor="let expression of element.list">
+                <a (click)="showExpression(expression)" matTooltip={{expression.reading}}>{{ expression.word }}</a>
+                </li>
+            </ul>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

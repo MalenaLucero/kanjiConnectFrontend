@@ -46,6 +46,7 @@ import { ExpressionCardReadonlyComponent } from './components/expression-card-re
 import { UserKanjiCardReadonlyComponent } from './components/user-kanji-card-readonly/user-kanji-card-readonly.component';
 import { TagsListComponent } from './elements/tags-list/tags-list.component';
 import { RedirectLinksListComponent } from './elements/redirect-links-list/redirect-links-list.component';
+import { GroupByDifficultyComponent } from './components/group-by-difficulty/group-by-difficulty.component';
 
 const routes: Routes = [
   {
@@ -136,6 +137,7 @@ const routes: Routes = [
     UserKanjiCardReadonlyComponent,
     TagsListComponent,
     RedirectLinksListComponent,
+    GroupByDifficultyComponent,
   ],
   imports: [
     CommonModule,
