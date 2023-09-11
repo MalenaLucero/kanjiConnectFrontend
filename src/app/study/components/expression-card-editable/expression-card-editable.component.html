@@ -5,7 +5,7 @@
         <h3>{{ expression.word }}</h3>
         <p class="text">{{ expression.reading }}</p>
       </div>
-      <div *ngIf="expression.exampleSentences.length > 0">
+      <div *ngIf="expression.exampleSentences.length > 0" class="example-sentences">
         <h4 class="subtitle">Example sentences</h4>
         <p class="text" *ngFor="let exampleSentence of expression.exampleSentences"
           [innerHTML]="exampleSentence.sentence | boldWordInString:expression.word">

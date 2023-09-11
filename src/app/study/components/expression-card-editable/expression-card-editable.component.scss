@@ -8,16 +8,18 @@
     display: flex;
     .card-title{
       padding: 10px 16px 20px 0;
+      width: 50%;
       h3{
-        font-size: 40px;
-        margin: 10px;
-        white-space: nowrap;
+        font-size: 30px;
+        margin: 0 0 10px 0;
       }
       p{
         margin: 0;
         padding: 0;
-        text-align: center;
       }
+    }
+    .example-sentences{
+      width: 50%;
     }
   }
   .subtitle{
