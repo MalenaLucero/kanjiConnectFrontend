@@ -23,11 +23,11 @@ export class ExpressionsService {
   }
 
   update(id: string, data: UpdateExpressionDto) {
-    return this.http.put<Expression>(environment.expressions + '/' + id, data);
+    return this.http.put<Expression>(environment.expressionsPrivate + '/' + id, data);
   }
 
   create(data: CreateExpressionDto) {
-    return this.http.post<Expression>(environment.expressions, data);
+    return this.http.post<Expression>(environment.expressionsPrivate, data);
   }
 
   getExpressionExternalData(expression: string) {
