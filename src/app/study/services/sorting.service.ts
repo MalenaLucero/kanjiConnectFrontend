@@ -53,6 +53,43 @@ export class SortingService {
     return arrWithoutNull.concat(nullArrElements);
   }
 
+  areTwoArraysEqual<T>(arr1: T[], arr2: T[]): boolean {
+    if (arr1.length !== arr2.length) {
+      return false;
+    } else {
+      let areEqual = true;
+      arr1.forEach((e: T) => {
+        if (!arr2.includes(e)) areEqual = false;
+      })
+      return areEqual;
+    }
+  }
+
+  isArrayIncludedInListOfArrays<T>(arr: T[], arrays: T[][]): boolean {
+    let isIncluded = false;
+    let acc = 0;
+    while(!isIncluded && acc < arrays.length) {
+      if (this.areTwoArraysEqual(arrays[acc], arr)) {
+        isIncluded = true;
+      }
+      acc++;
+    }
+    return isIncluded;
+  }
+
+  getArrayOfUniqueValues<T>(arr: T[][]): T[][] {
+    if (arr.length === 0) {
+      return [];
+    } 
+    const uniqueValues = [arr[0]];
+    for(let i = 1; i < arr.length; i++) {
+      if (!this.isArrayIncludedInListOfArrays(arr[i], uniqueValues)) {
+        uniqueValues.push(arr[i]);
+      }
+    }
+    return uniqueValues;
+  }
+
   sortByTagCombination(arr: Expression[]): { tagCombination: Tag[], expressions: Expression[] }[] {
     const tagList = arr.map(expression => expression.tags);
     const maxNumberOfTagsPerExpression = Math.max(...tagList.map(e => e.length));

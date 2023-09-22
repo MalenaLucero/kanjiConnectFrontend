@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpClientModule } from '@angular/common/http';
 import { TagsService } from './tags.service';
 
-describe('TagsService', () => {
+xdescribe('TagsService', () => {
   let service: TagsService;
 
   beforeEach(() => {

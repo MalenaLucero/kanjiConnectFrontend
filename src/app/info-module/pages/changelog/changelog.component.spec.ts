@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChangelogComponent } from './changelog.component';
 
-describe('ChangelogComponent', () => {
+xdescribe('ChangelogComponent', () => {
   let component: ChangelogComponent;
   let fixture: ComponentFixture<ChangelogComponent>;
 

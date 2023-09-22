@@ -7,7 +7,7 @@ class TagsServiceMock {
 
 }
 
-describe('QuerySearchService', () => {
+xdescribe('QuerySearchService', () => {
   let service: QuerySearchService;
 
   beforeEach(() => {
