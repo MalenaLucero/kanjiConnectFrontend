@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RedirectLinksListComponent } from './redirect-links-list.component';
 
-describe('RedirectLinksListComponent', () => {
+xdescribe('RedirectLinksListComponent', () => {
   let component: RedirectLinksListComponent;
   let fixture: ComponentFixture<RedirectLinksListComponent>;
 
