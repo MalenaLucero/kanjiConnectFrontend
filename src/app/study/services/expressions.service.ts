@@ -35,6 +35,6 @@ export class ExpressionsService {
   }
 
   getExpressionsByUser() {
-    return this.http.get<Expression[]>(environment.expressions + '/user/' + this.user);
+    return this.http.get<Expression[]>(environment.expressionsPrivate + '/user/' + this.user);
   }
 }

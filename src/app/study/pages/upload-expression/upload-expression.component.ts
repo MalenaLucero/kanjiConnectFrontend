@@ -38,26 +38,20 @@ export class UploadExpressionComponent implements OnInit {
       this.snackBar.open(`You're not logged in`, 'Error', { duration: 3000 });
     } else {
       this.spinner.open();
-      this.expressionsService.getExpressionsByUser().subscribe({
-        next: res => {
-          const expressionFound = res.find(expression => expression.word === expressionToUpload.word);
-          if (expressionFound === undefined) {
-            this.expressionsService.create(expressionToUpload)
-            .subscribe({
-              next: res => {
-                this.snackBar.open('Expression created', 'OK', { duration: 3000 });
-                this.spinner.close();
-              }, error: err => {
-                this.snackBar.open(`Expression couldn't be created`, err.error.message, { duration: 3000 });
-                this.spinner.close();
-              }
-            })
-          } else {
-            this.snackBar.open('Expression already exists', 'Error', { duration: 3000 });
+      this.expressionsService.create(expressionToUpload)
+        .subscribe({
+          next: res => {
+            this.snackBar.open('Expression created', 'OK', { duration: 3000 });
+            this.spinner.close();
+          }, error: err => {
+            if (err.error.message === 'word exists for user') {
+              this.snackBar.open(`Expression couldn't be created`, 'Word already exists', { duration: 3000 });
+            } else {
+              this.snackBar.open(`Expression couldn't be created`, err.error.message, { duration: 3000 });
+            }
             this.spinner.close();
           }
-        }
-      });
+        })
     }
   }
 }
