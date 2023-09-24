@@ -53,37 +53,34 @@ export class SortingService {
     return arrWithoutNull.concat(nullArrElements);
   }
 
-  sortByTagCombination(arr: Expression[]): { tagCombination: Tag[], expressions: Expression[] }[] {
-    const tagList = arr.map(expression => expression.tags);
-    const maxNumberOfTagsPerExpression = Math.max(...tagList.map(e => e.length));
-    const concatTags: string[] = [];
-    tagList.forEach(list => list.forEach(tag => concatTags.push(tag)));
-    const tagsWithNoRepetitions = Array.from(new Set(concatTags));
-    let twoTagsCombinations = [];
-    let threeTagsCombinations = [];
-    let fourTagsCombinations = [];
-    let allPossibleTagCombinations: any = [];
-
-    if (maxNumberOfTagsPerExpression > 0) {
-      allPossibleTagCombinations = [...tagsWithNoRepetitions].map(e => [e]);
-    }
-
-    if (maxNumberOfTagsPerExpression > 1) {
-      for (let j = 0; j < tagsWithNoRepetitions.length; j++) {
-        const combinations = [];
-        for(let k = j + 1; k < tagsWithNoRepetitions.length; k++) {
-          const newArray = [tagsWithNoRepetitions[j], tagsWithNoRepetitions[k]]
-          combinations.push(newArray)
-        }
-        allPossibleTagCombinations = allPossibleTagCombinations.concat(combinations);
-        if (combinations.length > 0) {
-          twoTagsCombinations.push(combinations)
-        }
+  sortByTagCombination(expressions: Expression[]): { tagCombination: Tag[], expressions: Expression[] }[] {
+    const maxNumberOfTagCombinations = Math.max(...expressions.map(expression => expression.tags).map(e => e.length));
+    if (maxNumberOfTagCombinations > 0) {
+      const tagCombinations: any = {};
+      for(let i = 0; i < maxNumberOfTagCombinations; i++) {
+        tagCombinations[(i + 1).toString()] = [];
       }
+      expressions.forEach(expression => {
+        if (expression.tags.length > 0) {
+          tagCombinations[expression.tags.length].push(expression.tags);
+        }
+      })
+      const flattenedTagCombinations: string[][] = [];
+      Object.keys(tagCombinations).forEach(key => {
+        if (tagCombinations[key].length > 0) {
+          const uniqueValues: string[][] = this.getArrayOfUniqueValues(tagCombinations[key]);
+          uniqueValues.forEach(arr => flattenedTagCombinations.push(arr));
+        }
+      })
+      return this.matchTagCombinationsWithExpressions(flattenedTagCombinations, expressions);
+    } else {
+      return [];
     }
-    
-    const aux = allPossibleTagCombinations.map((tagCombination: string[]) => {
-      const expressionsWithTagCombination = arr.filter(expression =>
+  }
+
+  matchTagCombinationsWithExpressions(tagCombinations: string[][], expressions: Expression[]): { tagCombination: Tag[], expressions: Expression[] }[] {
+    const returnValue = tagCombinations.map((tagCombination: string[]) => {
+      const expressionsWithTagCombination = expressions.filter(expression =>
         expression.tags.length === tagCombination.length &&
         expression.tags.every(tag => tagCombination.includes(tag))
       )
@@ -93,9 +90,43 @@ export class SortingService {
         expressions: expressionsWithTagCombination,
       }
     }).filter((e: any) => e.expressions.length > 0);
-    allPossibleTagCombinations = this.sortByNumberOfTags(aux)
-    
-    return allPossibleTagCombinations;
+    return this.sortByNumberOfTags(returnValue);
   }
 
+  areTwoArraysEqual<T>(arr1: T[], arr2: T[]): boolean {
+    if (arr1.length !== arr2.length) {
+      return false;
+    } else {
+      let areEqual = true;
+      arr1.forEach((e: T) => {
+        if (!arr2.includes(e)) areEqual = false;
+      })
+      return areEqual;
+    }
+  }
+
+  isArrayIncludedInListOfArrays<T>(arr: T[], arrays: T[][]): boolean {
+    let isIncluded = false;
+    let acc = 0;
+    while(!isIncluded && acc < arrays.length) {
+      if (this.areTwoArraysEqual(arrays[acc], arr)) {
+        isIncluded = true;
+      }
+      acc++;
+    }
+    return isIncluded;
+  }
+
+  getArrayOfUniqueValues<T>(arr: T[][]): T[][] {
+    if (arr.length === 0) {
+      return [];
+    } 
+    const uniqueValues = [arr[0]];
+    for(let i = 1; i < arr.length; i++) {
+      if (!this.isArrayIncludedInListOfArrays(arr[i], uniqueValues)) {
+        uniqueValues.push(arr[i]);
+      }
+    }
+    return uniqueValues;
+  }
 }

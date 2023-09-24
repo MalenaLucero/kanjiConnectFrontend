@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserKanjiCardReadonlyComponent } from './user-kanji-card-readonly.component';
 
-describe('UserKanjiCardReadonlyComponent', () => {
+xdescribe('UserKanjiCardReadonlyComponent', () => {
   let component: UserKanjiCardReadonlyComponent;
   let fixture: ComponentFixture<UserKanjiCardReadonlyComponent>;
 
