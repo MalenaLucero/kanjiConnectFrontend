@@ -55,15 +55,15 @@ export class TagsService {
   }
 
   uploadTag(data: UploadTag) {
-    return this.http.post(environment.tags, data);
+    return this.http.post(environment.tagsPrivate, data);
   }
 
   deleteTag(id: string) {
-    return this.http.delete<Tag>(environment.tags + '/' + id);
+    return this.http.delete<Tag>(environment.tagsPrivate + '/' + id);
   }
 
   updateTag(id: string, data: FormTag) {
-    return this.http.put<Tag>(environment.tags + '/' + id, data);
+    return this.http.put<Tag>(environment.tagsPrivate + '/' + id, data);
   }
 
   getAllPossibleTagCombinations(arr: string[]): string[][] {

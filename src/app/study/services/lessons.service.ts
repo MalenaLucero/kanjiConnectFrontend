@@ -35,15 +35,15 @@ export class LessonsService {
   }
 
   uploadLesson(data: FormLesson) {
-    return this.http.post<Lesson>(environment.lessons, data);
+    return this.http.post<Lesson>(environment.lessonsPrivate, data);
   }
 
   uploadSourceToLesson(lessonId: string, sourceData: UploadSource) {
-    return this.http.put<Lesson>(environment.lessons + '/source/' + lessonId, sourceData);
+    return this.http.put<Lesson>(environment.lessonsPrivate + '/source/' + lessonId, sourceData);
   }
 
   deleteLesson(id: string) {
-    return this.http.delete<Lesson>(environment.lessons + '/' + id);
+    return this.http.delete<Lesson>(environment.lessonsPrivate + '/' + id);
   }
 
   updateLesson(id: string, data: FormLesson) {
