@@ -38,6 +38,7 @@ export class ManageExpressionsComponent implements OnInit {
               private sortingService: SortingService) {
     this.searchForm = this.formBuilder.group({
       searchList: [''],
+      reading: '',
       jlpt: null,
       lesson: [''],
       difficulty: [],

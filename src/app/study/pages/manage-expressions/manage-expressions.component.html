@@ -13,10 +13,16 @@
       <!--FORM-->
       <form class="form-container" [formGroup]="searchForm" (submit)="search()">
         <div class="input-selects-container">
-          <mat-form-field appearance="outline" class="expression-input">
-            <mat-label>Input one or more expressions separated by commas</mat-label>
-            <input formControlName="searchList" matInput name="searchList" autofocus>
-          </mat-form-field>
+          <div class="inputs-container">
+            <mat-form-field appearance="outline" class="expression-input">
+              <mat-label>Input one or more expressions separated by commas</mat-label>
+              <input formControlName="searchList" matInput name="searchList" autofocus>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="reading-input">
+              <mat-label>Reading</mat-label>
+              <input formControlName="reading" matInput name="reading">
+            </mat-form-field>
+          </div>
           <div class="selects-container">
             <app-lessons-select formControlName="lesson" class="select lesson"></app-lessons-select>
             <div class="small-selects-container">

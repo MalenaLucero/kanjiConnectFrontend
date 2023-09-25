@@ -38,4 +38,11 @@ export class ValidationService {
     }
     return true;
   }
+
+  isReadingValid(reading: string): boolean {
+    if (reading.length === 0 || reading.length > 32) {
+      return false;
+    }
+    return true;
+  }
 }

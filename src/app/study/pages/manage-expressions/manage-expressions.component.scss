@@ -5,10 +5,22 @@
   }
 }
 
-.expression-input{
-  width: calc(60% - var(--default-margin)) !important;
+.inputs-container{
+  display: flex;
   @media(max-width: 950px) {
-    width: 100% !important;
+    flex-direction: column;
+  }
+  .expression-input{
+    width: calc(60% - 8px);
+    @media(max-width: 950px) {
+      width: 100%;
+    }
+  }
+  .reading-input{
+    flex-grow: 1;
+    @media(max-width: 950px) {
+      width: 100%;
+    }
   }
 }
 
@@ -16,7 +28,7 @@
   display: flex;
   gap: var(--default-margin);
   .small-selects-container{
-    width: 40%;
+    width: 50%;
     display: flex;
     gap: var(--default-margin);
     @media(max-width: 950px) {

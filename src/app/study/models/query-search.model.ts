@@ -3,6 +3,7 @@ import { Jlpt } from "src/app/shared/models/custom-types.model";
 export interface GenericFilter {
   user?: string,
   searchList?: string[],
+  reading?: string,
   jlpt?: Jlpt,
   lesson?: string,
   tags?: [],

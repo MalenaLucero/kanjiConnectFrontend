@@ -6,6 +6,7 @@ import { GenericFilter, SearchParams } from '../models/query-search.model';
 import { TagsService } from './tags.service';
 interface FormData {
   searchList?: string,
+  reading?: string,
   jlpt?: number,
   lesson?: string,
   tags?: string[],
@@ -31,6 +32,9 @@ export class QuerySearchService {
       filterString = formData.searchList;
     } else {
       key = 'filter';
+      if (formData.reading && formData.reading.length > 0) {
+        filterString = filterString + 'reading:' + formData.reading + '|'
+      }
       if (formData.jlpt && formData.jlpt > 0) {
         filterString = filterString + 'jlpt:' + formData.jlpt + '|'
       }
@@ -38,7 +42,7 @@ export class QuerySearchService {
         filterString = filterString + 'lesson:' + formData.lesson + '|';
       }
       if (formData.difficulty && formData.difficulty.length > 0) {
-        filterString = filterString + 'difficulty:' + formData.difficulty.toString() + '|';;
+        filterString = filterString + 'difficulty:' + formData.difficulty.toString() + '|';
       }
       if (formData.tags) {
         const tagNames = Object.entries(formData.tags)
@@ -71,12 +75,17 @@ export class QuerySearchService {
           rawObjectFromParams[key] = value;
         })
       const formData: GenericFilter = {};
-      const filterKeys = ['jlpt', 'lesson', 'tags', 'difficulty'];
+      const filterKeys = ['reading', 'jlpt', 'lesson', 'tags', 'difficulty'];
 
       Object.keys(rawObjectFromParams).forEach(key => {
         if (filterKeys.includes(key)) {
           const value = rawObjectFromParams[key];
           switch(key) {
+            case 'reading':
+              if (this.validationService.isReadingValid(value)) {
+                formData.reading = value;
+              }
+              break;
             case 'jlpt':
               const jlpt = parseInt(value, 10) as Jlpt;
               if (this.validationService.isJlptValid(jlpt)){
@@ -88,7 +97,7 @@ export class QuerySearchService {
                 formData.lesson = value;
               }
               break;
-            case 'difficulty': 
+            case 'difficulty':
               const difficultyArray = value.split(',').map((e: string) => parseInt(e, 10));
               if (this.validationService.isDifficultyArrayValid(difficultyArray)) {
                 formData.difficulty = difficultyArray;
