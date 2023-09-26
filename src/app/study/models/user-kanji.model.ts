@@ -13,6 +13,7 @@ export interface UserKanji {
   updated: Date,
   user: User,
   _id: string,
+  notes: string,
 }
 
 export interface UserKanjiFilter {
@@ -33,6 +34,7 @@ export const emptyUserKanji: UserKanji = {
   updated: new Date,
   user: emptyUser,
   _id: '',
+  notes: '',
 }
 
 export interface TableKanji {

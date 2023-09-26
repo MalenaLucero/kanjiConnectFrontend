@@ -117,6 +117,18 @@
             <app-transitivity-select formControlName="transitivity"></app-transitivity-select>
           </div>
         </div>
+        <div>
+          <mat-form-field class="textarea">
+            <mat-label>Notes</mat-label>
+            <textarea matInput
+              formControlName="notes"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="5"
+              cdkAutosizeMaxRows="20">
+            </textarea>
+          </mat-form-field>
+        </div>
         <app-tags-select formControlName="tags"></app-tags-select>
         <div class="form-buttons-container">
           <button mat-stroked-button color="primary" (click)="cleanForm()">

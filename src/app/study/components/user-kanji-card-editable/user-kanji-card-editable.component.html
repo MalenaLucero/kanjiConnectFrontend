@@ -26,6 +26,12 @@
         </li>
       </ul>
     </div>
+    <div class="details-container">
+      <p class="text" *ngIf="cardData.notes">
+        <span class="subtitle">Notes:</span>
+          {{ cardData.notes }}
+      </p>
+    </div>
     <app-redirect-links-list [links]="externalLinks"></app-redirect-links-list>
   </mat-card-content>
   

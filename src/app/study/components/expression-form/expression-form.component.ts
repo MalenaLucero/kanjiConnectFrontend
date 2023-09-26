@@ -150,7 +150,8 @@ export class ExpressionFormComponent implements OnInit {
       jlpt: [null],
       transitivity: [null],
       lesson: [''],
-      tags: ['']
+      tags: [''],
+      notes: '',
     })
   }
 

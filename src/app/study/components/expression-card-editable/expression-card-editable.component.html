@@ -39,6 +39,12 @@
           {{ expression.jlpt }}
       </p>
     </div>
+    <div class="details-container">
+      <p class="text" *ngIf="expression.notes">
+        <span class="subtitle">Notes:</span>
+          {{ expression.notes }}
+      </p>
+    </div>
     <div class="details-container details-container-tags" *ngIf="expression.populatedTags.length > 0">
       <span class="subtitle">Tags:</span>
       <app-tags-list [tags]="expression.populatedTags"></app-tags-list>

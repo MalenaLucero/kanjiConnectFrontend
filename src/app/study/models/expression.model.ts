@@ -20,6 +20,7 @@ export interface Expression {
   created: Date;
   updated: Date;
   _id: string;
+  notes: string;
 }
 
 export interface ExternalExpression {
@@ -75,5 +76,6 @@ export const emptyExpression: Expression = {
   transitivity: null,
   created: new Date(),
   updated: new Date(),
-  _id: ''
+  _id: '',
+  notes: '',
 }
