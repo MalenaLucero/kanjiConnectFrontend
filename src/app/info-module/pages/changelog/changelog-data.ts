@@ -2,6 +2,14 @@ import { ChangelogItem } from "../../models/changelog-item.model";
 
 export const changelogData: ChangelogItem[] = [
     {
+        date: new Date('10/01/2023'),
+        type: 'added',
+        title: 'Edit tags on expressions',
+        description: 'Tags can be editted on expressions through the Manage section. They can also be added to expressions without tags',
+        githubCommitLink: 'https://github.com/MalenaLucero/kanjiConnectFrontend/commit/a23f5553300aa033673da896af16becc9b2be15d',
+        trelloTaskLink: 'https://trello.com/c/Tl2zKe7D/21-expression-card-edit-tags',
+    },
+    {
         date: new Date('09/30/2023'),
         type: 'added',
         title: 'Edit notes on expressions and kanji',
