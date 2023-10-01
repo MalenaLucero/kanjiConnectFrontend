@@ -1,0 +1,13 @@
+<div class="container">
+    <p class="text">
+      <span class="label">{{label}}: </span> 
+      {{ text }}
+    </p>
+    <button 
+      mat-icon-button
+      matTooltip="Edit"
+      [matTooltipPosition]="'above'"
+      (click)="emitOutput()">
+      <mat-icon color="primary">edit</mat-icon>
+    </button>
+  </div>

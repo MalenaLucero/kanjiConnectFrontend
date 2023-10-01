@@ -5,6 +5,7 @@ import { CreateExpressionDto, Expression, FilterExpressionsDto, UpdateExpression
 import { BehaviorSubject } from 'rxjs';
 import { GenericFilter } from '../models/query-search.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { DataFetchingService } from 'src/app/shared/services/data-fetching.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class ExpressionsService {
   private user: string;
 
   constructor(private http: HttpClient,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private dataFetchingService: DataFetchingService) {
     this.user = this.authService.getUserId();
   }
 
@@ -23,6 +25,7 @@ export class ExpressionsService {
   }
 
   update(id: string, data: UpdateExpressionDto) {
+    this.dataFetchingService.openSpinner();
     return this.http.put<Expression>(environment.expressionsPrivate + '/' + id, data);
   }
 

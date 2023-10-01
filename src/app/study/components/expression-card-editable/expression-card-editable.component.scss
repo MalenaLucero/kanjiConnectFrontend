@@ -29,10 +29,26 @@
   }
   .details-container{
     margin-bottom: 10px;
+    .editable-section{
+      display: flex;
+      align-items: center;
+      button{
+        margin-left: 16px;
+      }
+    }
   }
   .details-container-tags{
     display: flex;
     align-items: center;
     gap: 6px;
+  }
+}
+
+.add-input{
+  p {
+    color: var(--main-color);
+    text-decoration: underline;
+    cursor: pointer;
+    display: inline-block;
   }
 }

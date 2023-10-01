@@ -58,3 +58,12 @@
     margin-bottom: 15px;
   }
 }
+
+.add-input{
+  p {
+    color: var(--main-color);
+    text-decoration: underline;
+    cursor: pointer;
+    display: inline-block;
+  }
+}

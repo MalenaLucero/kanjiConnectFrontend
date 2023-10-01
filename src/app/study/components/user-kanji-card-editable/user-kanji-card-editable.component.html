@@ -27,10 +27,24 @@
       </ul>
     </div>
     <div class="details-container">
-      <p class="text" *ngIf="cardData.notes">
-        <span class="subtitle">Notes:</span>
-          {{ cardData.notes }}
-      </p>
+      <app-editable-input-property 
+        *ngIf="cardData.notes && !showNotesInput"
+        [label]="'Notes'"
+        [text]="cardData.notes"
+        (emit)="showNotesInput = true">
+      </app-editable-input-property>
+      <div 
+        *ngIf="!cardData.notes && !showNotesInput" 
+        class="add-input">
+        <p (click)="showNotesInput = true">Add notes</p>
+      </div>
+      <app-edit-input
+        *ngIf="showNotesInput"
+        [label]="'Notes'"
+        [type]="'textarea'"
+        [currentValue]="cardData.notes"
+        (updatedValue)="updateNote($event)">
+      </app-edit-input>
     </div>
     <app-redirect-links-list [links]="externalLinks"></app-redirect-links-list>
   </mat-card-content>

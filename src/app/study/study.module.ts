@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { FormsModule } from '@angular/forms';
 
 import { ReviewComponent } from './pages/review/review.component';
 import { UploadExpressionComponent } from './pages/upload-expression/upload-expression.component';
@@ -47,6 +48,8 @@ import { UserKanjiCardReadonlyComponent } from './components/user-kanji-card-rea
 import { TagsListComponent } from './elements/tags-list/tags-list.component';
 import { RedirectLinksListComponent } from './elements/redirect-links-list/redirect-links-list.component';
 import { GroupByDifficultyComponent } from './components/group-by-difficulty/group-by-difficulty.component';
+import { EditInputComponent } from './components/edit-input/edit-input.component';
+import { EditableInputPropertyComponent } from './elements/editable-input-property/editable-input-property.component';
 
 const routes: Routes = [
   {
@@ -138,6 +141,8 @@ const routes: Routes = [
     TagsListComponent,
     RedirectLinksListComponent,
     GroupByDifficultyComponent,
+    EditInputComponent,
+    EditableInputPropertyComponent,
   ],
   imports: [
     CommonModule,
@@ -153,6 +158,7 @@ const routes: Routes = [
     MatTabsModule,
     MatButtonToggleModule,
     MatTooltipModule,
+    FormsModule,
     RouterModule.forChild(routes),
   ],
   exports: [

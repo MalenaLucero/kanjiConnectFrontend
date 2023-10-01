@@ -1,11 +1,12 @@
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserKanji, UserKanjiFilter } from '../models/user-kanji.model';
+import { UpdateUserKanjiDto, UserKanji, UserKanjiFilter } from '../models/user-kanji.model';
 import { BehaviorSubject } from 'rxjs';
 import { TagsService } from './tags.service';
 import { GenericFilter } from '../models/query-search.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { DataFetchingService } from 'src/app/shared/services/data-fetching.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class UserKanjiService {
 
   constructor(private http: HttpClient,
               private tagsService: TagsService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private dataFetchingService: DataFetchingService) {
                 this.user = this.authService.getUserId();
               }
 
@@ -44,5 +46,10 @@ export class UserKanjiService {
       if (tagNames.length > 0) cleanFilter.tags = this.tagsService.getTagIdsFromNames(tagNames);
     }
     return cleanFilter;
+  }
+
+  update(id: string, data: UpdateUserKanjiDto) {
+    this.dataFetchingService.openSpinner();
+    return this.http.put<UserKanji>(environment.userKanjiPrivate + '/' + id, data);
   }
 }

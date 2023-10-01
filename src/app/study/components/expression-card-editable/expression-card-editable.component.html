@@ -40,10 +40,24 @@
       </p>
     </div>
     <div class="details-container">
-      <p class="text" *ngIf="expression.notes">
-        <span class="subtitle">Notes:</span>
-          {{ expression.notes }}
-      </p>
+      <app-editable-input-property 
+        *ngIf="expression.notes && !showNotesInput"
+        [label]="'Notes'"
+        [text]="expression.notes"
+        (emit)="showNotesInput = true">
+      </app-editable-input-property>
+      <div 
+        *ngIf="!expression.notes && !showNotesInput" 
+        class="add-input">
+        <p (click)="showNotesInput = true">Add notes</p>
+      </div>
+      <app-edit-input
+        *ngIf="showNotesInput"
+        [label]="'Notes'"
+        [type]="'textarea'"
+        [currentValue]="expression.notes"
+        (updatedValue)="updateNote($event)">
+      </app-edit-input>
     </div>
     <div class="details-container details-container-tags" *ngIf="expression.populatedTags.length > 0">
       <span class="subtitle">Tags:</span>

@@ -16,6 +16,8 @@ export interface UserKanji {
   notes: string,
 }
 
+export interface UpdateUserKanjiDto extends Partial<UserKanji> {}
+
 export interface UserKanjiFilter {
   user: string,
   difficulty?: Difficulty,

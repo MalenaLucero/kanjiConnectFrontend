@@ -118,6 +118,14 @@ a {
   justify-content: space-between;
 }
 
+.form-buttons-container-center{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: center;
+}
+
 .tag{
   background-color: var(--tag1);
   display: block;
