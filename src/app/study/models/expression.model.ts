@@ -44,7 +44,17 @@ export interface FormExpressionDto extends Omit<Expression,
 
 export interface CreateExpressionDto extends Omit<Expression, '_id'> {}
 
-export interface UpdateExpressionDto extends Partial<CreateExpressionDto> {}
+export interface UpdateExpressionDto {
+  reading?: string;
+  englishMeaning?: string[];
+  japaneseMeaning?: string[];
+  tags?: Tag[];
+  jlpt?: Jlpt;
+  transitivity?: Transitivity;
+  difficulty?: Difficulty;
+  updated?: Date;
+  notes?: string;
+}
 
 export interface FilterExpressionsDto {
   user: string;

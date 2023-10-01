@@ -54,6 +54,22 @@ export class TagsService {
     return tagIds;
   }
 
+  getTagsFromTagNames(tagNames: string[]): Tag[] {
+    let tags: Tag[] = [];
+    this.tags$.pipe(take(1)).subscribe(
+      res => tags = res.filter(tag => tagNames.includes(tag.name))
+    )
+    return tags;
+  }
+
+  getTagsFromTagIds(tagIds: string[]): Tag[] {
+    let tags: Tag[] = [];
+    this.tags$.pipe(take(1)).subscribe(
+      res => tags = res.filter(tag => tagIds.includes(tag._id))
+    )
+    return tags;
+  }
+
   uploadTag(data: UploadTag) {
     return this.http.post(environment.tagsPrivate, data);
   }

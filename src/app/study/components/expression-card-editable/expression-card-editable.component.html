@@ -59,9 +59,28 @@
         (updatedValue)="updateNote($event)">
       </app-edit-input>
     </div>
-    <div class="details-container details-container-tags" *ngIf="expression.populatedTags.length > 0">
-      <span class="subtitle">Tags:</span>
-      <app-tags-list [tags]="expression.populatedTags"></app-tags-list>
+    <div class="details-container" >
+      <div *ngIf="expression.populatedTags.length > 0 && !showTagsInput" class="details-container-tags">
+        <span class="subtitle">Tags:</span>
+        <app-tags-list [tags]="expression.populatedTags"></app-tags-list>
+        <button 
+          mat-icon-button
+          matTooltip="Edit"
+          [matTooltipPosition]="'above'"
+          (click)="showTagsInput = true">
+          <mat-icon color="primary">edit</mat-icon>
+        </button>
+      </div>
+      <div 
+        *ngIf="expression.tags.length === 0 && !showTagsInput" 
+        class="add-input">
+        <p (click)="showTagsInput = true">Add tags</p>
+      </div>
+      <app-edit-tags 
+        *ngIf="showTagsInput"
+        (emit)="updateTags($event)"
+        [currentTags]="expressionTags">
+      </app-edit-tags>
     </div>
     <app-redirect-links-list [links]="externalLinks"></app-redirect-links-list>
   </mat-card-content>

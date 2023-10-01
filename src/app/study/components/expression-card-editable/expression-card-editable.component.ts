@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { emptyExpression, Expression } from '../../models/expression.model';
+import { emptyExpression, Expression, UpdateExpressionDto } from '../../models/expression.model';
 import { ExternalLinksService } from '../../services/external-links.service';
 import { ExpressionsService } from '../../services/expressions.service';
 import { DataFetchingService } from 'src/app/shared/services/data-fetching.service';
+import { TagsService } from '../../services/tags.service';
 
 @Component({
   selector: 'app-expression-card-editable',
@@ -13,12 +14,16 @@ export class ExpressionCardEditableComponent implements OnInit {
   @Input() expression: Expression = emptyExpression;
   public externalLinks: { title: string, link: string }[] = [];
   public showNotesInput = false;
+  public showTagsInput = false;
+  public expressionTags: string[] = [];
 
   constructor(private externalLinksService: ExternalLinksService,
               private expressionsService: ExpressionsService,
-              private dataFetchingService: DataFetchingService) { }
+              private dataFetchingService: DataFetchingService,
+              private tagsService: TagsService) { }
 
   ngOnInit(): void {
+    this.expressionTags = this.expression.populatedTags.map(e => e.name);
     this.externalLinks = [
       {
         title: 'Jisho.org definition',
@@ -47,4 +52,26 @@ export class ExpressionCardEditableComponent implements OnInit {
     }
   }
 
+  updateTags(event: { [key: string]: boolean } | 'cancel') {
+    if(event === 'cancel') {
+      this.showTagsInput = false;
+    } else {
+      const tagNames = Object.keys(event).filter(key => event[key]).map(key => key);
+      const tags = this.tagsService.getTagsFromTagNames(tagNames);
+      this.updateExpression({tags: tags}, 'Tags');
+    }
+  }
+
+  updateExpression(objToUpdate: UpdateExpressionDto, updatedProperty: string) {
+    this.expressionsService.update(this.expression._id, objToUpdate).subscribe({
+      next: res => {
+        this.dataFetchingService.defaultSuccessBehaviour(updatedProperty + ' updated successfully');
+        this.showNotesInput = false;
+        this.showTagsInput = false;
+        this.expression.tags = res.tags;
+        this.expression.populatedTags = this.tagsService.getTagsFromTagIds(res.tags);
+        this.expressionTags = this.expression.populatedTags.map(e => e.name);
+      }, error: () => this.dataFetchingService.defaultErrorBehaviour()
+    })
+  }
 }

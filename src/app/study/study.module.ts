@@ -50,6 +50,7 @@ import { RedirectLinksListComponent } from './elements/redirect-links-list/redir
 import { GroupByDifficultyComponent } from './components/group-by-difficulty/group-by-difficulty.component';
 import { EditInputComponent } from './components/edit-input/edit-input.component';
 import { EditableInputPropertyComponent } from './elements/editable-input-property/editable-input-property.component';
+import { EditTagsComponent } from './components/edit-tags/edit-tags.component';
 
 const routes: Routes = [
   {
@@ -143,6 +144,7 @@ const routes: Routes = [
     GroupByDifficultyComponent,
     EditInputComponent,
     EditableInputPropertyComponent,
+    EditTagsComponent,
   ],
   imports: [
     CommonModule,

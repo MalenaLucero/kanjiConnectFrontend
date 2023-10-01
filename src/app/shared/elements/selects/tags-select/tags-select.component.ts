@@ -52,11 +52,17 @@ export class TagsSelectComponent implements OnInit, ControlValueAccessor, OnDest
       }, error: () => {
         this.fetchedDataState = 'no data';
       }
-    } )
+    })
+    
   }
 
   writeValue(obj: any): void {
-
+    const tagsForm = this.form.controls['tags'] as UntypedFormGroup;
+    Object.keys(obj).forEach(key => {
+      if (tagsForm.controls.hasOwnProperty(key)) {
+        tagsForm.controls[key].setValue(true);
+      }
+    })
   }
 
   registerOnChange(fn: any): void {
