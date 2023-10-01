@@ -2,10 +2,18 @@ import { ChangelogItem } from "../../models/changelog-item.model";
 
 export const changelogData: ChangelogItem[] = [
     {
+        date: new Date('09/30/2023'),
+        type: 'added',
+        title: 'Edit notes on expressions and kanji',
+        description: 'Notes on expressions and kanji can now be edited through the Manage section',
+        githubCommitLink: 'https://github.com/MalenaLucero/kanjiConnectFrontend/commit/6a61555d65ff21dedbd4d3a360df621d9c82cf18',
+        trelloTaskLink: 'https://trello.com/c/bz0U5Nqa/29-expression-and-user-kanji-cards-edit-notes',
+    },
+    {
         date: new Date('09/25/2023'),
         type: 'added',
         title: 'Notes on expressions and kanji',
-        description: 'Notes can now be added to expressions through the update field. Kanji are stored with an empty string on notes. Later the application will offer the possibility of updating those notes',
+        description: 'Notes can now be added to expressions through the Upload section. Kanji are stored with an empty string on notes. Later the application will offer the possibility of updating those notes',
         githubCommitLink: 'https://github.com/MalenaLucero/kanjiConnectFrontend/commit/909a82dc7c8368bf9eecbb0d82d38fd6e74134ad',
         trelloTaskLink: 'https://trello.com/c/XFK1UAM4/27-expression-and-user-kanji-add-notes-property',
     },
