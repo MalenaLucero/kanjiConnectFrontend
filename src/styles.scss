@@ -111,6 +111,13 @@ a {
   color: var(--main-color);
 }
 
+a.link {
+  text-decoration: underline;
+  font-weight: normal;
+  cursor: pointer;
+  color: var(--main-color);
+}
+
 .form-buttons-container{
   width: 100%;
   display: flex;

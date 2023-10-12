@@ -2,6 +2,7 @@ import { Card } from './card.model';
 import { Difficulty, Jlpt, Transitivity } from '../../shared/models/custom-types.model';
 import { ExampleSentence } from "./example-sentence.model";
 import { Tag } from './tag.model';
+import { Kanji } from './kanji.model';
 
 export interface Expression {
   word: string;
@@ -14,6 +15,7 @@ export interface Expression {
   lesson: string;
   user: string;
   kanjis: string[];
+  populatedKanjis: Kanji[],
   jlpt: Jlpt;
   transitivity: Transitivity;
   difficulty: Difficulty;
@@ -81,6 +83,7 @@ export const emptyExpression: Expression = {
   lesson: '',
   user: '',
   kanjis: [''],
+  populatedKanjis: [],
   difficulty: 5,
   jlpt: null,
   transitivity: null,

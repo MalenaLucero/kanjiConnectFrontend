@@ -59,6 +59,9 @@
         (updatedValue)="updateNote($event)">
       </app-edit-input>
     </div>
+    <div class="details-container" *ngIf="expression.populatedKanjis.length > 0">
+      <a class="link" href={{expressionKanjisLink}} target="_blank">See kanji details for {{ expressionKanjis | arrayToText }}</a>
+    </div>
     <div class="details-container" >
       <div *ngIf="expression.populatedTags.length > 0 && !showTagsInput" class="details-container-tags">
         <span class="subtitle">Tags:</span>

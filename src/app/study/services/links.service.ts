@@ -20,6 +20,10 @@ export class LinksService {
     return this.appBaseUrl + '/study/manage/expressions?filter=tags:' + id;
   }
 
+  filterUserKanjiByKanjiList(kanjiList: string) {
+    return this.appBaseUrl + '/study/manage/user-kanji?search=' + kanjiList;
+  }
+
   filterUserKanjiByLesson(id: string) {
     return this.appBaseUrl + '/study/manage/user-kanji?filter=lesson:' + id;
   }

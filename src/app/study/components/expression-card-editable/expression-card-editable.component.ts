@@ -4,6 +4,7 @@ import { ExternalLinksService } from '../../services/external-links.service';
 import { ExpressionsService } from '../../services/expressions.service';
 import { DataFetchingService } from 'src/app/shared/services/data-fetching.service';
 import { TagsService } from '../../services/tags.service';
+import { LinksService } from '../../services/links.service';
 
 @Component({
   selector: 'app-expression-card-editable',
@@ -16,14 +17,19 @@ export class ExpressionCardEditableComponent implements OnInit {
   public showNotesInput = false;
   public showTagsInput = false;
   public expressionTags: string[] = [];
+  public expressionKanjis: string[] = [];
+  public expressionKanjisLink: string = '';
 
   constructor(private externalLinksService: ExternalLinksService,
+              private linksService: LinksService, 
               private expressionsService: ExpressionsService,
               private dataFetchingService: DataFetchingService,
               private tagsService: TagsService) { }
 
   ngOnInit(): void {
     this.expressionTags = this.expression.populatedTags.map(e => e.name);
+    this.expressionKanjis = this.expression.populatedKanjis.map(e => e.kanji);
+    this.expressionKanjisLink = this.linksService.filterUserKanjiByKanjiList(this.expressionKanjis.join(','));
     this.externalLinks = [
       {
         title: 'Jisho.org definition',

@@ -37,6 +37,7 @@ import { DeleteConfirmComponent } from './components/delete-confirm/delete-confi
 import { BoldWordInStringPipe } from './pipes/bold-word-in-string.pipe';
 import { InfoNavComponent } from './components/header/info-nav/info-nav.component';
 import { PageTitleComponent } from './components/header/page-title/page-title.component';
+import { ArrayToTextPipe } from './pipes/array-to-text.pipe';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { PageTitleComponent } from './components/header/page-title/page-title.co
     BoldWordInStringPipe,
     InfoNavComponent,
     PageTitleComponent,
+    ArrayToTextPipe,
   ],
   imports: [
     CommonModule,
@@ -98,6 +100,7 @@ import { PageTitleComponent } from './components/header/page-title/page-title.co
     ArrayToStringPipe,
     DeleteConfirmComponent,
     BoldWordInStringPipe,
+    ArrayToTextPipe,
   ]
 })
 export class SharedModule { }
