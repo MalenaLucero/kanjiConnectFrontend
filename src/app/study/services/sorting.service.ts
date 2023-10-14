@@ -4,6 +4,7 @@ import { Expression } from '../models/expression.model';
 import { Tag } from '../models/tag.model';
 import { DifficultyText } from 'src/app/shared/models/custom-types.model';
 import { DifficultyService } from './difficulty.service';
+import { TableData } from 'src/app/shared/models/table-data.model';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,19 @@ export class SortingService {
     const arrWithoutNull = arr.filter(e => e.kanji.jlpt !== null);
     arrWithoutNull.sort((a, b) => {
       if (a.kanji.jlpt !== null && b.kanji.jlpt !== null && a.kanji.jlpt < b.kanji.jlpt) {
+        return -1
+      } else {
+        return 1;
+      }
+    })
+    return arrWithoutNull.concat(nullArrElements);
+  }
+
+  sortExpressionsByJlptLevel(arr: Expression[]) {
+    const nullArrElements = arr.filter(e => e.jlpt === null);
+    const arrWithoutNull = arr.filter(e => e.jlpt !== null);
+    arrWithoutNull.sort((a, b) => {
+      if (a.jlpt !== null && b.jlpt !== null && a.jlpt < b.jlpt) {
         return -1
       } else {
         return 1;

@@ -73,6 +73,7 @@ export class ManageExpressionsComponent implements OnInit {
         if (this.filteredExpressions.length > 0) {
           this.cardsFilteredExpressions = this.filteredExpressions.slice(0, 10);
           this.tableData = this.manageExpressionsService.generateTableData(this.filteredExpressions);
+          this.tableData.data = this.sortingService.sortExpressionsByJlptLevel(this.tableData.data);
           this.tagCombinations = this.sortingService.sortByTagCombination(this.filteredExpressions);
           this.expressionsByDifficulty = this.sortingService.sortByDifficultyText(this.filteredExpressions)
             .filter(e => e.list.length > 0);
