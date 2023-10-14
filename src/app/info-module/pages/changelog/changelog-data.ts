@@ -2,6 +2,14 @@ import { ChangelogItem } from "../../models/changelog-item.model";
 
 export const changelogData: ChangelogItem[] = [
     {
+        date: new Date('10/14/2023'),
+        type: 'added',
+        title: 'Edit difficulty on expressions and kanji',
+        description: 'Now the difficulty of an expression or a kanji can be editted through the Manage section without the need of reviewing it multiple times',
+        githubCommitLink: 'https://github.com/MalenaLucero/kanjiConnectFrontend/commit/6a377b949d346c6cdd0cb8a43cfcbd5398b8dc37',
+        trelloTaskLink: 'https://trello.com/c/c6b5ouUM/32-expression-and-user-kanji-card-edit-difficulty',
+    },
+    {
         date: new Date('10/01/2023'),
         type: 'added',
         title: 'Edit tags on expressions',
