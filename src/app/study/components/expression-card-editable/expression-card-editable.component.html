@@ -39,6 +39,9 @@
           {{ expression.jlpt }}
       </p>
     </div>
+    <div class="details-container" *ngIf="expression.populatedKanjis.length > 0">
+      <a class="link" href={{expressionKanjisLink}} target="_blank">See kanji details for {{ expressionKanjis | arrayToText }}</a>
+    </div>
     <div class="details-container">
       <app-editable-input-property 
         *ngIf="expression.notes && !showNotesInput"
@@ -59,8 +62,18 @@
         (updatedValue)="updateNote($event)">
       </app-edit-input>
     </div>
-    <div class="details-container" *ngIf="expression.populatedKanjis.length > 0">
-      <a class="link" href={{expressionKanjisLink}} target="_blank">See kanji details for {{ expressionKanjis | arrayToText }}</a>
+    <div class="details-container" >
+      <app-editable-input-property 
+        *ngIf="!showDifficultyInput"
+        [label]="'Difficulty'"
+        [text]="expression.difficulty"
+        (emit)="showDifficultyInput = true">
+      </app-editable-input-property>
+      <app-edit-difficulty 
+        *ngIf="showDifficultyInput"
+        [currentValue]="expression.difficulty"
+        (updatedValue)="updateDifficulty($event)">
+      </app-edit-difficulty>
     </div>
     <div class="details-container" >
       <div *ngIf="expression.populatedTags.length > 0 && !showTagsInput" class="details-container-tags">

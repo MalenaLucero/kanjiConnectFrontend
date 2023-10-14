@@ -30,7 +30,7 @@ export class DataFetchingService {
     this.snack.open(message, action, { duration });
   }
 
-  defaultErrorBehaviour(message: string = 'An error ocurred', action: string = 'Try again', duration: number = 3000) {
+  defaultErrorBehaviour(message: string = 'An error ocurred', action: string = 'Unauthorized', duration: number = 3000) {
     this.closeSpinner();
     this.openErrorSnack(message, action, duration);
   }

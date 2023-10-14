@@ -5,6 +5,7 @@ import { ExpressionsService } from '../../services/expressions.service';
 import { DataFetchingService } from 'src/app/shared/services/data-fetching.service';
 import { TagsService } from '../../services/tags.service';
 import { LinksService } from '../../services/links.service';
+import { Difficulty } from 'src/app/shared/models/custom-types.model';
 
 @Component({
   selector: 'app-expression-card-editable',
@@ -16,6 +17,7 @@ export class ExpressionCardEditableComponent implements OnInit {
   public externalLinks: { title: string, link: string }[] = [];
   public showNotesInput = false;
   public showTagsInput = false;
+  public showDifficultyInput = false;
   public expressionTags: string[] = [];
   public expressionKanjis: string[] = [];
   public expressionKanjisLink: string = '';
@@ -65,6 +67,20 @@ export class ExpressionCardEditableComponent implements OnInit {
       const tagNames = Object.keys(event).filter(key => event[key]).map(key => key);
       const tags = this.tagsService.getTagsFromTagNames(tagNames);
       this.updateExpression({tags: tags}, 'Tags');
+    }
+  }
+
+  updateDifficulty(event: Difficulty | 'cancel') {
+    if (event === 'cancel') {
+      this.showDifficultyInput = false;
+    } else {
+      this.expressionsService.update(this.expression._id, { difficulty: event }).subscribe({
+        next: res => {
+          this.dataFetchingService.defaultSuccessBehaviour('Difficulty updated successfully');
+          this.showDifficultyInput = false;
+          this.expression.difficulty = res.difficulty;
+        }, error: () => this.dataFetchingService.defaultErrorBehaviour()
+      })
     }
   }
 

@@ -6,7 +6,10 @@ import { Difficulty, DifficultyText } from '../../shared/models/custom-types.mod
 })
 export class DifficultyPipe implements PipeTransform {
 
-  transform(difficulty: Difficulty): DifficultyText | null {
+  transform(difficulty: Difficulty | string): DifficultyText | string | null {
+    if (typeof difficulty === 'string') {
+      return difficulty;
+    }
     if (difficulty > 8) {
       return 'Very hard';
     } else if (difficulty === 7 || difficulty === 8) {

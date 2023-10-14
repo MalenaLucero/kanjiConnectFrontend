@@ -51,6 +51,7 @@ import { GroupByDifficultyComponent } from './components/group-by-difficulty/gro
 import { EditInputComponent } from './components/edit-input/edit-input.component';
 import { EditableInputPropertyComponent } from './elements/editable-input-property/editable-input-property.component';
 import { EditTagsComponent } from './components/edit-tags/edit-tags.component';
+import { EditDifficultyComponent } from './components/edit-difficulty/edit-difficulty.component';
 
 const routes: Routes = [
   {
@@ -145,6 +146,7 @@ const routes: Routes = [
     EditInputComponent,
     EditableInputPropertyComponent,
     EditTagsComponent,
+    EditDifficultyComponent,
   ],
   imports: [
     CommonModule,

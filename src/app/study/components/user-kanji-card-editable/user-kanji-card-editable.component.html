@@ -46,6 +46,19 @@
         (updatedValue)="updateNote($event)">
       </app-edit-input>
     </div>
+    <div class="details-container" >
+      <app-editable-input-property 
+        *ngIf="!showDifficultyInput"
+        [label]="'Difficulty'"
+        [text]="cardData.difficulty"
+        (emit)="showDifficultyInput = true">
+      </app-editable-input-property>
+      <app-edit-difficulty 
+        *ngIf="showDifficultyInput"
+        [currentValue]="cardData.difficulty"
+        (updatedValue)="updateDifficulty($event)">
+      </app-edit-difficulty>
+    </div>
     <app-redirect-links-list [links]="externalLinks"></app-redirect-links-list>
   </mat-card-content>
   

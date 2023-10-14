@@ -4,6 +4,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ExternalLinksService } from '../../services/external-links.service';
 import { UserKanjiService } from '../../services/user-kanji.service';
 import { DataFetchingService } from 'src/app/shared/services/data-fetching.service';
+import { Difficulty } from 'src/app/shared/models/custom-types.model';
 
 @Component({
   selector: 'app-user-kanji-card-editable',
@@ -15,6 +16,7 @@ export class UserKanjiCardEditableComponent implements OnInit {
   @Output() expressionToOutput = new EventEmitter<Expression>();
   public externalLinks: { title: string, link: string}[] = [];
   public showNotesInput = false;
+  public showDifficultyInput = false;
 
   constructor(private externalLinksService: ExternalLinksService,
               private userKanjiService: UserKanjiService,
@@ -45,6 +47,20 @@ export class UserKanjiCardEditableComponent implements OnInit {
           this.dataFetchingService.defaultSuccessBehaviour('Notes updated successfully');
           this.showNotesInput = false;
           this.cardData.notes = res.notes;
+        }, error: () => this.dataFetchingService.defaultErrorBehaviour()
+      })
+    }
+  }
+
+  updateDifficulty(event: Difficulty | 'cancel') {
+    if (event === 'cancel') {
+      this.showDifficultyInput = false;
+    } else {
+      this.userKanjiService.update(this.cardData._id, { difficulty: event }).subscribe({
+        next: res => {
+          this.dataFetchingService.defaultSuccessBehaviour('Difficulty updated successfully');
+          this.showDifficultyInput = false;
+          this.cardData.difficulty = res.difficulty;
         }, error: () => this.dataFetchingService.defaultErrorBehaviour()
       })
     }

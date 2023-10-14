@@ -1,0 +1,12 @@
+<div class="container">
+    <form [formGroup]="form">
+        <app-difficulty-select 
+            [hideEmptyOption]="true"
+            formControlName="difficulty">
+        </app-difficulty-select>
+    </form>
+    <div mat-dialog-actions class="form-buttons-container-center">
+        <button mat-stroked-button color="primary" (click)="cancel()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="confirm()">Update</button>
+    </div>
+</div>
