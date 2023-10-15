@@ -48,8 +48,10 @@ export class UserKanjiService {
     return cleanFilter;
   }
 
-  update(id: string, data: UpdateUserKanjiDto) {
-    this.dataFetchingService.openSpinner();
+  update(id: string, data: UpdateUserKanjiDto, showSpinner = true) {
+    if (showSpinner) {
+      this.dataFetchingService.openSpinner();
+    }
     return this.http.put<UserKanji>(environment.userKanjiPrivate + '/' + id, data);
   }
 }

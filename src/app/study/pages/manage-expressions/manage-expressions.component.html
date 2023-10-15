@@ -43,6 +43,9 @@
     <mat-card-content>
       <mat-tab-group dynamicHeight mat-stretch-tabs="true" mat-align-tabs="start">
         <mat-tab label="List">
+          <div class="review-button-container">
+            <a (click)="review()">Review these expressions</a> 
+          </div>
           <div class="cards-container">
             <app-expression-card-editable
               *ngFor="let expression of cardsFilteredExpressions"

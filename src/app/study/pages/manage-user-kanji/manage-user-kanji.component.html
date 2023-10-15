@@ -37,6 +37,9 @@
     <mat-card-content>
       <mat-tab-group dynamicHeight mat-stretch-tabs="true">
         <mat-tab label="List">
+          <div class="review-button-container">
+            <a (click)="review()">Review these kanji</a> 
+          </div>
           <div class="cards-container">
             <app-user-kanji-card-editable *ngFor="let data of cardsUserKanjiList" class="card"
               [cardData]="data" (expressionToOutput)="showExpression($event)"></app-user-kanji-card-editable>

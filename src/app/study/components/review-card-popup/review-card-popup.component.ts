@@ -6,6 +6,7 @@ import { UserKanji } from 'src/app/study/models/user-kanji.model';
 import { emptyCard, Card } from 'src/app/study/models/card.model';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ExpressionsService } from 'src/app/study/services/expressions.service';
+import { UserKanjiService } from '../../services/user-kanji.service';
 
 @Component({
   selector: 'app-review-card-popup',
@@ -25,6 +26,7 @@ export class ReviewCardPopupComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<ReviewCardPopupComponent>,
               private expressionsService: ExpressionsService,
               private snackBar: MatSnackBar,
+              private userKanjiService: UserKanjiService,
               @Inject(MAT_DIALOG_DATA) public data: { reviewData: Expression[] | UserKanji[], type: DataType }) { }
 
   ngOnInit(): void {
@@ -48,11 +50,10 @@ export class ReviewCardPopupComponent implements OnInit {
   }
 
   updateDifficulty(updatedDifficulty: Difficulty) {
-    const updateExpression: UpdateExpressionDto = { difficulty: updatedDifficulty };
     if (this.type === 'expression') {
-      this.expressionsService.update(this.cardData._id, updateExpression).subscribe({
+      this.expressionsService.update(this.cardData._id, { difficulty: updatedDifficulty }, false).subscribe({
         next: res => {
-          //this.snackBar.open('Difficulty will be updated', 'OK', { duration: 3000 })
+          //this.snackBar.open('Difficulty will be updated', 'OK', { duration: 3000 });
         }, error: (err) => {
           if (!this.wasFirstSnackShown) {
             this.snackBar.open(`Difficulty won't be updated`, err.error.message, { duration: 3000 })
@@ -61,7 +62,16 @@ export class ReviewCardPopupComponent implements OnInit {
         }
       })
     } else if (this.type === 'user-kanji'){
-      console.log('update user kanji')
+      this.userKanjiService.update(this.cardData._id, { difficulty: updatedDifficulty}, false).subscribe({
+        next: res => {
+          //this.snackBar.open('Difficulty will be updated', 'OK', { duration: 3000 });
+        }, error: (err) => {
+          if (!this.wasFirstSnackShown) {
+            this.snackBar.open(`Difficulty won't be updated`, err.error.message, { duration: 3000 })
+            this.wasFirstSnackShown = true;
+          }
+        }
+      })
     }
 
     this.currentIndex += 1;

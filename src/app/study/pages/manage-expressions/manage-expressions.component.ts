@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { QuerySearchService } from '../../services/query-search.service';
 import { GenericFilter } from '../../models/query-search.model';
 import { FetchedDataState } from 'src/app/shared/models/custom-types.model';
+import { ReviewCardPopupService } from '../../components/review-card-popup/review-card-popup.service';
 
 @Component({
   selector: 'app-manage-expressions',
@@ -35,7 +36,8 @@ export class ManageExpressionsComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private querySearchService: QuerySearchService,
-              private sortingService: SortingService) {
+              private sortingService: SortingService,
+              private reviewCardPopupService: ReviewCardPopupService) {
     this.searchForm = this.formBuilder.group({
       searchList: [''],
       reading: '',
@@ -72,8 +74,8 @@ export class ManageExpressionsComponent implements OnInit {
         this.filteredExpressions = res;
         if (this.filteredExpressions.length > 0) {
           this.cardsFilteredExpressions = this.filteredExpressions.slice(0, 10);
-          this.tableData = this.manageExpressionsService.generateTableData(this.filteredExpressions);
-          this.tableData.data = this.sortingService.sortExpressionsByJlptLevel(this.tableData.data);
+          const expressionsByJlptLevel = this.sortingService.sortExpressionsByJlptLevel(this.filteredExpressions)
+          this.tableData = this.manageExpressionsService.generateTableData(expressionsByJlptLevel);
           this.tagCombinations = this.sortingService.sortByTagCombination(this.filteredExpressions);
           this.expressionsByDifficulty = this.sortingService.sortByDifficultyText(this.filteredExpressions)
             .filter(e => e.list.length > 0);
@@ -87,6 +89,10 @@ export class ManageExpressionsComponent implements OnInit {
 
   showMoreCards() {
     this.cardsFilteredExpressions = this.filteredExpressions;
+  }
+
+  review() {
+    this.reviewCardPopupService.open(this.filteredExpressions, 'expression');
   }
 
 }

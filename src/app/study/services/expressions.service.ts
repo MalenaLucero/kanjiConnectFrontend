@@ -24,8 +24,10 @@ export class ExpressionsService {
     return this.http.post<Expression[]>(environment.expressions + '/filter', filter);
   }
 
-  update(id: string, data: UpdateExpressionDto) {
-    this.dataFetchingService.openSpinner();
+  update(id: string, data: UpdateExpressionDto, showSpinner = true) {
+    if(showSpinner) {
+      this.dataFetchingService.openSpinner();
+    }
     return this.http.put<Expression>(environment.expressionsPrivate + '/' + id, data);
   }
 
