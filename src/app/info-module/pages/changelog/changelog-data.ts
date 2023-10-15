@@ -2,6 +2,14 @@ import { ChangelogItem } from "../../models/changelog-item.model";
 
 export const changelogData: ChangelogItem[] = [
     {
+        date: new Date('10/15/2023'),
+        type: 'added',
+        title: 'Review expressions and kanji after filtering on Manage section',
+        description: 'Expressions and kanji filtered through the Manage section can now be reviewed on the same route without having to apply the same filter on the Review section',
+        githubCommitLink: 'https://github.com/MalenaLucero/kanjiConnectFrontend/commit/ceb5d143c08e24d93132ff4ec68b888796b613d0',
+        trelloTaskLink: 'https://trello.com/c/MrkJ4aeQ/41-review-expressions-and-kanji-after-filtering-through-manage-section',
+    },
+    {
         date: new Date('10/14/2023'),
         type: 'added',
         title: 'Edit difficulty on expressions and kanji',
