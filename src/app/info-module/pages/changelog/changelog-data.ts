@@ -2,6 +2,14 @@ import { ChangelogItem } from "../../models/changelog-item.model";
 
 export const changelogData: ChangelogItem[] = [
     {
+        date: new Date('01/27/2024'),
+        type: 'added',
+        title: 'Review types: reading and writing',
+        description: 'Now expressions and kanji can be reviewed in their phonetic form to practice writing',
+        githubCommitLink: 'https://github.com/MalenaLucero/kanjiConnectFrontend/commit/8d20fe9ba94e11d1d49f91595c5de133a15e039e',
+        trelloTaskLink: 'https://trello.com/c/BFWcppZn/43-review-add-possibility-to-also-review-writing',
+    },
+    {
         date: new Date('10/15/2023'),
         type: 'added',
         title: 'Review expressions and kanji after filtering on Manage section',
