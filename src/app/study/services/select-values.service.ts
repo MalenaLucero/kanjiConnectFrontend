@@ -1,4 +1,4 @@
-import { Jlpt, Transitivity, DataType, DifficultyText, Difficulty } from '../../shared/models/custom-types.model';
+import { Jlpt, Transitivity, DataType, DifficultyText, Difficulty, ReviewType } from '../../shared/models/custom-types.model';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -8,7 +8,7 @@ export class SelectValuesService {
 
   constructor() { }
 
-  getJlpt(): { name: number | '', value: Jlpt}[] {
+  getJlpt(): { name: number | '', value: Jlpt }[] {
     return [
       { name: '', value: null },
       { name: 1, value: 1 },
@@ -19,7 +19,7 @@ export class SelectValuesService {
     ]
   }
 
-  getTransitivity(): { name: string, value: Transitivity}[] {
+  getTransitivity(): { name: string, value: Transitivity }[] {
     return [
       { name: '', value: null },
       { name: 'Transitive', value: 'transitive' },
@@ -38,7 +38,7 @@ export class SelectValuesService {
     return this.getDataType()[0].value;
   }
 
-  getDifficulty(): { name: DifficultyText | '', value: Difficulty[] | null}[] {
+  getDifficulty(): { name: DifficultyText | '', value: Difficulty[] | null }[] {
     return [
       { name: '', value: null },
       { name: 'Very hard', value: [10, 9] },
@@ -46,6 +46,18 @@ export class SelectValuesService {
       { name: 'Medium', value: [6, 5, 4] },
       { name: 'Easy', value: [3, 2] },
       { name: 'Very easy', value: [1, 0] },
+    ]
+  }
+
+  getReviewTypes(): { name: string, value: ReviewType }[] {
+    return [
+      {
+        name: 'Reading',
+        value: 'reading'
+      }, {
+        name: 'Writing',
+        value: 'writing'
+      }
     ]
   }
 }

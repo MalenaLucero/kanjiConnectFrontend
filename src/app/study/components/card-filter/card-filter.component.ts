@@ -1,7 +1,6 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { DataType } from 'src/app/shared/models/custom-types.model';
-import { Tag } from 'src/app/study/models/tag.model';
+import { DataType, ReviewType } from 'src/app/shared/models/custom-types.model';
 import { SelectValuesService } from 'src/app/study/services/select-values.service';
 import { CardFilterService } from './card-filter.service';
 
@@ -10,18 +9,21 @@ import { CardFilterService } from './card-filter.service';
   templateUrl: './card-filter.component.html',
   styleUrls: ['./card-filter.component.scss']
 })
-export class CardFilterComponent implements OnInit {
+export class CardFilterComponent {
   @Output() filter = new EventEmitter();
 
   public filterForm: UntypedFormGroup;
   public dataTypes: { name: string, value: DataType }[] = [];
+  public reviewTypes: { name: string, value: ReviewType }[] = [];
 
   constructor(private formBuilder: UntypedFormBuilder,
-              private selectValuesService: SelectValuesService,
-              private cardFilterService: CardFilterService) {
+    private selectValuesService: SelectValuesService,
+    private cardFilterService: CardFilterService) {
     this.dataTypes = this.selectValuesService.getDataType();
+    this.reviewTypes = this.selectValuesService.getReviewTypes();
     this.filterForm = this.formBuilder.group({
       type: [this.selectValuesService.getDefaultDataTypeValue()],
+      reviewType: [this.selectValuesService.getReviewTypes()[0].value],
       lesson: [''],
       source: [''],
       jlpt: null,
@@ -29,10 +31,6 @@ export class CardFilterComponent implements OnInit {
       difficulty: [''],
       tags: ['']
     })
-  }
-
-  ngOnInit(): void {
-
   }
 
   sendFilter() {

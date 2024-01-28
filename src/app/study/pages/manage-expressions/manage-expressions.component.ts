@@ -10,7 +10,7 @@ import { TagsService } from '../../services/tags.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuerySearchService } from '../../services/query-search.service';
 import { GenericFilter } from '../../models/query-search.model';
-import { FetchedDataState } from 'src/app/shared/models/custom-types.model';
+import { FetchedDataState, ReviewType } from 'src/app/shared/models/custom-types.model';
 import { ReviewCardPopupService } from '../../components/review-card-popup/review-card-popup.service';
 
 @Component({
@@ -91,8 +91,8 @@ export class ManageExpressionsComponent implements OnInit {
     this.cardsFilteredExpressions = this.filteredExpressions;
   }
 
-  review() {
-    this.reviewCardPopupService.open(this.filteredExpressions, 'expression');
+  review(reviewType: ReviewType) {
+    this.reviewCardPopupService.open(this.filteredExpressions, 'expression', reviewType);
   }
 
 }

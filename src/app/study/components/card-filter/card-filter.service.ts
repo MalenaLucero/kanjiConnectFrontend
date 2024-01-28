@@ -12,13 +12,14 @@ export class CardFilterService {
   private user: string;
 
   constructor(private tagsService: TagsService,
-              private authService: AuthService) {
+    private authService: AuthService) {
     this.user = this.authService.getUserId();
   }
 
   generateFilter(formValues: any): CardFilter {
     const cardFilter: CardFilter = { user: this.user };
     cardFilter.type = formValues.type;
+    cardFilter.reviewType = formValues.reviewType;
     if (formValues.lesson !== '') {
       cardFilter.lesson = formValues.lesson;
     }

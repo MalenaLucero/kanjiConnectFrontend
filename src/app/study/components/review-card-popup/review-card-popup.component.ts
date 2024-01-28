@@ -1,10 +1,9 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CardFlipState, DataType, Difficulty } from '../../../shared/models/custom-types.model';
+import { CardFlipState, DataType, Difficulty, ReviewType } from '../../../shared/models/custom-types.model';
 import { Component, OnInit, Inject } from '@angular/core';
-import { Expression, UpdateExpressionDto, emptyExpression } from 'src/app/study/models/expression.model';
+import { Expression, emptyExpression } from 'src/app/study/models/expression.model';
 import { UserKanji } from 'src/app/study/models/user-kanji.model';
-import { emptyCard, Card } from 'src/app/study/models/card.model';
-import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ExpressionsService } from 'src/app/study/services/expressions.service';
 import { UserKanjiService } from '../../services/user-kanji.service';
 
@@ -20,18 +19,20 @@ export class ReviewCardPopupComponent implements OnInit {
   public currentIndex: number = 0;
   public total: number = 0;
   public type: DataType = 'expression';
+  public reviewType: ReviewType = 'reading';
   public isReviewCompleted: boolean = false;
   private wasFirstSnackShown = false;
 
   constructor(private dialogRef: MatDialogRef<ReviewCardPopupComponent>,
-              private expressionsService: ExpressionsService,
-              private snackBar: MatSnackBar,
-              private userKanjiService: UserKanjiService,
-              @Inject(MAT_DIALOG_DATA) public data: { reviewData: Expression[] | UserKanji[], type: DataType }) { }
+    private expressionsService: ExpressionsService,
+    private snackBar: MatSnackBar,
+    private userKanjiService: UserKanjiService,
+    @Inject(MAT_DIALOG_DATA) public data: { reviewData: Expression[] | UserKanji[], type: DataType, reviewType: ReviewType }) { }
 
   ngOnInit(): void {
     this.total = this.data.reviewData.length;
     this.type = this.data.type;
+    this.reviewType = this.data.reviewType;
     this.showCardFront()
   }
 
@@ -61,8 +62,8 @@ export class ReviewCardPopupComponent implements OnInit {
           }
         }
       })
-    } else if (this.type === 'user-kanji'){
-      this.userKanjiService.update(this.cardData._id, { difficulty: updatedDifficulty}, false).subscribe({
+    } else if (this.type === 'user-kanji') {
+      this.userKanjiService.update(this.cardData._id, { difficulty: updatedDifficulty }, false).subscribe({
         next: res => {
           //this.snackBar.open('Difficulty will be updated', 'OK', { duration: 3000 });
         }, error: (err) => {

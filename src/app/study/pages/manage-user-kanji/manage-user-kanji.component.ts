@@ -14,7 +14,7 @@ import { QuerySearchService } from '../../services/query-search.service';
 import { TableData } from 'src/app/shared/models/table-data.model';
 import { GenericFilter } from '../../models/query-search.model';
 import { SortingService } from '../../services/sorting.service';
-import { FetchedDataState } from 'src/app/shared/models/custom-types.model';
+import { FetchedDataState, ReviewType } from 'src/app/shared/models/custom-types.model';
 import { ReviewCardPopupService } from '../../components/review-card-popup/review-card-popup.service';
 
 @Component({
@@ -110,7 +110,7 @@ export class ManageUserKanjiComponent implements OnInit {
     this.cardsUserKanjiList = this.userKanjiList;
   }
 
-  review() {
-    this.reviewCardPopupService.open(this.userKanjiList, 'user-kanji');
+  review(reviewType: ReviewType) {
+    this.reviewCardPopupService.open(this.userKanjiList, 'user-kanji', reviewType);
   }
 }

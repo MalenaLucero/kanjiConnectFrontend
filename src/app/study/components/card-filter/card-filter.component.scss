@@ -1,14 +1,15 @@
-mat-form-field{
+mat-form-field {
   margin-right: 1em;
 }
 
-form{
-  .form-header{
+form {
+  .form-header {
     display: flex;
     gap: 10px;
     align-items: center;
-    justify-content: flex-end;
-    p{
+    flex-wrap: wrap;
+
+    p {
       font-weight: bold;
     }
   }
@@ -17,26 +18,31 @@ form{
 ul {
   display: flex;
   flex-wrap: wrap;
+
   li {
     margin-right: 1em;
   }
 }
 
-.select-container{
+.select-container {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+
   @media(max-width: 768px) {
     flex-wrap: wrap;
   }
-  div{
+
+  div {
     width: 49%;
+
     @media(max-width: 768px) {
       width: 100%;
     }
   }
 }
-.form-button-container{
+
+.form-button-container {
   display: flex;
   justify-content: center;
 }

@@ -8,6 +8,11 @@
             {{ dataType.name }}
           </mat-button-toggle>
         </mat-button-toggle-group>
+        <mat-button-toggle-group formControlName="reviewType">
+          <mat-button-toggle *ngFor="let reviewType of reviewTypes" [value]="reviewType.value">
+            {{ reviewType.name }}
+          </mat-button-toggle>
+        </mat-button-toggle-group>
       </div>
       <div class="select-container">
       </div>

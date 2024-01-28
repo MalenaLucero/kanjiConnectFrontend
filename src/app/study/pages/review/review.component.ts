@@ -1,8 +1,7 @@
-import { ReviewCardPopupComponent } from '../../components/review-card-popup/review-card-popup.component';
 import { emptyExpression } from '../../models/expression.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DataType } from '../../../shared/models/custom-types.model';
-import { Component, OnInit } from '@angular/core';
+import { DataType, ReviewType } from '../../../shared/models/custom-types.model';
+import { Component } from '@angular/core';
 import { ExpressionsService } from 'src/app/study/services/expressions.service';
 import { Expression, FilterExpressionsDto } from 'src/app/study/models/expression.model';
 import { CardFilter } from 'src/app/study/models/card-filter.model';
@@ -11,38 +10,29 @@ import { UserKanjiService } from 'src/app/study/services/user-kanji.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
 import { SortingService } from '../../services/sorting.service';
+import { ReviewCardPopupService } from '../../components/review-card-popup/review-card-popup.service';
 
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
   styleUrls: ['./review.component.scss']
 })
-export class ReviewComponent implements OnInit {
+export class ReviewComponent {
   public currentReviewData: Expression | UserKanji = emptyExpression;
   public reviewDataList: Expression[] | UserKanji[] = [];
   public total: number = 0;
   public currentIndex: number = 0;
   public type: DataType = 'expression';
+  public reviewType: ReviewType = 'reading';
   private wasFirstSnackShown = false;
 
   constructor(private expressionsService: ExpressionsService,
-              private userKanjiService: UserKanjiService,
-              private snackBar: MatSnackBar,
-              private dialog: MatDialog,
-              private spinner: SpinnerService,
-              private sortingService: SortingService) { }
-
-  ngOnInit(): void {
-
-  }
-
-  openDialog(reviewData: Expression[] | UserKanji[], type: DataType): void {
-    const dialogRef = this.dialog.open(ReviewCardPopupComponent, {
-      width: '400px',
-      height: '80vh',
-      data: { reviewData, type }
-    });
-  }
+    private userKanjiService: UserKanjiService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
+    private spinner: SpinnerService,
+    private sortingService: SortingService,
+    private reviewCardPopupService: ReviewCardPopupService) { }
 
   getReviewData(json: FilterExpressionsDto | UserKanjiFilter) {
     this.spinner.open();
@@ -55,7 +45,7 @@ export class ReviewComponent implements OnInit {
             this.reviewDataList = this.sortingService.sortByDifficulty(res);
             this.total = this.reviewDataList.length;
             this.currentReviewData = this.reviewDataList[this.currentIndex];
-            this.openDialog(this.reviewDataList, this.type);
+            this.reviewCardPopupService.open(this.reviewDataList, this.type, this.reviewType);
           } else {
             this.snackBar.open('No cards match the criteria', 'Try another filter', { duration: 4000 });
           }
@@ -71,7 +61,7 @@ export class ReviewComponent implements OnInit {
             this.reviewDataList = this.sortingService.sortByDifficulty(res);;
             this.total = this.reviewDataList.length;
             this.currentReviewData = this.reviewDataList[this.currentIndex];
-            this.openDialog(this.reviewDataList, this.type);
+            this.reviewCardPopupService.open(this.reviewDataList, this.type, this.reviewType);
           } else {
             this.snackBar.open('No cards match the criteria', 'Try another filter', { duration: 4000 })
           }
@@ -85,7 +75,9 @@ export class ReviewComponent implements OnInit {
   setFilter(event: CardFilter) {
     if (event.type) {
       this.type = event.type;
+      this.reviewType = event.reviewType || 'reading';
       delete event.type;
+      delete event.reviewType;
       this.getReviewData(event);
     }
   }

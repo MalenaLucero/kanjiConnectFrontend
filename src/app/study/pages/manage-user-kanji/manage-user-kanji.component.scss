@@ -1,87 +1,111 @@
-.container{
+.container {
   background-color: var(--background-three);
+
   @media(max-width: 700px) {
     margin: 0 0;
   }
-  .header{
+
+  .header {
     padding-bottom: var(--default-padding);
-    .title{
+
+    .title {
       text-align: left !important;
+
       @media(max-width: 950px) {
         text-align: center !important;
       }
     }
-    .form-card{
+
+    .form-card {
       margin: var(--default-margin) 0;
-      .form-container{
-        .input-selects-container{
-          .kanji-input{
+
+      .form-container {
+        .input-selects-container {
+          .kanji-input {
             width: calc(60% - var(--default-margin)) !important;
+
             @media(max-width: 950px) {
               width: 100% !important;
             }
           }
-          .selects-container{
+
+          .selects-container {
             display: flex;
             gap: var(--default-margin);
-            .small-selects-container{
+
+            .small-selects-container {
               width: 40%;
               display: flex;
               gap: var(--default-margin);
+
               @media(max-width: 950px) {
                 width: 100%;
               }
             }
-            .select{
+
+            .select {
               width: 100%;
-              &.lesson{
+
+              &.lesson {
                 width: 60% !important;
+
                 @media(max-width: 950px) {
                   width: 100% !important;
                 }
               }
-              &.jlpt, &.difficulty{
+
+              &.jlpt,
+              &.difficulty {
                 width: 50px;
                 flex-grow: 1;
               }
             }
+
             @media(max-width: 950px) {
               flex-direction: column;
             }
           }
         }
-        .form-button-container{
+
+        .form-button-container {
           width: 100%;
           text-align: center;
         }
       }
     }
-    nav{
+
+    nav {
       width: 100%;
       text-align: center;
-      button{
+
+      button {
         margin: var(--small-margin);
       }
     }
   }
-  .cards-container{
+
+  .cards-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 15px;
     margin-top: 10px;
+
     @media(max-width: 700px) {
       flex-direction: column;
     }
-    .card{
+
+    .card {
       width: 40%;
       flex-grow: 1;
+
       @media(max-width: 700px) {
         width: 100%;
       }
     }
   }
-  .button-container{
+
+  .button-container {
     margin-top: 10px;
     width: 100%;
     display: flex;
@@ -89,6 +113,8 @@
   }
 }
 
-.review-button-container{
+.review-button-container {
   margin-top: 10px;
+  display: flex;
+  flex-direction: column;
 }
