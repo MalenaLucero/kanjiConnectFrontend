@@ -2,6 +2,22 @@ import { ChangelogItem } from "../../models/changelog-item.model";
 
 export const changelogData: ChangelogItem[] = [
     {
+        date: new Date('06/10/2024'),
+        type: 'updated',
+        title: 'Frontend updated to Angular 17',
+        description: 'Update from Angular 16 to Angular 17, including Angular Material.',
+        githubCommitLink: 'https://github.com/MalenaLucero/kanjiConnectFrontend/commit/f782ccb216bc4e4b338617c85677bb5b150e8a2b',
+        trelloTaskLink: 'https://trello.com/c/CZPt3wvC/45-update-to-angular-17',
+    },
+    {
+        date: new Date('06/10/2024'),
+        type: 'updated',
+        title: 'Frontend updated to Angular 16',
+        description: 'Update from Angular 15 to Angular 16, including Angular Material.',
+        githubCommitLink: 'https://github.com/MalenaLucero/kanjiConnectFrontend/commit/2db656cf2a0fe3882793c6734714f674b61cdd86',
+        trelloTaskLink: 'https://trello.com/c/cDhRTGMS/44-update-to-angular-16',
+    },
+    {
         date: new Date('01/27/2024'),
         type: 'added',
         title: 'Review types: reading and writing',
