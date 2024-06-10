@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "kanji-connect-frontend:build:production"
+              "buildTarget": "kanji-connect-frontend:build:production"
             },
             "development": {
-              "browserTarget": "kanji-connect-frontend:build:development"
+              "buildTarget": "kanji-connect-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "kanji-connect-frontend:build"
+            "buildTarget": "kanji-connect-frontend:build"
           }
         },
         "test": {
