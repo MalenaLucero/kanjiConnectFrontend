@@ -1,16 +1,19 @@
-<app-review-card-front
-  *ngIf="cardFlipState === 'front' && !isReviewCompleted"
-  [cardData]="cardData"
-  [type]="type"
-  [reviewType]="reviewType"
-  [total]="total"
-  [currentIndex]="currentIndex"
-  (showReverse)="showReverse()">
-</app-review-card-front>
-<app-review-card-back
-  *ngIf="cardFlipState === 'back' && !isReviewCompleted"
-  [cardData]="cardData"
-  [type]="type"
-  (sendDifficulty)="updateDifficulty($event)">
-</app-review-card-back>
-<app-review-card-complete *ngIf="isReviewCompleted"></app-review-card-complete>
+<div class="review-card-container">
+  <app-review-card-front
+    *ngIf="cardFlipState === 'front' && !isReviewCompleted"
+    [cardData]="cardData"
+    [type]="type"
+    [reviewType]="reviewType"
+    [total]="total"
+    [currentIndex]="currentIndex"
+    (showReverse)="showReverse()">
+  </app-review-card-front>
+  <app-review-card-back
+    *ngIf="cardFlipState === 'back' && !isReviewCompleted"
+    [cardData]="cardData"
+    [type]="type"
+    (sendDifficulty)="updateDifficulty($event)">
+  </app-review-card-back>
+  <app-review-card-complete *ngIf="isReviewCompleted"></app-review-card-complete>
+</div>
+
