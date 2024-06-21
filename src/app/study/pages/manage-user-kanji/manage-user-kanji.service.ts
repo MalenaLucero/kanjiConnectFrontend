@@ -15,8 +15,8 @@ export class ManageUserKanjiService {
   constructor() { }
 
   getTableData(userKanjiList: UserKanji[]): TableData {
-    const propertyNames = ['number', 'kanji', 'jlpt', 'expressions', 'kun_readings', 'on_readings'];
-    const displayedColumns = ['no.', 'kanji', 'jlpt', 'expressions', 'kun readings', 'on readings'];
+    const propertyNames = ['number', 'kanji', 'jlpt', 'on_readings', 'kun_readings', 'expressions'];
+    const displayedColumns = ['no.', 'kanji', 'jlpt', 'on readings', 'kun readings', 'expressions'];
     const data = userKanjiList.map((userKanji, index) => {
       const jlpt = userKanji.kanji.jlpt || '-';
       return {

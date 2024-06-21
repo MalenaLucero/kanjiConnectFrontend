@@ -34,6 +34,9 @@ export class UserKanjiCardEditableComponent implements OnInit {
       }, {
         title: 'Words containing this kanji',
         link: this.externalLinksService.expressionsContainingKanji(this.cardData.kanji.kanji),
+      }, {
+        title: 'Kanji groups',
+        link: 'https://kanji-connect.vercel.app/study/kanji-groups?kanji=' + this.cardData.kanji.kanji,
       },
     ]
   }
