@@ -1,0 +1,82 @@
+.container {
+    background-color: var(--background-three);
+
+    .form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        mat-form-field {
+            width: 300px;
+            margin-top: 22px;
+        }
+    }
+
+    .result-container {
+        margin-top: 20px;
+
+        .data-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            @media(max-width:  768px) {
+                flex-direction: column;
+            }
+
+            .data-section {
+                width: calc(50% - 10px);
+                @media(max-width:  768px) {
+                    width: 100%;
+                }
+            }
+
+            .kanji-details {
+                h3 {
+                    font-size: 70px;
+                    line-height: 70px;
+                }
+
+                p {
+                    line-height: 30px;
+                    color: grey;
+
+                    span {
+                        color: black;
+                        padding-left: 5px;
+                    }
+                }
+            }
+
+            .kanji-groups {
+                .group {
+                    margin-bottom: 20px;
+
+                    .group-item {
+                        display: flex;
+                        gap: 10px;
+                        align-items: center;
+                        width: 90%;
+
+                        p {
+                            font-size: 20px;
+                            line-height: 30px;
+                        }
+
+                        a{
+                            width: 30px;
+                        }
+                    }
+                }
+
+                h2 {
+                    color: grey;
+                    font-weight: normal;
+                    margin: 0;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}

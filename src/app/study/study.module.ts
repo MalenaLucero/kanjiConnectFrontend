@@ -52,12 +52,16 @@ import { EditInputComponent } from './components/edit-input/edit-input.component
 import { EditableInputPropertyComponent } from './elements/editable-input-property/editable-input-property.component';
 import { EditTagsComponent } from './components/edit-tags/edit-tags.component';
 import { EditDifficultyComponent } from './components/edit-difficulty/edit-difficulty.component';
+import { KanjiGroupsComponent } from './pages/kanji-groups/kanji-groups.component';
 
 const routes: Routes = [
   {
     path: 'study',
     children: [
       {
+        path: 'kanji-groups',
+        component: KanjiGroupsComponent
+      }, {
         path: 'review',
         component: ReviewComponent
       }, {
@@ -147,6 +151,7 @@ const routes: Routes = [
     EditableInputPropertyComponent,
     EditTagsComponent,
     EditDifficultyComponent,
+    KanjiGroupsComponent,
   ],
   imports: [
     CommonModule,

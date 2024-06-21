@@ -1,0 +1,76 @@
+<div class="container page-container">
+    <mat-card>
+        <mat-card-content>
+            <form class="form">
+                <mat-form-field appearance="fill">
+                    <mat-label>Kanji</mat-label>
+                    <input matInput [(ngModel)]="kanji" name="kanji" autocomplete="off">
+                </mat-form-field>
+                <div class="form-button-container">
+                    <button mat-raised-button color="primary" (click)="search()">Search</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="kanjiNotFound" class="result-container">
+        <mat-card-content>
+            Kanji not found
+        </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="expandedKanji !== null" class="result-container">
+        <mat-card-content class="data-wrapper">
+            <div class="data-section kanji-details">
+                <h3>{{expandedKanji.kanji}}</h3>
+                <p>Kunyomi:<span>{{expandedKanji.kun_readings | arrayToString}}</span></p>
+                <p>Onyomi:<span>{{expandedKanji.on_readings | arrayToString}}</span></p>
+                <p>Meanings:<span>{{expandedKanji.meanings | arrayToString}}</span></p>
+                <p>JLPT:<span>{{expandedKanji.jlpt}}</span></p>
+                <p>Grade:<span>{{expandedKanji.grade}}</span></p>
+            </div>
+            <div class="data-section kanji-groups">
+                <div class="group" *ngIf="expandedKanji.onyomiGroups && expandedKanji.onyomiGroups.length > 0">
+                    <h2>Onyomi groups:</h2>
+                    <div *ngFor="let group of expandedKanji.onyomiGroups">
+                        <div class="group-item">
+                            <p>{{group.members | arrayToString}}</p>
+                            <a (click)="filterKanji(group.members)" class="source-link">
+                                <mat-icon class="source-link-icon">open_in_new</mat-icon>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="group" *ngIf="expandedKanji.kunyomiGroups && expandedKanji.kunyomiGroups.length > 0">
+                    <h2>Kunyomi groups:</h2>
+                    <div *ngFor="let group of expandedKanji.kunyomiGroups">
+                        <div class="group-item">
+                            <p>{{group.members | arrayToString}}</p>
+                            <a (click)="filterKanji(group.members)" class="source-link">
+                                <mat-icon class="source-link-icon">open_in_new</mat-icon>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="group" *ngIf="expandedKanji.lookalikeGroups && expandedKanji.lookalikeGroups.length > 0">
+                    <h2>Look alike groups:</h2>
+                    <div *ngFor="let group of expandedKanji.lookalikeGroups">
+                        <div class="group-item">
+                            <p>{{group.members | arrayToString}}</p>
+                            <a (click)="filterKanji(group.members)" class="source-link">
+                                <mat-icon class="source-link-icon">open_in_new</mat-icon>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="group" *ngIf="expandedKanji.otherSameKunyomiKanji.length > 0">
+                    <h2>Other kanji with the same kunyomi:</h2>
+                    <div class="group-item">
+                        <p>{{expandedKanji.otherSameKunyomiKanji | arrayToString}}</p>
+                        <a (click)="filterKanji(expandedKanji.otherSameKunyomiKanji)" class="source-link">
+                            <mat-icon class="source-link-icon">open_in_new</mat-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
