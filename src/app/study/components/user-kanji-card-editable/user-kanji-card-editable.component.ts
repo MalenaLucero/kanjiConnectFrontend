@@ -17,12 +17,16 @@ export class UserKanjiCardEditableComponent implements OnInit {
   public externalLinks: { title: string, link: string}[] = [];
   public showNotesInput = false;
   public showDifficultyInput = false;
+  public isUserKanji = false;
 
   constructor(private externalLinksService: ExternalLinksService,
               private userKanjiService: UserKanjiService,
               private dataFetchingService: DataFetchingService) { }
 
   ngOnInit(): void {
+    if (this.cardData.hasOwnProperty('_id')) {
+      this.isUserKanji = true;
+    }
     this.externalLinks = [
       {
         title: 'More kanji details',

@@ -21,7 +21,7 @@ export class ManageUserKanjiService {
       const jlpt = userKanji.kanji.jlpt || '-';
       return {
         kanji: userKanji.kanji.kanji,
-        expressions: userKanji.expressions.map(e => e.word),
+        expressions: userKanji.hasOwnProperty('expressions') ? userKanji.expressions.map(e => e.word) : '',
         on_readings: userKanji.kanji.on_readings,
         kun_readings: userKanji.kanji.kun_readings,
         number: index + 1,

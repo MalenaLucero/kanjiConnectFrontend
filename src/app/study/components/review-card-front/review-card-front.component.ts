@@ -30,7 +30,9 @@ export class ReviewCardFrontComponent implements OnInit {
     } else {
       const data = this.cardData as UserKanji;
       this.main = this.reviewType === 'reading' ? data.kanji.kanji : data.kanji.kun_readings.toString() || data.kanji.on_readings.toString();
-      this.hint = this.reviewType === 'reading' ? data.expressions[0].word : data.kanji.meanings[0];
+      this.hint = this.reviewType === 'reading'
+        ? data.hasOwnProperty('expressions') ? data.expressions[0].word : data.kanji.meanings[0]
+        : data.kanji.meanings[0];
     }
   }
 

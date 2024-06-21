@@ -5,6 +5,10 @@
         <h4>{{cardData.kanji.kanji}}</h4>
       </div>
       <div class="kanji-detail">
+        <div class="label-container">
+          <app-label [state]="isUserKanji ? 'success' : 'warning'"
+            [text]="isUserKanji ? 'Added' : 'Not added'"></app-label>
+        </div>
         <span class="meanings">{{cardData.kanji.meanings | arrayToString | firstTitlecase}}</span>
         <div class="readings-container">
           <ul class="readings-list">
@@ -16,7 +20,7 @@
         </div>
       </div>
     </div>
-    <div class="extra-data-container">
+    <div class="extra-data-container" *ngIf="isUserKanji">
       <h5 class="subtitle">Expressions with this kanji:</h5>
       <ul>
         <li *ngFor="let expression of cardData.expressions">
@@ -26,40 +30,26 @@
         </li>
       </ul>
     </div>
-    <div class="details-container">
-      <app-editable-input-property 
-        *ngIf="cardData.notes && !showNotesInput"
-        [label]="'Notes'"
-        [text]="cardData.notes"
+    <div class="details-container" *ngIf="isUserKanji">
+      <app-editable-input-property *ngIf="cardData.notes && !showNotesInput" [label]="'Notes'" [text]="cardData.notes"
         (emit)="showNotesInput = true">
       </app-editable-input-property>
-      <div 
-        *ngIf="!cardData.notes && !showNotesInput" 
-        class="add-input">
+      <div *ngIf="!cardData.notes && !showNotesInput" class="add-input">
         <p (click)="showNotesInput = true">Add notes</p>
       </div>
-      <app-edit-input
-        *ngIf="showNotesInput"
-        [label]="'Notes'"
-        [type]="'textarea'"
-        [currentValue]="cardData.notes"
+      <app-edit-input *ngIf="showNotesInput" [label]="'Notes'" [type]="'textarea'" [currentValue]="cardData.notes"
         (updatedValue)="updateNote($event)">
       </app-edit-input>
     </div>
-    <div class="details-container" >
-      <app-editable-input-property 
-        *ngIf="!showDifficultyInput"
-        [label]="'Difficulty'"
-        [text]="cardData.difficulty"
+    <div class="details-container" *ngIf="isUserKanji">
+      <app-editable-input-property *ngIf="!showDifficultyInput" [label]="'Difficulty'" [text]="cardData.difficulty"
         (emit)="showDifficultyInput = true">
       </app-editable-input-property>
-      <app-edit-difficulty 
-        *ngIf="showDifficultyInput"
-        [currentValue]="cardData.difficulty"
+      <app-edit-difficulty *ngIf="showDifficultyInput" [currentValue]="cardData.difficulty"
         (updatedValue)="updateDifficulty($event)">
       </app-edit-difficulty>
     </div>
     <app-redirect-links-list [links]="externalLinks"></app-redirect-links-list>
   </mat-card-content>
-  
+
 </mat-card>

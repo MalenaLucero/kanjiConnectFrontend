@@ -38,7 +38,8 @@ export class DifficultyButtonsComponent implements OnInit {
     if (newCastDifficulty !== null) {
       this.updatedDifficulty.emit(newCastDifficulty);
     } else {
-      this.snackBar.open('Invalid difficulty', 'Error', { duration: 3000 });
+      this.updatedDifficulty.emit(5);
+      //this.snackBar.open('Invalid difficulty', 'Error', { duration: 3000 });
     }
   }
 

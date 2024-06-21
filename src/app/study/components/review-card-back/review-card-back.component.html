@@ -5,7 +5,7 @@
   </div>
   <!-- DIFFICULTY -->
   <div class="difficulty-section">
-    <div class="difficulty-details">
+    <div class="difficulty-details" *ngIf="isUserKanji">
       <p>Difficulty: <span class="color-text">{{ cardData.difficulty | difficulty }}</span></p>
     </div>
     <app-difficulty-buttons [difficulty]="cardData.difficulty"

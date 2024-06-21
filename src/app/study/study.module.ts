@@ -53,6 +53,7 @@ import { EditableInputPropertyComponent } from './elements/editable-input-proper
 import { EditTagsComponent } from './components/edit-tags/edit-tags.component';
 import { EditDifficultyComponent } from './components/edit-difficulty/edit-difficulty.component';
 import { KanjiGroupsComponent } from './pages/kanji-groups/kanji-groups.component';
+import { LabelComponent } from './components/label/label.component';
 
 const routes: Routes = [
   {
@@ -152,6 +153,7 @@ const routes: Routes = [
     EditTagsComponent,
     EditDifficultyComponent,
     KanjiGroupsComponent,
+    LabelComponent,
   ],
   imports: [
     CommonModule,

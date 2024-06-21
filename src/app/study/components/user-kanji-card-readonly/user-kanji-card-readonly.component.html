@@ -17,7 +17,7 @@
             <span class="section-text">Meaning: </span>
             {{ userKanji.kanji.meanings | arrayToString }}
         </p>
-        <div class="card-list">
+        <div class="card-list" *ngIf="userKanji.expressions">
             <p class="section-text">Expressions with this kanji:</p>
             <ul class="bullet-list expressions">
                 <li *ngFor="let expression of userKanji.expressions">

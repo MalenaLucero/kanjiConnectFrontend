@@ -11,6 +11,7 @@ import { Expression, emptyExpression } from '../../models/expression.model';
 export class ReviewCardBackComponent implements OnInit {
   public expressionData: Expression = emptyExpression;
   public kanjiData: UserKanji = emptyUserKanji;
+  public isUserKanji = false;
 
   @Input() cardData: Expression | UserKanji = emptyExpression;
   @Input() type: DataType = 'expression';
@@ -19,6 +20,9 @@ export class ReviewCardBackComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if (this.cardData.hasOwnProperty('_id')) {
+      this.isUserKanji = true;
+    }
     if (this.type === 'expression') {
       this.expressionData = this.cardData as Expression;
     } else {
