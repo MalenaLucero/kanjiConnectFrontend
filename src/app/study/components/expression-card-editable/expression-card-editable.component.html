@@ -42,6 +42,9 @@
     <div class="details-container" *ngIf="expression.populatedKanjis.length > 0">
       <a class="link" href={{expressionKanjisLink}} target="_blank">See kanji details for {{ expressionKanjis | arrayToText }}</a>
     </div>
+    <div class="details-container" *ngIf="expression.stringSearchLink">
+      <a class="link" href={{expression.stringSearchLink}} target="_blank">See usage examples</a>
+    </div>
     <div class="details-container">
       <app-editable-input-property 
         *ngIf="expression.notes && !showNotesInput"

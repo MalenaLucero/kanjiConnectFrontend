@@ -23,6 +23,7 @@ export interface Expression {
   updated: Date;
   _id: string;
   notes: string;
+  stringSearchLink: string;
 }
 
 export interface ExternalExpression {
@@ -91,4 +92,5 @@ export const emptyExpression: Expression = {
   updated: new Date(),
   _id: '',
   notes: '',
+  stringSearchLink: '',
 }
