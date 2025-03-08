@@ -18,6 +18,8 @@
     div{
       display: flex;
       gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
   }
   .lesson-card-container{

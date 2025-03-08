@@ -1,5 +1,5 @@
-//const apiUrlPrivate = 'http://localhost:3000';
-const apiUrlPrivate = 'https://kanjiconnectbackend-hhj4-dev.fl0.io';
+const apiUrlPrivate = 'http://localhost:3000';
+//const apiUrlPrivate = 'https://kanjiconnectbackend-hhj4-dev.fl0.io';
 //const apiUrl = 'http://localhost:3000/api';
 const apiUrl = 'https://kanji-connect-backend-nextjs.vercel.app/api';
 
