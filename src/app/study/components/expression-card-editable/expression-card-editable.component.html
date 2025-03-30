@@ -91,7 +91,7 @@
         </button>
       </div>
       <div 
-        *ngIf="expression.tags.length === 0 && !showTagsInput" 
+        *ngIf="expression.populatedTags.length === 0 && !showTagsInput" 
         class="add-input">
         <p (click)="showTagsInput = true">Add tags</p>
       </div>
