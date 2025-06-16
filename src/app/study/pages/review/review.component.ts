@@ -37,12 +37,13 @@ export class ReviewComponent {
   getReviewData(json: FilterExpressionsDto | UserKanjiFilter) {
     this.spinner.open();
     this.currentIndex = 0;
+    const startIndex = json.startIndex || 0;
     if (this.type === 'expression') {
       this.expressionsService.filterExpressions(json).subscribe({
         next: res => {
           this.spinner.close();
           if (res.length > 0) {
-            this.reviewDataList = this.sortingService.sortByDifficulty(res);
+            this.reviewDataList = this.sortingService.sortByDifficulty(res).slice(startIndex);
             this.total = this.reviewDataList.length;
             this.currentReviewData = this.reviewDataList[this.currentIndex];
             this.reviewCardPopupService.open(this.reviewDataList, this.type, this.reviewType);
@@ -58,7 +59,7 @@ export class ReviewComponent {
         next: res => {
           this.spinner.close();
           if (res.length > 0) {
-            this.reviewDataList = this.sortingService.sortByDifficulty(res);;
+            this.reviewDataList = this.sortingService.sortByDifficulty(res).slice(startIndex);
             this.total = this.reviewDataList.length;
             this.currentReviewData = this.reviewDataList[this.currentIndex];
             this.reviewCardPopupService.open(this.reviewDataList, this.type, this.reviewType);

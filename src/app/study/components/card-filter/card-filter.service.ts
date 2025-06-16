@@ -47,6 +47,9 @@ export class CardFilterService {
     if (formValues.difficulty) {
       cardFilter.difficulty = formValues.difficulty;
     }
+    if (formValues.startIndex) {
+      cardFilter.startIndex = formValues.startIndex;
+    }
     return cardFilter;
   }
 }

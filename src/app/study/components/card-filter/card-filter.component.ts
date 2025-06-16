@@ -29,7 +29,8 @@ export class CardFilterComponent {
       jlpt: null,
       transitivity: null,
       difficulty: [''],
-      tags: ['']
+      tags: [''],
+      startIndex: 0
     })
   }
 

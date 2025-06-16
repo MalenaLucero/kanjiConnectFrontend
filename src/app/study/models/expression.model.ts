@@ -65,6 +65,7 @@ export interface FilterExpressionsDto {
   lesson?: string;
   difficulty?: Difficulty;
   jlpt?: Jlpt;
+  startIndex?: number;
 }
 
 

@@ -10,4 +10,5 @@ export interface CardFilter {
   jlpt?: Jlpt;
   difficulty?: Difficulty;
   transitivity?: Transitivity;
+  startIndex?: number;
 }

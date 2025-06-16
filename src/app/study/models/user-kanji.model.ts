@@ -25,7 +25,8 @@ export interface UserKanjiFilter {
   tags?: string[],
   jlpt?: Jlpt,
   kanjiAsCharacter?: string,
-  kanjiList?: string[]
+  kanjiList?: string[],
+  startIndex?: number,
 }
 
 export const emptyUserKanji: UserKanji = {
