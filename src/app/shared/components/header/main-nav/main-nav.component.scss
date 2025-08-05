@@ -14,6 +14,12 @@
     justify-content: flex-end;
   }
 
+  .left-side-nav {
+    display: flex;
+    gap: var(--big-padding);
+    justify-content: flex-start;
+  }
+
   .button-wrapper {
     border-bottom: 4px solid var(--light-main-color);
     color: var(--dark-color);

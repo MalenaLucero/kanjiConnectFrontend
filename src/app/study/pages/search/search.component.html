@@ -1,0 +1,44 @@
+<div class="container page-container">
+    <mat-card>
+        <mat-card-content>
+            <form class="form">
+                <mat-form-field appearance="fill">
+                    <mat-label>Words or kanji separated by commas</mat-label>
+                    <input matInput [(ngModel)]="words" name="words" autocomplete="off">
+                </mat-form-field>
+                <div class="form-button-container">
+                    <button mat-raised-button color="primary" (click)="search()">Search</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="wordsNotFound" class="result-container">
+        <mat-card-content>
+            Word or words not found
+        </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="expandedResult !== null" class="result-container">
+        <mat-card-content class="data-wrapper">
+            <div *ngFor="let result of expandedResult" class="data-section kanji-details">
+                <h2>Word: {{result.word}}</h2>
+                <p>Number of instances:<span>{{result.numberOfInstances}}</span></p>
+                <p>Number of episodes:<span>{{result.numberOfEpisodes}}</span></p>
+                <div *ngFor="let anime of result.episodesGroupedByAnime">
+                    <mat-expansion-panel class="anime-result">
+                       <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{anime.anime}} ({{anime.episodes.length}} instances)
+                            </mat-panel-title>
+                        </mat-expansion-panel-header> 
+                        <div *ngFor="let episode of anime.episodes" class="episode-result">
+                            <h4>Season {{episode.season}} - Episode {{episode.number}}</h4>
+                            <div *ngFor="let subtitle of episode.subtitles" class="data-section kanji-details">
+                                <p>{{subtitle.startTime}}: <span>{{subtitle.line}}</span></p>
+                            </div>
+                        </div>
+                    </mat-expansion-panel> 
+                </div>
+            </div>
+        </mat-card-content>      
+    </mat-card>
+</div>

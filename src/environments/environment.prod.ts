@@ -12,5 +12,6 @@ export const environment = {
   lessonsPrivate: apiUrlPrivate + '/lessons',
   userKanji: apiUrl + '/user-kanji',
   userKanjiPrivate: apiUrlPrivate + '/user-kanji',
-  kanjis: apiUrl + '/kanjis'
+  kanjis: apiUrl + '/kanjis',
+  subtitles: apiUrl + '/subtitles/lines'
 };

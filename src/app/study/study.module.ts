@@ -54,6 +54,8 @@ import { EditTagsComponent } from './components/edit-tags/edit-tags.component';
 import { EditDifficultyComponent } from './components/edit-difficulty/edit-difficulty.component';
 import { KanjiGroupsComponent } from './pages/kanji-groups/kanji-groups.component';
 import { LabelComponent } from './components/label/label.component';
+import { SubtitlesComponent } from './pages/subtitles/subtitles.component';
+import { SearchComponent } from './pages/search/search.component';
 
 const routes: Routes = [
   {
@@ -62,6 +64,12 @@ const routes: Routes = [
       {
         path: 'kanji-groups',
         component: KanjiGroupsComponent
+      }, {
+        path: 'search',
+        component: SearchComponent
+      }, {
+        path: 'subtitles',
+        component: SubtitlesComponent
       }, {
         path: 'review',
         component: ReviewComponent
@@ -154,6 +162,8 @@ const routes: Routes = [
     EditDifficultyComponent,
     KanjiGroupsComponent,
     LabelComponent,
+    SubtitlesComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,
