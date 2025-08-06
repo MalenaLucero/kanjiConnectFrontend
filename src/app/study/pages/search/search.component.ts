@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SearchService } from '../../services/search.service';
-import { WordInSubtitles } from '../../models/subtitle-word';
+import { Episode, WordInSubtitles } from '../../models/subtitle-word';
 
 @Component({
   selector: 'app-search',
@@ -44,12 +44,17 @@ export class SearchComponent {
             this.wordsNotFound = true;
           } else {
             this.expandedResult = res;
-            console.log(res)
           }
         }, error: () => {
           this.spinner.close();
         }
       }
     )
+  }
+
+  generateSubtitleLink(episode: Episode) {
+    const { anime, season, number } = episode;
+    const url = `http://localhost:4200/study/subtitles?anime=${anime}&season=${season}&number=${number}`
+    window.open(url, '_blank');
   }
 }

@@ -1,3 +1,18 @@
 <div class="container page-container">
-    
+    <mat-card *ngIf="episodeNotFound" class="result-container">
+        <mat-card-content>
+            Episode not found
+        </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="episode !== null" class="result-container">
+        <mat-card-content class="data-wrapper">
+            <h2 *ngIf="episode.englishTitle !== null">Episode: {{episode.englishTitle}}</h2>
+            <h3>Season {{episode.season}} - Episode number {{episode.number}}</h3>
+            <p *ngIf="episode.summary !== null" class="summary">Summary: <span>{{episode.summary}}</span></p>
+            <h4>Subtitles:</h4>
+            <div *ngFor="let subtitle of episode.subtitles">
+                <p>{{subtitle.startTime}}: <span>{{subtitle.line}}</span></p>
+            </div>
+        </mat-card-content>      
+    </mat-card>
 </div>

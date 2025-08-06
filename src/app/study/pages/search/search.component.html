@@ -31,7 +31,11 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header> 
                         <div *ngFor="let episode of anime.episodes" class="episode-result">
-                            <h4>Season {{episode.season}} - Episode {{episode.number}}</h4>
+                            <h4>
+                                <a (click)="generateSubtitleLink(episode)" target="_blank">
+                                    Season {{episode.season}} - Episode {{episode.number}}
+                                </a>
+                            </h4>
                             <div *ngFor="let subtitle of episode.subtitles" class="data-section kanji-details">
                                 <p>{{subtitle.startTime}}: <span>{{subtitle.line}}</span></p>
                             </div>

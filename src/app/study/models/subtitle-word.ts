@@ -4,7 +4,7 @@ interface Subtitle {
     line: string;
 }
 
-interface Episode {
+export interface Episode {
     _id: string;
     japaneseTitle: string | null;
     englishTitle: string | null;

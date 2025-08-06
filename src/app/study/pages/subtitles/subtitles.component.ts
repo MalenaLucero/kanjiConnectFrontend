@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { SpinnerService } from 'src/app/shared/components/spinner/spinner.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SearchService } from '../../services/search.service';
+import { Episode } from '../../models/subtitle-word';
+import { SubtitlesService } from '../../services/subtitles.service';
 
 @Component({
   selector: 'app-subtitles',
@@ -9,56 +11,35 @@ import { SearchService } from '../../services/search.service';
   styleUrl: './subtitles.component.scss'
 })
 export class SubtitlesComponent {
-  public words = '';
-  public wordsNotFound = false;
+  public episode: Episode | null = null;
+  public episodeNotFound = false;
 
-  constructor(private searchService: SearchService,
-    private spinner: SpinnerService,
+  constructor(private spinner: SpinnerService,
     private route: ActivatedRoute,
-    private router: Router,
+    private subtitlesService: SubtitlesService
   ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      if (params['words']) {
-        this.wordsSearch(params.words)
+      const { anime, season, number } = params;
+      if (anime && season && number) {
+        this.spinner.open();
+        this.subtitlesService.getEpisode(anime, season, number).subscribe(
+          {
+            next: (res) => {
+              this.spinner.close();
+              if (res == null) {
+                this.episodeNotFound = true;
+              } else {
+                this.episode = res;
+                console.log(res)
+              }
+            }, error: () => {
+              this.spinner.close();
+            }
+          }
+        )
       }
     })
-  }
-
-  search() {
-    //this.router.navigate(['/study/subtitles'], { queryParams: {['words']: this.words} });
-
-    this.wordsSearch('')
-  }
-
-  wordsSearch(words: string) {
-    this.spinner.open();
-    this.wordsNotFound = false;
-    // this.searchService.getLinesWithIncludedWords(words.split(',')).subscribe(
-    //   {
-    //     next: (res) => {
-    //       this.spinner.close();
-    //       if (res === 'Kanji not found') {
-    //         this.wordsNotFound = true;
-    //       } else {
-    //         console.log(res)
-    //       }
-    //     }, error: () => {
-    //       this.spinner.close();
-    //     }
-    //   }
-    // )
-
-    this.searchService.getAllAnime().subscribe(
-      {
-        next: (res) => {
-          this.spinner.close();
-            console.log(res)
-        }, error: () => {
-          this.spinner.close();
-        }
-      }
-    )
   }
 }
