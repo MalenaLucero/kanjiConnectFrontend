@@ -13,5 +13,5 @@ export const environment = {
   userKanji: apiUrl + '/user-kanji',
   userKanjiPrivate: apiUrlPrivate + '/user-kanji',
   kanjis: apiUrl + '/kanjis',
-  subtitles: apiUrl + '/subtitles/lines'
+  subtitles: apiUrl + '/subtitles'
 };
