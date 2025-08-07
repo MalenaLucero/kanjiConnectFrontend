@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class ExternalLinksService {
   private jishoBaseUrl = 'https://jisho.org';
-  private gooBaseUrl = 'https://dictionary.goo.ne.jp';
+  private appBaseUrl = 'https://kanji-connect.vercel.app';
 
   constructor() { }
 
@@ -13,12 +13,12 @@ export class ExternalLinksService {
     return this.jishoBaseUrl + '/search/' + word;
   }
 
-  expressionJapaneseDefinition(word: string) {
-    return this.gooBaseUrl + '/srch/all/' + word + '/m0u/';
+  expressionJishoExampleSentences(word: string) {
+    return this.jishoBaseUrl + '/search/' + word + '%20%23sentences';
   }
 
-  expressionExampleSentences(word: string) {
-    return this.jishoBaseUrl + '/search/' + word + '%20%23sentences';
+  expressionSubtitleExampleSentences(word: string) {
+    return this.appBaseUrl + '/study/search?words=' + word;
   }
 
   expressionsContainingKanji(kanji: string) {

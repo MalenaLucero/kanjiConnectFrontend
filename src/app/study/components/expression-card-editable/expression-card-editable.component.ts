@@ -37,11 +37,11 @@ export class ExpressionCardEditableComponent implements OnInit {
         title: 'Jisho.org definition',
         link: this.externalLinksService.expressionEnglishDefinition(this.expression.word),
       }, {
-        title: 'Japanese definition',
-        link: this.externalLinksService.expressionJapaneseDefinition(this.expression.word),
+        title: 'Jisho.org example sentences',
+        link: this.externalLinksService.expressionJishoExampleSentences(this.expression.word),
       }, {
-        title: 'More example sentences',
-        link: this.externalLinksService.expressionExampleSentences(this.expression.word),
+        title: 'Subtitle example sentences',
+        link: this.externalLinksService.expressionSubtitleExampleSentences(this.expression.word),
       }
     ]
   }
