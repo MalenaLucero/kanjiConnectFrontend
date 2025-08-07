@@ -11,7 +11,7 @@
             <p *ngIf="episode.summary !== null" class="summary">Summary: <span>{{episode.summary}}</span></p>
             <h4>Subtitles:</h4>
             <div *ngFor="let subtitle of episode.subtitles">
-                <p>{{subtitle.startTime}}: <span>{{subtitle.line}}</span></p>
+                <p name="startTime">{{subtitle.startTime}}: <span class="subtitleLine">{{subtitle.line}}</span></p>
             </div>
         </mat-card-content>      
     </mat-card>

@@ -53,8 +53,9 @@ export class SearchComponent {
   }
 
   generateSubtitleLink(episode: Episode) {
-    const { anime, season, number } = episode;
-    const url = `https://kanji-connect.vercel.app/study/subtitles?anime=${anime}&season=${season}&number=${number}`
+    const { anime, season, number, subtitles } = episode;
+    const startTime = subtitles[0].startTime;
+    const url = `https://kanji-connect.vercel.app/study/subtitles?anime=${anime}&season=${season}&number=${number}&startTime=${startTime}`
     window.open(url, '_blank');
   }
 }

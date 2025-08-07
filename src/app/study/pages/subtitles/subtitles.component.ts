@@ -21,7 +21,7 @@ export class SubtitlesComponent {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      const { anime, season, number } = params;
+      const { anime, season, number, startTime } = params;
       if (anime && season && number) {
         this.spinner.open();
         this.subtitlesService.getEpisode(anime, season, number).subscribe(
@@ -32,7 +32,7 @@ export class SubtitlesComponent {
                 this.episodeNotFound = true;
               } else {
                 this.episode = res;
-                console.log(res)
+                setTimeout(() => this.scrollToText(startTime), 100);
               }
             }, error: () => {
               this.spinner.close();
@@ -41,5 +41,18 @@ export class SubtitlesComponent {
         )
       }
     })
+  }
+
+  scrollToText(text: string) {
+    const elements = document.getElementsByName('startTime');
+    for (const el of Array.from(elements)) {
+      if (el.textContent?.includes(text)) {
+        el.classList.add('highlight');
+        window.scrollTo({
+          top: el.getBoundingClientRect().top  + window.scrollY - 100,
+          behavior: 'smooth'
+        });
+      }
+    }
   }
 }
