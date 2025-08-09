@@ -40,6 +40,7 @@
           <div class="review-button-container">
             <a (click)="review('reading')">Review the reading of these kanji</a> 
             <a (click)="review('writing')">Review the writing of these kanji</a> 
+            <a (click)="review('expression')">Review the expressions with these kanji</a> 
           </div>
           <div class="cards-container">
             <app-user-kanji-card-editable *ngFor="let data of cardsUserKanjiList" class="card"

@@ -14,8 +14,9 @@ import { QuerySearchService } from '../../services/query-search.service';
 import { TableData } from 'src/app/shared/models/table-data.model';
 import { GenericFilter } from '../../models/query-search.model';
 import { SortingService } from '../../services/sorting.service';
-import { FetchedDataState, ReviewType } from 'src/app/shared/models/custom-types.model';
+import { DataType, FetchedDataState, ReviewType } from 'src/app/shared/models/custom-types.model';
 import { ReviewCardPopupService } from '../../components/review-card-popup/review-card-popup.service';
+import { LinksService } from '../../services/links.service';
 
 @Component({
   selector: 'app-user-kanji',
@@ -40,6 +41,7 @@ export class ManageUserKanjiComponent implements OnInit {
               private manageUserKanjiService: ManageUserKanjiService,
               private querySearchService: QuerySearchService,
               private sortingService: SortingService,
+              private linksService: LinksService,
               private reviewCardPopupService: ReviewCardPopupService) {
                 this.searchForm = this.formBuilder.group({
                   kanjiList: [''],
@@ -110,7 +112,18 @@ export class ManageUserKanjiComponent implements OnInit {
     this.cardsUserKanjiList = this.userKanjiList;
   }
 
-  review(reviewType: ReviewType) {
-    this.reviewCardPopupService.open(this.userKanjiList, 'user-kanji', reviewType);
+  review(reviewType: ReviewType | DataType) {
+    if (reviewType === 'writing' || reviewType === 'reading') {
+      this.reviewCardPopupService.open(this.userKanjiList, 'user-kanji', reviewType);
+    } else if (reviewType === 'expression') {
+      const words: string[] = [];
+      this.userKanjiList.forEach(userKanji => {
+        userKanji.expressions.forEach(expression => {
+          words.push(expression.word)
+        })
+      })
+      const url = this.linksService.searchExpression(words.toString());
+      window.open(url, "_blank");
+    }
   }
 }
