@@ -51,6 +51,10 @@ export class ManageLessonsComponent implements OnInit {
         this.filteredLessons = this.lessons.filter(lesson => lesson.date.toString().substring(0, 4) === '2025');
         this.filteredYear = 2025;
         break;
+      case 2026:
+        this.filteredLessons = this.lessons.filter(lesson => lesson.date.toString().substring(0, 4) === '2026');
+        this.filteredYear = 2026;
+        break;
       case 'reverse':
         this.filteredLessons.reverse();
         break;
