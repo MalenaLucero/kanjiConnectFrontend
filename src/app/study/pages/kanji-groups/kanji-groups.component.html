@@ -26,6 +26,12 @@
                 <p>Meanings:<span>{{expandedKanji.meanings | arrayToString}}</span></p>
                 <p>JLPT:<span>{{expandedKanji.jlpt}}</span></p>
                 <p>Grade:<span>{{expandedKanji.grade}}</span></p>
+                <p *ngIf="expandedKanji.kanjiMaster.length > 0">
+                    Kanji Master:
+                    <span *ngFor="let kanjiMaster of expandedKanji.kanjiMaster">
+                        {{kanjiMaster.level}} page {{kanjiMaster.page}}
+                    </span>
+                </p>
             </div>
             <div class="data-section kanji-groups">
                 <div class="group" *ngIf="expandedKanji.onyomiGroups && expandedKanji.onyomiGroups.length > 0">

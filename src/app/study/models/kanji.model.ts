@@ -20,6 +20,11 @@ interface LookalikeGroup {
   _id: string
 }
 
+export interface KanjiMasterItem {
+  level: string,
+  page: number
+}
+
 export interface Kanji {
   kanji: string,
   on_readings: string[],
@@ -30,6 +35,7 @@ export interface Kanji {
   kunyomiGroups: null | KunyomiGroup[],
   lookalikeGroups: null | LookalikeGroup[],
   onyomiGroups: null | OnyomiGroup[],
+  kanjiMaster: KanjiMasterItem[]
   _id: string,
 }
 
@@ -43,5 +49,6 @@ export const emptyKanji = {
   kunyomiGroups: null,
   lookalikeGroups: null,
   onyomiGroups: null,
+  kanjiMaster: [],
   _id: '',
 }
