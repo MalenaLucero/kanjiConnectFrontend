@@ -27,6 +27,7 @@ export class ManageExpressionsComponent implements OnInit {
   public expressionsByDifficulty: any = [];
   public fetchedDataState: FetchedDataState = 'init';
   public cardsFilteredExpressions: Expression[] = [];
+  public notFoundExpressions: string[] = [];
 
   constructor(private formBuilder: FormBuilder,
               private expressionsService: ExpressionsService,
@@ -79,6 +80,7 @@ export class ManageExpressionsComponent implements OnInit {
           this.tagCombinations = this.sortingService.sortByTagCombination(this.filteredExpressions);
           this.expressionsByDifficulty = this.sortingService.sortByDifficultyText(this.filteredExpressions)
             .filter(e => e.list.length > 0);
+          this.notFoundExpressions = this.expressionsService.notFoundExpressions(filter, res);
         } else {
           this.fetchedDataState = 'no data';
         }

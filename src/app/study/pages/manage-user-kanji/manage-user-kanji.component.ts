@@ -31,6 +31,7 @@ export class ManageUserKanjiComponent implements OnInit {
   public tableData: TableData = emptyTableData;
   public fetchedDataState: FetchedDataState = 'init';
   public cardsUserKanjiList: UserKanji[] = [];
+  public notFoundUserKanji: string[] = [];
 
   constructor(private userKanjiService: UserKanjiService,
               private dialog: MatDialog,
@@ -93,6 +94,7 @@ export class ManageUserKanjiComponent implements OnInit {
         this.userKanjiList = orderedUserKanji;
         this.cardsUserKanjiList = orderedUserKanji.slice(0, 10);
         this.tableData = this.manageUserKanjiService.getTableData(orderedUserKanji);
+        this.notFoundUserKanji = this.userKanjiService.notFoundUserKanji(filter, res);
       } else {
         this.fetchedDataState = 'no data';
       }

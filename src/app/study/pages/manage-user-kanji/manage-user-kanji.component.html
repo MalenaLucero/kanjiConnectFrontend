@@ -41,6 +41,7 @@
             <a (click)="review('reading')">Review the reading of these kanji</a> 
             <a (click)="review('writing')">Review the writing of these kanji</a> 
             <a (click)="review('expression')">Review the expressions with these kanji</a> 
+            <p *ngIf="notFoundUserKanji.length > 0">Not found kanji: <span>{{notFoundUserKanji}}</span></p>
           </div>
           <div class="cards-container">
             <app-user-kanji-card-editable *ngFor="let data of cardsUserKanjiList" class="card"

@@ -54,4 +54,19 @@ export class UserKanjiService {
     }
     return this.http.put<UserKanji>(environment.userKanjiPrivate + '/' + id, data);
   }
+
+  notFoundUserKanji(filter: GenericFilter, userKanji: UserKanji[]): string[] {
+    const notFound: string[] = [];
+    if (filter.searchList && filter.searchList.length > 0) {
+      const { searchList } = filter;
+      const foundKanji = userKanji.map(userKanji => userKanji.kanji.kanji);
+      searchList.forEach(kanji => {
+        if (!foundKanji.includes(kanji)) {
+          notFound.push(kanji)
+        }
+      })
+      return notFound;
+    }
+    return notFound;
+  }
 }

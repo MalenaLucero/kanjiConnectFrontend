@@ -42,4 +42,19 @@ export class ExpressionsService {
   getExpressionsByUser() {
     return this.http.get<Expression[]>(environment.expressionsPrivate + '/user/' + this.user);
   }
+
+  notFoundExpressions(filter: GenericFilter, expressions: Expression[]): string[] {
+    const notFound: string[] = [];
+    if (filter.searchList && filter.searchList.length > 0) {
+      const { searchList } = filter;
+      const foundExpressions = expressions.map(expression => expression.word);
+      searchList.forEach(word => {
+        if (!foundExpressions.includes(word)) {
+          notFound.push(word)
+        }
+      })
+      return notFound;
+    }
+    return notFound;
+  }
 }
