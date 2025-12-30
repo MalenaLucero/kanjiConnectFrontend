@@ -49,7 +49,7 @@
         (updatedValue)="updateDifficulty($event)">
       </app-edit-difficulty>
     </div>
-    <div *ngIf="cardData.kanji.kanjiMaster.length > 0" class="kanji-master">
+    <div *ngIf="cardData.kanji.kanjiMaster && cardData.kanji.kanjiMaster.length > 0" class="kanji-master">
         <p>Kanji Master:
           <span *ngFor="let kanjiMaster of cardData.kanji.kanjiMaster">
               {{kanjiMaster.level}} page {{kanjiMaster.page}}
